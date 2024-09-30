@@ -538,24 +538,21 @@ namespace WindowsFormsApp1
                 // Diğer seçenekler için işlemler buraya eklenebilir
             }
         }
-        private void OpenForm1ToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            // Form1'in başka bir örneğini açabilir ya da bir işlem yapabilirsiniz
-            Form1 newForm = new Form1();
-            newForm.Show();
+            // Protokol1 seçildiğinde Form1'i aç
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Hide(); // Mevcut formu gizle (İsteğe bağlı)
         }
 
-        private void OpenForm2ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            // Form2'yi açmak için
+            // Protokol2 seçildiğinde Form2'yi aç
             Form2 form2 = new Form2();
             form2.Show();
-        }
-
-        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Uygulamayı kapat
-            this.Close();
+            this.Hide(); // Mevcut formu gizle (İsteğe bağlı)
         }
     }
 }
