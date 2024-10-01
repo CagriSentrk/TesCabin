@@ -35,8 +35,8 @@ namespace WindowsFormsApp1
         // Butona tıklandığında giriş kontrolü yapılacak
         private void button1_Click(object sender, EventArgs e)
         {
-            string username = "admin"; // Doğru kullanıcı adı
-            string password = "12345"; // Doğru şifre
+            string username = "a"; // Doğru kullanıcı adı
+            string password = "1"; // Doğru şifre
 
             // Kullanıcının girdiği şifreyi sadece rakamlar ve harfler kalsın diye temizle
             string enteredPassword = new string(textBox2.Text.Where(c => char.IsLetterOrDigit(c)).ToArray());

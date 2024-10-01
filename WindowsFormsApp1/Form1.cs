@@ -14,7 +14,6 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        private string _username;
         SerialPort serialport = new SerialPort();
 
         private List<byte> receivedDataBuffer = new List<byte>();
@@ -28,8 +27,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             GetAvailablePorts();
-            panelProtocol1.Visible = true;
-            panelProtocol2.Visible = false;
+
             // Zamanlayıcıyı ayarlayalım
             dataReceiveTimer = new System.Timers.Timer(100); // 10 ms
             dataReceiveTimer.AutoReset = false;
@@ -51,8 +49,6 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Protocol 1 panelinde yapılacak ilk işlemler
-            panelProtocol1.BringToFront();
             listViewMessages.View = View.Details;
             listViewMessages.Columns.Add("Mesaj", 650, HorizontalAlignment.Left);
             listViewMessages.Columns.Add("Zaman", 100, HorizontalAlignment.Left);
@@ -542,29 +538,34 @@ namespace WindowsFormsApp1
                 // Diğer seçenekler için işlemler buraya eklenebilir
             }
         }
+        private void LoadFormInPanel(Form form, Panel panel)
+        {
+            form.TopLevel = false;  // Form'un pencere olarak değil, bir kontrol olarak davranmasını sağla
+            form.FormBorderStyle = FormBorderStyle.None;  // Form çerçevesini kaldır
+            form.Dock = DockStyle.Fill;  // Formu panelin tamamını kaplayacak şekilde ayarla
+            panel.Controls.Clear();  // Paneldeki eski içerikleri temizle
+            panel.Controls.Add(form);  // Formu panele ekle
+            form.Show();  // Formu göster
+        }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            // Protokol1 panelini göster, Protokol2 panelini gizle
-            panelProtocol1.BringToFront();  // Panel1'i öne getir
-            panelProtocol1.Visible = true;
-            panelProtocol2.Visible = false;
+
+            // Protokol1 seçildiğinde Form1'i aç
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Hide(); // Mevcut formu gizle (İsteğe bağlı)
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            // Protokol2 panelini göster, Protokol1 panelini gizle
-            panelProtocol2.BringToFront();  // Panel2'yi öne getir
-            panelProtocol1.Visible = false;
-            panelProtocol2.Visible = true;
+            // Protokol2 seçildiğinde Form2'yi aç
+            Form4 form4 = new Form4();
+            form4.Show();
+            this.Hide(); // Mevcut formu gizle (İsteğe bağlı)
+            serialport.Close();
         }
-        // Protokol1'de bir buton olayı için örnek:
-        private void buttonSendProtokol1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Protokol1 işlem yapıyor...");
-        }
-
-        // Protokol2'de bir buton olayı için örnek:
+       
       
     }
 }

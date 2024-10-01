@@ -2,7 +2,7 @@
 
 namespace WindowsFormsApp1
 {
-    partial class Form1
+    partial class Form4
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,7 @@ namespace WindowsFormsApp1
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.protokol3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBoxCrcResults = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -149,8 +149,7 @@ namespace WindowsFormsApp1
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
-            this.toolStripMenuItem2,
-            this.protokol3ToolStripMenuItem});
+            this.toolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1518, 28);
@@ -173,12 +172,19 @@ namespace WindowsFormsApp1
             this.toolStripMenuItem2.Text = "Protokol2";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
-         
+            // textBoxCrcResults
             // 
-            // Form1
+            this.textBoxCrcResults.Location = new System.Drawing.Point(895, 72);
+            this.textBoxCrcResults.Multiline = true;
+            this.textBoxCrcResults.Name = "textBoxCrcResults";
+            this.textBoxCrcResults.Size = new System.Drawing.Size(377, 220);
+            this.textBoxCrcResults.TabIndex = 9;
+            // 
+            // Form4
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1518, 782);
+            this.Controls.Add(this.textBoxCrcResults);
             this.Controls.Add(this.listViewMessages);
             this.Controls.Add(this.SelectedProtocol);
             this.Controls.Add(this.listBoxReceivedData);
@@ -190,10 +196,10 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.Color.White;
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "Form4";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "Form4";
+            this.Load += new System.EventHandler(this.Form4_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -214,6 +220,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private ToolStripMenuItem protokol3ToolStripMenuItem;
+        private TextBox textBoxCrcResults;
     }
 }
