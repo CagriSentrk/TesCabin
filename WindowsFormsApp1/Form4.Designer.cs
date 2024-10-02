@@ -97,7 +97,7 @@ namespace WindowsFormsApp1
             this.textBoxSendData.Location = new System.Drawing.Point(274, 157);
             this.textBoxSendData.Multiline = true;
             this.textBoxSendData.Name = "textBoxSendData";
-            this.textBoxSendData.Size = new System.Drawing.Size(420, 78);
+            this.textBoxSendData.Size = new System.Drawing.Size(420, 46);
             this.textBoxSendData.TabIndex = 4;
             // 
             // SelectedProtocol
@@ -150,10 +150,10 @@ namespace WindowsFormsApp1
             // 
             // textBoxCrcResults
             // 
-            this.textBoxCrcResults.Location = new System.Drawing.Point(895, 72);
+            this.textBoxCrcResults.Location = new System.Drawing.Point(12, 244);
             this.textBoxCrcResults.Multiline = true;
             this.textBoxCrcResults.Name = "textBoxCrcResults";
-            this.textBoxCrcResults.Size = new System.Drawing.Size(377, 220);
+            this.textBoxCrcResults.Size = new System.Drawing.Size(1286, 387);
             this.textBoxCrcResults.TabIndex = 9;
             // 
             // Form4

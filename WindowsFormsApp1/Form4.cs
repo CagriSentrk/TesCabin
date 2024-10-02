@@ -86,10 +86,10 @@ namespace WindowsFormsApp1
             string dataHex = BitConverter.ToString(data, 0, length).Replace("-", " ");
 
             // TextBox erişimini Invoke ile yapalım
-            Invoke(new Action(() =>
-            {
-                textBoxCrcResults.AppendText($"CRC Hesaplaması için veri: {dataHex}\r\n");
-            }));
+            //Invoke(new Action(() =>
+            //{
+            //    textBoxCrcResults.AppendText($"CRC Hesaplaması için veri: {dataHex}\r\n");
+            //}));
 
             for (int pos = 0; pos < length; pos++)
             {
@@ -289,8 +289,8 @@ namespace WindowsFormsApp1
                     Invoke(new Action(() =>
                     {
                         textBoxCrcResults.AppendText($"Gönderilen Veri: {dataHex}\r\n");
-                        textBoxCrcResults.AppendText($"CRC Hesaplaması için veri: {BitConverter.ToString(dataBytes).Replace("-", " ")}\r\n");
-                        textBoxCrcResults.AppendText($"Hesaplanan CRC: {crc:X4}\r\n");
+                        textBoxCrcResults.AppendText($" gönderilen CRC Hesaplaması için veri: {BitConverter.ToString(dataBytes).Replace("-", " ")}\r\n");
+                        textBoxCrcResults.AppendText($"gönderilen Hesaplanan CRC: {crc:X4}\r\n");
                     }));
 
                     // Veriyi seri port üzerinden gönder
