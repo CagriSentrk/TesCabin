@@ -322,9 +322,10 @@ namespace WindowsFormsApp1
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            string role = "admin";
 
             // Protokol1 seçildiğinde Form1'i aç
-            Form1 form1 = new Form1();
+            Form1 form1 = new Form1(role);
             form1.Show();
             this.Hide(); // Mevcut formu gizle (İsteğe bağlı)
             serialport.Close();

@@ -8,6 +8,11 @@ namespace WindowsFormsApp1
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.GroupBox groupBoxProtocol1; // Protokol 1 için grup kutusu
+        private System.Windows.Forms.GroupBox groupBoxProtocol2;
+        private System.Windows.Forms.Button personelButton;
+        private System.Windows.Forms.Button adminButton;
+
 
 
         /// <summary>
@@ -53,8 +58,13 @@ namespace WindowsFormsApp1
             this.SelectedProtocol2 = new System.Windows.Forms.ComboBox();
             this.textBoxCrcResults2 = new System.Windows.Forms.TextBox();
             this.textBoxCrcResults = new System.Windows.Forms.TextBox();
+            this.groupBoxProtocol1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxProtocol2 = new System.Windows.Forms.GroupBox();
+            this.adminButton = new System.Windows.Forms.Button();
+            this.personelButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
+
             // 
             // comboBoxPorts
             // 
@@ -69,7 +79,7 @@ namespace WindowsFormsApp1
             // buttonOpenPort
             // 
             this.buttonOpenPort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(205)))), ((int)(((byte)(50)))));
-            this.buttonOpenPort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOpenPort.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonOpenPort.ForeColor = System.Drawing.Color.White;
             this.buttonOpenPort.Location = new System.Drawing.Point(166, 96);
             this.buttonOpenPort.Name = "buttonOpenPort";
@@ -92,7 +102,7 @@ namespace WindowsFormsApp1
             // SendText
             // 
             this.SendText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.SendText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SendText.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SendText.ForeColor = System.Drawing.Color.White;
             this.SendText.Location = new System.Drawing.Point(587, 97);
             this.SendText.Name = "SendText";
@@ -152,6 +162,7 @@ namespace WindowsFormsApp1
             this.listViewMessages.Size = new System.Drawing.Size(961, 243);
             this.listViewMessages.TabIndex = 7;
             this.listViewMessages.UseCompatibleStateImageBehavior = false;
+            
             // 
             // menuStrip1
             // 
@@ -222,7 +233,7 @@ namespace WindowsFormsApp1
             // buttonOpenPort2
             // 
             this.buttonOpenPort2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(205)))), ((int)(((byte)(50)))));
-            this.buttonOpenPort2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOpenPort2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonOpenPort2.ForeColor = System.Drawing.Color.White;
             this.buttonOpenPort2.Location = new System.Drawing.Point(1269, 137);
             this.buttonOpenPort2.Name = "buttonOpenPort2";
@@ -244,7 +255,7 @@ namespace WindowsFormsApp1
             // SendText2
             // 
             this.SendText2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.SendText2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SendText2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SendText2.ForeColor = System.Drawing.Color.White;
             this.SendText2.Location = new System.Drawing.Point(1610, 137);
             this.SendText2.Name = "SendText2";
@@ -298,6 +309,26 @@ namespace WindowsFormsApp1
             this.textBoxCrcResults.Name = "textBoxCrcResults";
             this.textBoxCrcResults.Size = new System.Drawing.Size(100, 22);
             this.textBoxCrcResults.TabIndex = 0;
+            // 
+            // groupBoxProtocol1
+            // 
+            this.groupBoxProtocol1.ForeColor = System.Drawing.Color.Lime;
+            this.groupBoxProtocol1.Location = new System.Drawing.Point(30, 50);
+            this.groupBoxProtocol1.Name = "groupBoxProtocol1";
+            this.groupBoxProtocol1.Size = new System.Drawing.Size(700, 400);
+            this.groupBoxProtocol1.TabIndex = 0;
+            this.groupBoxProtocol1.TabStop = false;
+            this.groupBoxProtocol1.Text = "Protokol 1";
+            // 
+            // groupBoxProtocol2
+            // 
+            this.groupBoxProtocol2.ForeColor = System.Drawing.Color.Lime;
+            this.groupBoxProtocol2.Location = new System.Drawing.Point(800, 50);
+            this.groupBoxProtocol2.Name = "groupBoxProtocol2";
+            this.groupBoxProtocol2.Size = new System.Drawing.Size(700, 400);
+            this.groupBoxProtocol2.TabIndex = 0;
+            this.groupBoxProtocol2.TabStop = false;
+            this.groupBoxProtocol2.Text = "Protokol 2";
             // 
             // Form1
             // 

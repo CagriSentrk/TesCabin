@@ -107,7 +107,7 @@ namespace WindowsFormsApp1
         bool ReservedBits; // 37. byte'ın 8. biti
 
         int counter;
-
+        private string role;
         private SerialPort serialport = new SerialPort();
         private SerialPort serialport2 = new SerialPort();
 
@@ -119,8 +119,9 @@ namespace WindowsFormsApp1
         byte[] fullMessage = new byte[40];
 
 
-        public Form1()
+        public Form1(string role)
         {
+            this.role = role;
             InitializeComponent();
             GetAvailablePorts();
             GetAvailablePorts2();
@@ -150,6 +151,8 @@ namespace WindowsFormsApp1
             listViewMessages.Columns.Add("Mesaj", 650, HorizontalAlignment.Left);
             listViewMessages.Columns.Add("Zaman", 100, HorizontalAlignment.Left);
 
+
+
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -176,38 +179,48 @@ namespace WindowsFormsApp1
             }
         }
 
+
         private void buttonOpenPort_Click(object sender, EventArgs e)
         {
-            try
+            if (role == "admin")
             {
-                // Eğer aynı port 2. SerialPort'ta açıksa, önce o portu kapat
-                if (serialport2.IsOpen && serialport2.PortName == comboBoxPorts.SelectedItem.ToString())
-                {
-                    serialport2.Close();
-                    buttonOpenPort2.Text = "Portu Aç";
-                }
 
-                if (serialport.IsOpen)
+
+                try
                 {
-                    serialport.Close();
-                    buttonOpenPort.Text = "Portu Aç";
+                    // Eğer aynı port 2. SerialPort'ta açıksa, önce o portu kapat
+                    if (serialport2.IsOpen && serialport2.PortName == comboBoxPorts.SelectedItem.ToString())
+                    {
+                        serialport2.Close();
+                        buttonOpenPort2.Text = "Portu Aç";
+                    }
+
+                    if (serialport.IsOpen)
+                    {
+                        serialport.Close();
+                        buttonOpenPort.Text = "Portu Aç";
+                    }
+                    else
+                    {
+                        serialport.PortName = comboBoxPorts.SelectedItem.ToString();
+                        serialport.BaudRate = 9600;
+                        serialport.Parity = Parity.None;
+                        serialport.StopBits = StopBits.One;
+                        serialport.DataBits = 8;
+                        serialport.Handshake = Handshake.None;
+                        serialport.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+                        serialport.Open();
+                        buttonOpenPort.Text = "Portu Kapat";
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    serialport.PortName = comboBoxPorts.SelectedItem.ToString();
-                    serialport.BaudRate = 9600;
-                    serialport.Parity = Parity.None;
-                    serialport.StopBits = StopBits.One;
-                    serialport.DataBits = 8;
-                    serialport.Handshake = Handshake.None;
-                    serialport.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
-                    serialport.Open();
-                    buttonOpenPort.Text = "Portu Kapat";
+                    MessageBox.Show(ex.Message);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Yetkiniz yeterli değil");
             }
         }
 
@@ -239,9 +252,9 @@ namespace WindowsFormsApp1
 
 
         // 2. byte'ın bitlerini kontrol et
-       
 
-        private double ConvertRawToDegrees(ushort rawValue,int betweens)
+
+        private double ConvertRawToDegrees(ushort rawValue, int betweens)
         {
             // Ham değer 0 - 65535 aralığında
             // Derece aralığı: -25 ile +25 derece arası
@@ -264,50 +277,50 @@ namespace WindowsFormsApp1
             if (data.Length < 3) return; // En az 3 byte olmalı
 
             // 2. byte'ın bitlerini kontrol et
-             isMotor1Enabled = (data[1] & 0b00000001) != 0; // 2. byte'ın 1. biti
-             isMotor2Enabled = (data[1] & 0b00000010) != 0; // 2. byte'ın 2. biti
-             isFin1Opened = (data[1] & 0b00000100) != 0; // 2. byte'ın 3. biti
-             isFin2Opened = (data[1] & 0b00001000) != 0; // 2. byte'ın 4. biti
-             ReservedMessageNoStatus = (data[1] & 0b11110000) != 0; // 2. byte'ın 4-7. biti
-           
+            isMotor1Enabled = (data[1] & 0b00000001) != 0; // 2. byte'ın 1. biti
+            isMotor2Enabled = (data[1] & 0b00000010) != 0; // 2. byte'ın 2. biti
+            isFin1Opened = (data[1] & 0b00000100) != 0; // 2. byte'ın 3. biti
+            isFin2Opened = (data[1] & 0b00001000) != 0; // 2. byte'ın 4. biti
+            ReservedMessageNoStatus = (data[1] & 0b11110000) != 0; // 2. byte'ın 4-7. biti
+
 
             // 3. byte'ın bitlerini kontrol et
-             Fin1MotorHallState = (data[2] & 0b00000111); // 3. byte'ın 0-2. 3 biti
-             Fin2MotorHallState = (data[2] & 0b00111000); // 3. byte'ın 3-5. 3 biti
-             ActualDriveMode = (data[2] &    0b11000000); // 3. byte'ın 6-7. 2 biti
+            Fin1MotorHallState = (data[2] & 0b00000111); // 3. byte'ın 0-2. 3 biti
+            Fin2MotorHallState = (data[2] & 0b00111000); // 3. byte'ın 3-5. 3 biti
+            ActualDriveMode = (data[2] & 0b11000000); // 3. byte'ın 6-7. 2 biti
 
-             Fin2_HallSensorSUpplyError = (data[3] & 0b00000001) != 0; // 4. byte'ın 1. biti
-             Fin1_HallSensorSUpplyError = (data[3] & 0b00000010) != 0; // 4. byte'ın 2. biti
-             Fin2_HallSensorStateError = (data[3] & 0b00000100) != 0; // 4. byte'ın 3. biti
-             Fin1_HallSensorStateError = (data[3] & 0b00001000) != 0; // 4. byte'ın 4. biti
-             Fin2_MotorLeakageCurrentError = (data[3] & 0b00010000) != 0; // 4. byte'ın 5. biti
-             Fin1_MotorLeakageCurrentError = (data[3] & 0b00100000) != 0; // 4. byte'ın 6. biti
-             Fin2_MotorOverCurrentError = (data[3] & 0b01000000) != 0; // 4. byte'ın 7. biti
-             Fin1_MotorOverCurrentError = (data[3] & 0b10000000) != 0; // 4. byte'ın 8. biti
-
-
-             Fin2_SolenoidError =               (data[4] & 0b00000001) != 0; // 5. byte'ın 1. biti
-             Fin1_SolenoidError =               (data[4] & 0b00000010) != 0; // 5. byte'ın 2. biti
-             SupplyVoltageError =               (data[4] & 0b00000100) != 0; // 5. byte'ın 3. biti
-             TemperatureSensorError =           (data[4] & 0b00001000) != 0; // 5. byte'ın 4. biti
-             Fin2_MotorDriverICErrorByCPLD =    (data[4] & 0b00010000) != 0; // 5. byte'ın 5. biti
-             Fin1_MotorDriverICErrorByCPLD =    (data[4] & 0b00100000) != 0; // 5. byte'ın 6. biti
-             Fin2_EncoderSupplyErrorByCPLD =    (data[4] & 0b01000000) != 0; // 5. byte'ın 7. biti
-             Fin1_EncoderSupplyErrorByCPLD =    (data[4] & 0b10000000) != 0; // 5. byte'ın 8. biti
+            Fin2_HallSensorSUpplyError = (data[3] & 0b00000001) != 0; // 4. byte'ın 1. biti
+            Fin1_HallSensorSUpplyError = (data[3] & 0b00000010) != 0; // 4. byte'ın 2. biti
+            Fin2_HallSensorStateError = (data[3] & 0b00000100) != 0; // 4. byte'ın 3. biti
+            Fin1_HallSensorStateError = (data[3] & 0b00001000) != 0; // 4. byte'ın 4. biti
+            Fin2_MotorLeakageCurrentError = (data[3] & 0b00010000) != 0; // 4. byte'ın 5. biti
+            Fin1_MotorLeakageCurrentError = (data[3] & 0b00100000) != 0; // 4. byte'ın 6. biti
+            Fin2_MotorOverCurrentError = (data[3] & 0b01000000) != 0; // 4. byte'ın 7. biti
+            Fin1_MotorOverCurrentError = (data[3] & 0b10000000) != 0; // 4. byte'ın 8. biti
 
 
-             Fin2_MotorTemperatureErrorByCPLD = (data[5] & 0b00000001) != 0; // 6. byte'ın 1. biti
-             Fin1_MotorTemperatureErrorByCPLD = (data[5] & 0b00000010) != 0; // 6. byte'ın 2. biti
-             Fin2_MotorDriverTemperatureErrorByCPLD = (data[5] & 0b00000100) != 0; // 6. byte'ın 3. biti
-             Fin1_MotorDriverTemperatureErrorByCPLD = (data[5] & 0b00001000) != 0; // 6. byte'ın 4. biti
-             Omkk_DspAdc_1_5VoltError = (data[5] & 0b00010000) != 0; // 6. byte'ın 5. biti
-             Omkk_3_3VoltErrorByCPLD = (data[5] & 0b00100000) != 0; // 6. byte'ın 6. biti
-             Omkk_5VoltErrorByCPLD = (data[5] & 0b01000000) != 0; // 6. byte'ın 7. biti
-             Omkk_12VoltErrorByCPLD = (data[5] & 0b10000000) != 0; // 6. byte'ın 8. biti
+            Fin2_SolenoidError = (data[4] & 0b00000001) != 0; // 5. byte'ın 1. biti
+            Fin1_SolenoidError = (data[4] & 0b00000010) != 0; // 5. byte'ın 2. biti
+            SupplyVoltageError = (data[4] & 0b00000100) != 0; // 5. byte'ın 3. biti
+            TemperatureSensorError = (data[4] & 0b00001000) != 0; // 5. byte'ın 4. biti
+            Fin2_MotorDriverICErrorByCPLD = (data[4] & 0b00010000) != 0; // 5. byte'ın 5. biti
+            Fin1_MotorDriverICErrorByCPLD = (data[4] & 0b00100000) != 0; // 5. byte'ın 6. biti
+            Fin2_EncoderSupplyErrorByCPLD = (data[4] & 0b01000000) != 0; // 5. byte'ın 7. biti
+            Fin1_EncoderSupplyErrorByCPLD = (data[4] & 0b10000000) != 0; // 5. byte'ın 8. biti
+
+
+            Fin2_MotorTemperatureErrorByCPLD = (data[5] & 0b00000001) != 0; // 6. byte'ın 1. biti
+            Fin1_MotorTemperatureErrorByCPLD = (data[5] & 0b00000010) != 0; // 6. byte'ın 2. biti
+            Fin2_MotorDriverTemperatureErrorByCPLD = (data[5] & 0b00000100) != 0; // 6. byte'ın 3. biti
+            Fin1_MotorDriverTemperatureErrorByCPLD = (data[5] & 0b00001000) != 0; // 6. byte'ın 4. biti
+            Omkk_DspAdc_1_5VoltError = (data[5] & 0b00010000) != 0; // 6. byte'ın 5. biti
+            Omkk_3_3VoltErrorByCPLD = (data[5] & 0b00100000) != 0; // 6. byte'ın 6. biti
+            Omkk_5VoltErrorByCPLD = (data[5] & 0b01000000) != 0; // 6. byte'ın 7. biti
+            Omkk_12VoltErrorByCPLD = (data[5] & 0b10000000) != 0; // 6. byte'ın 8. biti
 
 
             Fin1PositionFeedbackRaw = (ushort)((data[7] << 8) | data[6]); // MSB << 8 | LSB
-            Fin1PositionFeedbackDeg = ConvertRawToDegrees(Fin1PositionFeedbackRaw,25);
+            Fin1PositionFeedbackDeg = ConvertRawToDegrees(Fin1PositionFeedbackRaw, 25);
 
             Fin2PositionFeedbackRaw = (ushort)((data[9] << 8) | data[8]); // MSB << 8 | LSB
             Fin2PositionFeedbackDeg = ConvertRawToDegrees(Fin2PositionFeedbackRaw, 25);
@@ -360,7 +373,7 @@ namespace WindowsFormsApp1
 
 
             DspSoftwareVersion = (ushort)((data[26] << 8) | data[25]); // MSB << 8 | LSB
-            CpldVersion= (ushort)((data[28] << 8) | data[27]); // MSB << 8 | LSB
+            CpldVersion = (ushort)((data[28] << 8) | data[27]); // MSB << 8 | LSB
             ExecutionTimeOfTheCurrentLoop = (ushort)((data[30] << 8) | data[29]); // MSB << 8 | LSB
             ExecutionTimeOfThePositionLoop = (ushort)((data[32] << 8) | data[31]); // MSB << 8 | LSB
             ExecutionTimeOfTheLowFrequencyTask = (ushort)((data[34] << 8) | data[33]); // MSB << 8 | LSB
@@ -373,9 +386,9 @@ namespace WindowsFormsApp1
             MeanBatteryVoltageRaw = (ushort)((data[36] << 8) | data[35]); // MSB << 8 | LSB
             MeanBatteryVoltage = ConvertRawToDegrees(MeanBatteryVoltageRaw, 50);
             CardTemperature = (ushort)((data[36] << 8) | data[35]); // MSB << 8 | LSB
-            
+
             isSolenoid1Open = (ushort)((data[36] << 8) | data[35]); // MSB << 8 | LSB
-            
+
             isSolenoid1Open = (ushort)((data[36] << 8) | data[35]); // MSB << 8 | LSB
 
             TotalConsumedPower = (ushort)((data[36] << 8) | data[35]); // MSB << 8 | LSB
@@ -502,8 +515,8 @@ namespace WindowsFormsApp1
                     string dataToSend = textBoxSendData.Text;
 
 
-                    serialport.Write(fullMessage,0, fullMessage.Count());
-                    
+                    serialport.Write(fullMessage, 0, fullMessage.Count());
+
                     textBoxSendData.Clear();
                 }
                 else
@@ -516,7 +529,7 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Veri gönderilirken hata oluştu: " + ex.Message);
             }
         }
-        
+
         private void GenerateAndDisplayData()
         {
             byte header = 0x1D; // Örnek bir başlık değeri (istediğiniz bir değer olabilir)
@@ -536,7 +549,7 @@ namespace WindowsFormsApp1
             checksum = (byte)(sum & 0xFF);
 
             // Tüm mesajı birleştirme
-            
+
             fullMessage[0] = header;
             Array.Copy(dataBytes, 0, fullMessage, 1, dataBytes.Length);
             fullMessage[39] = checksum;
@@ -570,9 +583,9 @@ namespace WindowsFormsApp1
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            string role = "admin";
             // Protokol1 seçildiğinde Form1'i aç
-            Form1 form1 = new Form1();
+            Form1 form1 = new Form1(role);
             form1.Show();
             this.Hide(); // Mevcut formu gizle (İsteğe bağlı)
         }
@@ -742,7 +755,7 @@ namespace WindowsFormsApp1
             string responseHex = BitConverter.ToString(response).Replace("-", " ");
             Invoke(new Action(() =>
             {
-                textBoxCrcResults.AppendText($"Alınan Yanıt: {responseHex}\r\n");
+                textBoxCrcResults2.AppendText($"Alınan Yanıt: {responseHex}\r\n");
             }));
 
             // Son iki byte CRC olduğu için, onlardan önceki kısmın CRC'sini hesaplayalım
@@ -878,6 +891,6 @@ namespace WindowsFormsApp1
             }
         }
 
-        
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class Form3
+    partial class Login
     {
         private System.ComponentModel.IContainer components = null;
 
