@@ -25,9 +25,7 @@ namespace WindowsFormsApp1
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            listViewMessages.View = View.Details;
-            listViewMessages.Columns.Add("Mesaj", 650, HorizontalAlignment.Left);
-            listViewMessages.Columns.Add("Zaman", 100, HorizontalAlignment.Left);
+           
         }
 
         private void Form4_FormClosing(object sender, FormClosingEventArgs e)
@@ -86,7 +84,12 @@ namespace WindowsFormsApp1
 
             // CRC hesaplama öncesi veriyi logla
             string dataHex = BitConverter.ToString(data, 0, length).Replace("-", " ");
-            textBoxCrcResults.AppendText($"CRC Hesaplaması için veri: {dataHex}\r\n");
+
+            // TextBox erişimini Invoke ile yapalım
+            Invoke(new Action(() =>
+            {
+                textBoxCrcResults.AppendText($"CRC Hesaplaması için veri: {dataHex}\r\n");
+            }));
 
             for (int pos = 0; pos < length; pos++)
             {
@@ -107,41 +110,44 @@ namespace WindowsFormsApp1
             }
 
             // Hesaplanan CRC'yi logla
-            textBoxCrcResults.AppendText($"Hesaplanan CRC: {crc:X4}\r\n");
+            Invoke(new Action(() =>
+            {
+                textBoxCrcResults.AppendText($"Hesaplanan CRC: {crc:X4}\r\n");
+            }));
 
             return crc;  // Hesaplanan CRC değerini döndür
         }
+
 
         // Veri alındığında çağrılır
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             try
             {
+                // Veri miktarını oku
                 int bytesToRead = serialport.BytesToRead;
                 byte[] incomingData = new byte[bytesToRead];
                 serialport.Read(incomingData, 0, bytesToRead);
 
-                foreach (byte b in incomingData)
+                // Gelen veriyi buffer'a ekleyelim
+                receivedDataBuffer.AddRange(incomingData);
+
+                // Beklenen veri uzunluğu en az 7 byte (Modbus yanıtı)
+                if (receivedDataBuffer.Count >= 7)
                 {
-                    receivedDataBuffer.Add(b);
-
-                    // Modbus RTU yanıtı en az 7 byte olmalıdır, CRC ile birlikte
-                    if (receivedDataBuffer.Count >= 7)
+                    // Tam veri geldi mi?
+                    if (receivedDataBuffer.Count >= 7) // Örneğin: 7 byte
                     {
-                        // Yanıtı işlemeden önce, tam verinin alındığından emin olun
-                        if (receivedDataBuffer.Count == 7)
-                        {
-                            // Tam yanıtı aldık, işleme geçelim
-                            ProcessModbusResponse(receivedDataBuffer.ToArray());
-                        }
-                        else
-                        {
-                            // Eğer eksik veri varsa, alım tamamlanana kadar bekleyelim
-                            return;
-                        }
+                        // Alınan veriyi işleyelim
+                        ProcessModbusResponse(receivedDataBuffer.ToArray());
 
-                        // Yanıt işlendikten sonra buffer'ı temizleyelim
+                        // Veri işlendiği için buffer'ı temizleyelim
                         receivedDataBuffer.Clear();
+                    }
+                    else
+                    {
+                        // Eksik veri var, bir sonraki alımı bekleyelim
+                        return;
                     }
                 }
             }
@@ -149,17 +155,22 @@ namespace WindowsFormsApp1
             {
                 Invoke(new Action(() =>
                 {
-                    MessageBox.Show("Veri alınırken hata oluştu: " + ex.Message);
+                    MessageBox.Show($"Veri alınırken hata oluştu: {ex.Message}");
                 }));
             }
         }
 
         private void ProcessModbusResponse(byte[] response)
         {
+            // Yanıt en az 7 byte uzunluğunda olmalıdır (Modbus + CRC)
+            if (response.Length < 7)
+            {
+                MessageBox.Show("Eksik yanıt verisi alındı!");
+                return;
+            }
+
             // Yanıt verisini logla
             string responseHex = BitConverter.ToString(response).Replace("-", " ");
-
-            // UI işlemi için Invoke kullanarak ana iş parçacığına erişim sağla
             Invoke(new Action(() =>
             {
                 textBoxCrcResults.AppendText($"Alınan Yanıt: {responseHex}\r\n");
@@ -171,7 +182,7 @@ namespace WindowsFormsApp1
             // CRC kontrolü yap (Little-endian olduğundan son iki byte'ı ters şekilde birleştiriyoruz)
             ushort receivedCrc = (ushort)((response[response.Length - 2]) | (response[response.Length - 1] << 8));
 
-            // CRC'yi input kutusuna yazdıralım (UI işlemi için yine Invoke kullanıyoruz)
+            // CRC'yi input kutusuna yazdıralım
             Invoke(new Action(() =>
             {
                 textBoxCrcResults.AppendText($"Beklenen CRC: {crc:X4}, Alınan CRC: {receivedCrc:X4}\r\n");
@@ -193,10 +204,11 @@ namespace WindowsFormsApp1
             Invoke(new Action(() =>
             {
                 ListViewItem item = new ListViewItem(new[] { messageHex, timeStamp });
-                listViewMessages.Items.Add(item);
-                listViewMessages.EnsureVisible(listViewMessages.Items.Count - 1);
+               
             }));
         }
+
+
         private byte[] CreateModbusRequest(byte slaveAddress, byte functionCode, ushort startAddress, ushort numberOfPoints)
         {
             byte[] request = new byte[6];  // CRC için 2 byte daha eklenmeyecek
@@ -272,6 +284,15 @@ namespace WindowsFormsApp1
                     // CRC'yi dataBytes'e ekle
                     byte[] modbusRequestWithCRC = dataBytes.Concat(crcBytes).ToArray(); // CRC'yi ekle
 
+                    // Gönderilen veriyi ve hesaplanan CRC'yi logla
+                    string dataHex = BitConverter.ToString(modbusRequestWithCRC).Replace("-", " ");
+                    Invoke(new Action(() =>
+                    {
+                        textBoxCrcResults.AppendText($"Gönderilen Veri: {dataHex}\r\n");
+                        textBoxCrcResults.AppendText($"CRC Hesaplaması için veri: {BitConverter.ToString(dataBytes).Replace("-", " ")}\r\n");
+                        textBoxCrcResults.AppendText($"Hesaplanan CRC: {crc:X4}\r\n");
+                    }));
+
                     // Veriyi seri port üzerinden gönder
                     serialport.Write(modbusRequestWithCRC, 0, modbusRequestWithCRC.Length); // CRC eklenmiş veriyi gönder
 
@@ -287,6 +308,8 @@ namespace WindowsFormsApp1
                 MessageBox.Show($"Veri gönderilirken hata oluştu: {ex.Message}");
             }
         }
+
+
         private void LoadFormInPanel(Form form, Panel panel)
         {
             form.TopLevel = false;  // Form'un pencere olarak değil, bir kontrol olarak davranmasını sağla

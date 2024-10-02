@@ -35,9 +35,7 @@ namespace WindowsFormsApp1
             this.textBoxReceiveData = new System.Windows.Forms.TextBox();
             this.SendText = new System.Windows.Forms.Button();
             this.textBoxSendData = new System.Windows.Forms.TextBox();
-            this.listBoxReceivedData = new System.Windows.Forms.ListBox();
             this.SelectedProtocol = new System.Windows.Forms.ComboBox();
-            this.listViewMessages = new System.Windows.Forms.ListView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,17 +100,6 @@ namespace WindowsFormsApp1
             this.textBoxSendData.Size = new System.Drawing.Size(420, 78);
             this.textBoxSendData.TabIndex = 4;
             // 
-            // listBoxReceivedData
-            // 
-            this.listBoxReceivedData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.listBoxReceivedData.ForeColor = System.Drawing.Color.White;
-            this.listBoxReceivedData.FormattingEnabled = true;
-            this.listBoxReceivedData.ItemHeight = 16;
-            this.listBoxReceivedData.Location = new System.Drawing.Point(29, 398);
-            this.listBoxReceivedData.Name = "listBoxReceivedData";
-            this.listBoxReceivedData.Size = new System.Drawing.Size(1053, 52);
-            this.listBoxReceivedData.TabIndex = 5;
-            // 
             // SelectedProtocol
             // 
             this.SelectedProtocol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
@@ -130,17 +117,6 @@ namespace WindowsFormsApp1
             this.SelectedProtocol.Size = new System.Drawing.Size(241, 24);
             this.SelectedProtocol.TabIndex = 6;
             this.SelectedProtocol.SelectedIndexChanged += new System.EventHandler(this.SelectedProtocol_SelectedIndexChanged);
-            // 
-            // listViewMessages
-            // 
-            this.listViewMessages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.listViewMessages.ForeColor = System.Drawing.Color.White;
-            this.listViewMessages.HideSelection = false;
-            this.listViewMessages.Location = new System.Drawing.Point(29, 472);
-            this.listViewMessages.Name = "listViewMessages";
-            this.listViewMessages.Size = new System.Drawing.Size(1053, 243);
-            this.listViewMessages.TabIndex = 7;
-            this.listViewMessages.UseCompatibleStateImageBehavior = false;
             // 
             // menuStrip1
             // 
@@ -185,9 +161,7 @@ namespace WindowsFormsApp1
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1518, 782);
             this.Controls.Add(this.textBoxCrcResults);
-            this.Controls.Add(this.listViewMessages);
             this.Controls.Add(this.SelectedProtocol);
-            this.Controls.Add(this.listBoxReceivedData);
             this.Controls.Add(this.textBoxSendData);
             this.Controls.Add(this.SendText);
             this.Controls.Add(this.textBoxReceiveData);
@@ -214,9 +188,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.TextBox textBoxReceiveData;
         private System.Windows.Forms.Button SendText;
         private System.Windows.Forms.TextBox textBoxSendData;
-        private System.Windows.Forms.ListBox listBoxReceivedData;
         private System.Windows.Forms.ComboBox SelectedProtocol;
-        private System.Windows.Forms.ListView listViewMessages;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
