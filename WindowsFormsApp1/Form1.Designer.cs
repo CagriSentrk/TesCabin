@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
@@ -12,8 +13,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.GroupBox groupBoxProtocol2;
         private System.Windows.Forms.Button personelButton;
         private System.Windows.Forms.Button adminButton;
-
-
+        private PictureBox logoPictureBox;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -36,6 +36,7 @@ namespace WindowsFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.comboBoxPorts = new System.Windows.Forms.ComboBox();
             this.buttonOpenPort = new System.Windows.Forms.Button();
             this.textBoxReceiveData = new System.Windows.Forms.TextBox();
@@ -62,16 +63,17 @@ namespace WindowsFormsApp1
             this.groupBoxProtocol2 = new System.Windows.Forms.GroupBox();
             this.adminButton = new System.Windows.Forms.Button();
             this.personelButton = new System.Windows.Forms.Button();
+            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
-
             // 
             // comboBoxPorts
             // 
             this.comboBoxPorts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.comboBoxPorts.ForeColor = System.Drawing.Color.White;
             this.comboBoxPorts.FormattingEnabled = true;
-            this.comboBoxPorts.Location = new System.Drawing.Point(12, 95);
+            this.comboBoxPorts.Location = new System.Drawing.Point(50, 125);
             this.comboBoxPorts.Name = "comboBoxPorts";
             this.comboBoxPorts.Size = new System.Drawing.Size(121, 24);
             this.comboBoxPorts.TabIndex = 0;
@@ -81,7 +83,7 @@ namespace WindowsFormsApp1
             this.buttonOpenPort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(205)))), ((int)(((byte)(50)))));
             this.buttonOpenPort.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonOpenPort.ForeColor = System.Drawing.Color.White;
-            this.buttonOpenPort.Location = new System.Drawing.Point(166, 96);
+            this.buttonOpenPort.Location = new System.Drawing.Point(367, 126);
             this.buttonOpenPort.Name = "buttonOpenPort";
             this.buttonOpenPort.Size = new System.Drawing.Size(75, 23);
             this.buttonOpenPort.TabIndex = 1;
@@ -94,7 +96,7 @@ namespace WindowsFormsApp1
             this.textBoxReceiveData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.textBoxReceiveData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxReceiveData.ForeColor = System.Drawing.Color.White;
-            this.textBoxReceiveData.Location = new System.Drawing.Point(29, 195);
+            this.textBoxReceiveData.Location = new System.Drawing.Point(32, 208);
             this.textBoxReceiveData.Name = "textBoxReceiveData";
             this.textBoxReceiveData.Size = new System.Drawing.Size(100, 22);
             this.textBoxReceiveData.TabIndex = 2;
@@ -104,7 +106,7 @@ namespace WindowsFormsApp1
             this.SendText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
             this.SendText.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SendText.ForeColor = System.Drawing.Color.White;
-            this.SendText.Location = new System.Drawing.Point(587, 97);
+            this.SendText.Location = new System.Drawing.Point(583, 209);
             this.SendText.Name = "SendText";
             this.SendText.Size = new System.Drawing.Size(68, 23);
             this.SendText.TabIndex = 3;
@@ -117,7 +119,7 @@ namespace WindowsFormsApp1
             this.textBoxSendData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.textBoxSendData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxSendData.ForeColor = System.Drawing.Color.White;
-            this.textBoxSendData.Location = new System.Drawing.Point(274, 157);
+            this.textBoxSendData.Location = new System.Drawing.Point(205, 270);
             this.textBoxSendData.Multiline = true;
             this.textBoxSendData.Name = "textBoxSendData";
             this.textBoxSendData.Size = new System.Drawing.Size(420, 78);
@@ -129,9 +131,9 @@ namespace WindowsFormsApp1
             this.listBoxReceivedData.ForeColor = System.Drawing.Color.White;
             this.listBoxReceivedData.FormattingEnabled = true;
             this.listBoxReceivedData.ItemHeight = 16;
-            this.listBoxReceivedData.Location = new System.Drawing.Point(29, 307);
+            this.listBoxReceivedData.Location = new System.Drawing.Point(17, 296);
             this.listBoxReceivedData.Name = "listBoxReceivedData";
-            this.listBoxReceivedData.Size = new System.Drawing.Size(961, 52);
+            this.listBoxReceivedData.Size = new System.Drawing.Size(95, 52);
             this.listBoxReceivedData.TabIndex = 5;
             // 
             // SelectedProtocol
@@ -146,7 +148,7 @@ namespace WindowsFormsApp1
             "4",
             "5",
             "6"});
-            this.SelectedProtocol.Location = new System.Drawing.Point(274, 96);
+            this.SelectedProtocol.Location = new System.Drawing.Point(292, 209);
             this.SelectedProtocol.Name = "SelectedProtocol";
             this.SelectedProtocol.Size = new System.Drawing.Size(241, 24);
             this.SelectedProtocol.TabIndex = 6;
@@ -157,12 +159,11 @@ namespace WindowsFormsApp1
             this.listViewMessages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.listViewMessages.ForeColor = System.Drawing.Color.White;
             this.listViewMessages.HideSelection = false;
-            this.listViewMessages.Location = new System.Drawing.Point(29, 399);
+            this.listViewMessages.Location = new System.Drawing.Point(32, 370);
             this.listViewMessages.Name = "listViewMessages";
-            this.listViewMessages.Size = new System.Drawing.Size(961, 243);
+            this.listViewMessages.Size = new System.Drawing.Size(780, 243);
             this.listViewMessages.TabIndex = 7;
             this.listViewMessages.UseCompatibleStateImageBehavior = false;
-            
             // 
             // menuStrip1
             // 
@@ -175,36 +176,30 @@ namespace WindowsFormsApp1
             this.protokol3ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1783, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1783, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // toolStripMenuItem1
             // 
-            this.toolStripMenuItem1.ForeColor = System.Drawing.Color.White;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(87, 24);
-            this.toolStripMenuItem1.Text = "Protokol1";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(14, 20);
             // 
             // toolStripMenuItem2
             // 
-            this.toolStripMenuItem2.ForeColor = System.Drawing.Color.White;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(87, 24);
-            this.toolStripMenuItem2.Text = "Protokol2";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(14, 20);
             // 
             // protokol3ToolStripMenuItem
             // 
             this.protokol3ToolStripMenuItem.Name = "protokol3ToolStripMenuItem";
-            this.protokol3ToolStripMenuItem.Size = new System.Drawing.Size(14, 24);
+            this.protokol3ToolStripMenuItem.Size = new System.Drawing.Size(14, 20);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Lime;
-            this.label1.Location = new System.Drawing.Point(224, 49);
+            this.label1.Location = new System.Drawing.Point(226, 73);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 16);
             this.label1.TabIndex = 17;
@@ -214,7 +209,7 @@ namespace WindowsFormsApp1
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.Lime;
-            this.label2.Location = new System.Drawing.Point(1435, 84);
+            this.label2.Location = new System.Drawing.Point(1362, 164);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 16);
             this.label2.TabIndex = 18;
@@ -225,7 +220,7 @@ namespace WindowsFormsApp1
             this.comboBoxPorts2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.comboBoxPorts2.ForeColor = System.Drawing.Color.White;
             this.comboBoxPorts2.FormattingEnabled = true;
-            this.comboBoxPorts2.Location = new System.Drawing.Point(1114, 137);
+            this.comboBoxPorts2.Location = new System.Drawing.Point(1062, 208);
             this.comboBoxPorts2.Name = "comboBoxPorts2";
             this.comboBoxPorts2.Size = new System.Drawing.Size(121, 24);
             this.comboBoxPorts2.TabIndex = 10;
@@ -235,7 +230,7 @@ namespace WindowsFormsApp1
             this.buttonOpenPort2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(205)))), ((int)(((byte)(50)))));
             this.buttonOpenPort2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonOpenPort2.ForeColor = System.Drawing.Color.White;
-            this.buttonOpenPort2.Location = new System.Drawing.Point(1269, 137);
+            this.buttonOpenPort2.Location = new System.Drawing.Point(1256, 210);
             this.buttonOpenPort2.Name = "buttonOpenPort2";
             this.buttonOpenPort2.Size = new System.Drawing.Size(75, 23);
             this.buttonOpenPort2.TabIndex = 11;
@@ -247,7 +242,7 @@ namespace WindowsFormsApp1
             // 
             this.textBoxReceiveData2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.textBoxReceiveData2.ForeColor = System.Drawing.Color.White;
-            this.textBoxReceiveData2.Location = new System.Drawing.Point(974, 194);
+            this.textBoxReceiveData2.Location = new System.Drawing.Point(1063, 250);
             this.textBoxReceiveData2.Name = "textBoxReceiveData2";
             this.textBoxReceiveData2.Size = new System.Drawing.Size(100, 22);
             this.textBoxReceiveData2.TabIndex = 12;
@@ -257,7 +252,7 @@ namespace WindowsFormsApp1
             this.SendText2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
             this.SendText2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SendText2.ForeColor = System.Drawing.Color.White;
-            this.SendText2.Location = new System.Drawing.Point(1610, 137);
+            this.SendText2.Location = new System.Drawing.Point(1637, 210);
             this.SendText2.Name = "SendText2";
             this.SendText2.Size = new System.Drawing.Size(75, 23);
             this.SendText2.TabIndex = 13;
@@ -269,10 +264,10 @@ namespace WindowsFormsApp1
             // 
             this.textBoxSendData2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.textBoxSendData2.ForeColor = System.Drawing.Color.White;
-            this.textBoxSendData2.Location = new System.Drawing.Point(1114, 281);
+            this.textBoxSendData2.Location = new System.Drawing.Point(1063, 296);
             this.textBoxSendData2.Multiline = true;
             this.textBoxSendData2.Name = "textBoxSendData2";
-            this.textBoxSendData2.Size = new System.Drawing.Size(571, 78);
+            this.textBoxSendData2.Size = new System.Drawing.Size(120, 34);
             this.textBoxSendData2.TabIndex = 14;
             // 
             // SelectedProtocol2
@@ -287,7 +282,7 @@ namespace WindowsFormsApp1
             "4",
             "5",
             "6"});
-            this.SelectedProtocol2.Location = new System.Drawing.Point(1350, 136);
+            this.SelectedProtocol2.Location = new System.Drawing.Point(1353, 210);
             this.SelectedProtocol2.Name = "SelectedProtocol2";
             this.SelectedProtocol2.Size = new System.Drawing.Size(241, 24);
             this.SelectedProtocol2.TabIndex = 15;
@@ -297,10 +292,10 @@ namespace WindowsFormsApp1
             // 
             this.textBoxCrcResults2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.textBoxCrcResults2.ForeColor = System.Drawing.Color.White;
-            this.textBoxCrcResults2.Location = new System.Drawing.Point(1063, 390);
+            this.textBoxCrcResults2.Location = new System.Drawing.Point(41, 629);
             this.textBoxCrcResults2.Multiline = true;
             this.textBoxCrcResults2.Name = "textBoxCrcResults2";
-            this.textBoxCrcResults2.Size = new System.Drawing.Size(667, 252);
+            this.textBoxCrcResults2.Size = new System.Drawing.Size(740, 243);
             this.textBoxCrcResults2.TabIndex = 16;
             // 
             // textBoxCrcResults
@@ -330,10 +325,35 @@ namespace WindowsFormsApp1
             this.groupBoxProtocol2.TabStop = false;
             this.groupBoxProtocol2.Text = "Protokol 2";
             // 
+            // adminButton
+            // 
+            this.adminButton.Location = new System.Drawing.Point(0, 0);
+            this.adminButton.Name = "adminButton";
+            this.adminButton.Size = new System.Drawing.Size(75, 23);
+            this.adminButton.TabIndex = 0;
+            // 
+            // personelButton
+            // 
+            this.personelButton.Location = new System.Drawing.Point(0, 0);
+            this.personelButton.Name = "personelButton";
+            this.personelButton.Size = new System.Drawing.Size(75, 23);
+            this.personelButton.TabIndex = 0;
+            // 
+            // logoPictureBox
+            // 
+            this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
+            this.logoPictureBox.Location = new System.Drawing.Point(1517, 41);
+            this.logoPictureBox.Name = "logoPictureBox";
+            this.logoPictureBox.Size = new System.Drawing.Size(254, 79);
+            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logoPictureBox.TabIndex = 0;
+            this.logoPictureBox.TabStop = false;
+            // 
             // Form1
             // 
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(1783, 906);
+            this.Controls.Add(this.logoPictureBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewMessages);
@@ -360,6 +380,7 @@ namespace WindowsFormsApp1
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
