@@ -106,6 +106,41 @@ namespace WindowsFormsApp1
         bool MotorDriveMethod; // 37. byte'ın 7. biti
         bool ReservedBits; // 37. byte'ın 8. biti
 
+
+
+        //PROTOKOL 2 
+        private Random random = new Random();
+
+        // Verilerin tutulduğu yapı
+        public byte Header1 = 0xD5;
+        public byte ReservedMessageNumberCommand;
+        public byte SystemAnalysisMotorNo;
+        public byte IsCurrentControllerChangeCommandValid;
+        public byte IsPosControllerChangeCommandValid;
+        public byte DriveModeCommand;
+        public byte IsFin1MotorEnableCommandActivated;
+        public byte IsFin2MotorEnableCommandActivated;
+        public byte IsSolenoid1OpenCommandActivated;
+        public byte IsSolenoid2OpenCommandActivated;
+        public byte SystemAnalysisModeCommand;
+        public float SentFin1Command;
+        public float SentFin2Command;
+        public float PosSysAnalysisStartFrequencyCommand;
+        public float PosSysAnalysisFinishFrequencyCommand;
+        public float PosSysAnalysisStartAmplitudeCommand;
+        public float PosSysAnalysisFinishAmplitudeCommand;
+        public ushort PosSysAnalysisTestDurationCommand;
+        public float CurrentControlPrm_R;
+        public float CurrentControlPrm_L;
+        public float CurrentControlPrm_BW;
+        public float PositionControlPrm_Kp;
+        public float PositionControlPrm_Ki;
+        public float PositionControlPrm_Kd;
+        public byte Header2 = 0x3A;
+        public byte CheckSum;
+
+
+
         int counter;
         private string role;
         private SerialPort serialport = new SerialPort();
@@ -114,9 +149,12 @@ namespace WindowsFormsApp1
 
         private List<byte> receivedDataBuffer = new List<byte>();
         private System.Timers.Timer dataReceiveTimer;
-        private const int messageLength = 40; // Mesaj uzunluğu
+        private const int messageLength = 40;
+        private const int messageLenght2 = 20;// Mesaj uzunluğu
         private const byte headerByte = 0x1D; // Mesajın başlangıç baytı
+        private const byte headerByteD5 = 0xD5; // Mesajın başlangıç baytı
         byte[] fullMessage = new byte[40];
+        byte[] fullMessage2 = new byte[21];
 
 
         public Form1(string role)
@@ -244,15 +282,7 @@ namespace WindowsFormsApp1
             return calculatedChecksum == receivedChecksum;
         }
 
-        //string indata = serialport.ReadExisting();
-        //Invoke(new MethodInvoker(delegate
-        //{
-        //    listBoxReceivedData.Items.Add(indata);
-        //}));
-
-
-        // 2. byte'ın bitlerini kontrol et
-
+   
 
         private double ConvertRawToDegrees(ushort rawValue, int betweens)
         {
@@ -566,38 +596,18 @@ namespace WindowsFormsApp1
             {
                 GenerateAndDisplayData();
             }
+            else if (SelectedProtocol.SelectedItem.ToString() == "2")
+            {
+                GenerateAndDisplayRandomPacket(); // Rastgele veri oluşturup USB'ye gönderilecek şekilde sendbox'a yazdır
+            }
             else
             {
-                // Diğer seçenekler için işlemler buraya eklenebilir
+                MessageBox.Show("Geçersiz protokol seçildi.");
             }
+            
         }
-        private void LoadFormInPanel(Form form, Panel panel)
-        {
-            form.TopLevel = false;  // Form'un pencere olarak değil, bir kontrol olarak davranmasını sağla
-            form.FormBorderStyle = FormBorderStyle.None;  // Form çerçevesini kaldır
-            form.Dock = DockStyle.Fill;  // Formu panelin tamamını kaplayacak şekilde ayarla
-            panel.Controls.Clear();  // Paneldeki eski içerikleri temizle
-            panel.Controls.Add(form);  // Formu panele ekle
-            form.Show();  // Formu göster
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            string role = "admin";
-            // Protokol1 seçildiğinde Form1'i aç
-            Form1 form1 = new Form1(role);
-            form1.Show();
-            this.Hide(); // Mevcut formu gizle (İsteğe bağlı)
-        }
-
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            // Protokol2 seçildiğinde Form2'yi aç
-            Form4 form4 = new Form4();
-            form4.Show();
-            this.Hide(); // Mevcut formu gizle (İsteğe bağlı)
-            serialport.Close();
-        }
+    
+       
 
         ////// PROTOKOL2 //////////
         private void GetAvailablePorts2()
@@ -644,7 +654,7 @@ namespace WindowsFormsApp1
                 else
                 {
                     serialport2.PortName = comboBoxPorts2.SelectedItem.ToString();
-                    serialport2.BaudRate = 9600;
+                    serialport2.BaudRate = 2187500;
                     serialport2.Parity = Parity.None;
                     serialport2.StopBits = StopBits.One;
                     serialport2.DataBits = 8;
@@ -660,181 +670,81 @@ namespace WindowsFormsApp1
             }
         }
 
-        private ushort CalculateCRC(byte[] data, int length)
-        {
-            ushort crc = 0xFFFF;  // Başlangıç CRC değeri her seferinde sıfırlanır
 
-            // CRC hesaplama öncesi veriyi logla
-            string dataHex = BitConverter.ToString(data, 0, length).Replace("-", " ");
-
-            // TextBox erişimini Invoke ile yapalım
-            //Invoke(new Action(() =>
-            //{
-            //    textBoxCrcResults.AppendText($"CRC Hesaplaması için veri: {dataHex}\r\n");
-            //}));
-
-            for (int pos = 0; pos < length; pos++)
-            {
-                crc ^= (ushort)data[pos]; // CRC ile baytı XOR'la
-
-                for (int i = 8; i != 0; i--)
-                {
-                    if ((crc & 0x0001) != 0)
-                    {
-                        crc >>= 1;
-                        crc ^= 0xA001;  // CRC-16 için kullanılan polinom
-                    }
-                    else
-                    {
-                        crc >>= 1;
-                    }
-                }
-            }
-
-            // Hesaplanan CRC'yi logla
-            Invoke(new Action(() =>
-            {
-                textBoxCrcResults.AppendText($"Hesaplanan CRC: {crc:X4}\r\n");
-            }));
-
-            return crc;  // Hesaplanan CRC değerini döndür
-        }
 
 
         // Veri alındığında çağrılır
-        private void DataReceivedHandler2(object sender, SerialDataReceivedEventArgs e)
+        public void DataReceivedHandler2(object sender, SerialDataReceivedEventArgs e)
         {
             try
             {
-                // Veri miktarını oku
-                int bytesToRead = serialport2.BytesToRead;
+                // Gelen veri miktarını oku
+                int bytesToRead = serialport.BytesToRead;
                 byte[] incomingData = new byte[bytesToRead];
-                serialport2.Read(incomingData, 0, bytesToRead);
+                serialport.Read(incomingData, 0, bytesToRead);
 
-                // Gelen veriyi buffer'a ekleyelim
-                receivedDataBuffer.AddRange(incomingData);
-
-                // Beklenen veri uzunluğu en az 7 byte (Modbus yanıtı)
-                if (receivedDataBuffer.Count >= 7)
+                // Gelen veriyi işleyelim
+                foreach (byte b in incomingData)
                 {
-                    // Tam veri geldi mi?
-                    if (receivedDataBuffer.Count >= 7) // Örneğin: 7 byte
+                    // Eğer buffer boşsa, başlık baytını bekliyoruz
+                    if (receivedDataBuffer.Count == 0)
                     {
-                        // Alınan veriyi işleyelim
-                        ProcessModbusResponse(receivedDataBuffer.ToArray());
-
-                        // Veri işlendiği için buffer'ı temizleyelim
-                        receivedDataBuffer.Clear();
+                        if (b == headerByteD5)  // Başlık doğruysa veriyi toplamaya başla
+                        {
+                            receivedDataBuffer.Add(b);
+                        }
                     }
                     else
                     {
-                        // Eksik veri var, bir sonraki alımı bekleyelim
-                        return;
+                        // Mesajın geri kalanını toplamaya devam ediyoruz
+                        receivedDataBuffer.Add(b);
+
+                        // Mesajın tamamını aldık mı?
+                        if (receivedDataBuffer.Count == 21)  // Mesajın beklenen uzunluğu (21 byte)
+                        {
+                            // CheckSum kontrolü (son 1 bayt checksum olduğu için hariç tutulur)
+                            if (ValidateChecksum2(receivedDataBuffer.ToArray()))
+                            {
+                                // Paket geçerli, burada paket işleme kodları
+                                // Veriyi ListView'e ekle
+                                Invoke(new Action(() =>
+                                {
+                                    string dataHex = BitConverter.ToString(receivedDataBuffer.ToArray()).Replace("-", " ");
+                                    string timeStamp = DateTime.Now.ToString("HH:mm:ss.fff");
+                                    ListViewItem item = new ListViewItem(new[] { dataHex, timeStamp });
+                                    listViewMessages.Items.Add(item);
+                                    listViewMessages.EnsureVisible(listViewMessages.Items.Count - 1);
+                                }));
+                            }
+                            else
+                            {
+                                // Checksum hatası
+                                Invoke(new Action(() =>
+                                {
+                                    string dataHex = BitConverter.ToString(receivedDataBuffer.ToArray()).Replace("-", " ");
+                                    textBoxCrcResults2.AppendText($"CheckSum Hatası! Alınan Veri: {dataHex}\r\n");
+                                }));
+                            }
+
+                            // Mesajı işledikten sonra buffer'ı temizle
+                            receivedDataBuffer.Clear();
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
+                // Hata durumunda mesaj göster
                 Invoke(new Action(() =>
                 {
-                    MessageBox.Show($"Veri alınırken hata oluştu: {ex.Message}");
+                    MessageBox.Show("Veri alınırken hata oluştu: " + ex.Message);
                 }));
             }
         }
 
-        private void ProcessModbusResponse(byte[] response)
-        {
-            // Yanıt en az 7 byte uzunluğunda olmalıdır (Modbus + CRC)
-            if (response.Length < 7)
-            {
-                MessageBox.Show("Eksik yanıt verisi alındı!");
-                return;
-            }
-
-            // Yanıt verisini logla
-            string responseHex = BitConverter.ToString(response).Replace("-", " ");
-            Invoke(new Action(() =>
-            {
-                textBoxCrcResults2.AppendText($"Alınan Yanıt: {responseHex}\r\n");
-            }));
-
-            // Son iki byte CRC olduğu için, onlardan önceki kısmın CRC'sini hesaplayalım
-            ushort crc = CalculateCRC(response, response.Length - 2);
-
-            // CRC kontrolü yap (Little-endian olduğundan son iki byte'ı ters şekilde birleştiriyoruz)
-            ushort receivedCrc = (ushort)((response[response.Length - 2]) | (response[response.Length - 1] << 8));
-
-            // CRC'yi input kutusuna yazdıralım
-            Invoke(new Action(() =>
-            {
-                textBoxCrcResults.AppendText($"Beklenen CRC: {crc:X4}, Alınan CRC: {receivedCrc:X4}\r\n");
-            }));
-
-            if (crc != receivedCrc)
-            {
-                Invoke(new Action(() =>
-                {
-                    MessageBox.Show($"CRC Hatası! Beklenen CRC: {crc:X4}, Alınan CRC: {receivedCrc:X4}");
-                }));
-                return;
-            }
-
-            // Modbus yanıtını işleme
-            string messageHex = BitConverter.ToString(response).Replace("-", " ");
-            string timeStamp = DateTime.Now.ToString("HH:mm:ss.fff");
-
-            Invoke(new Action(() =>
-            {
-                ListViewItem item = new ListViewItem(new[] { messageHex, timeStamp });
-
-            }));
-        }
 
 
-        private byte[] CreateModbusRequest(byte slaveAddress, byte functionCode, ushort startAddress, ushort numberOfPoints)
-        {
-            byte[] request = new byte[6];  // CRC için 2 byte daha eklenmeyecek
 
-            request[0] = slaveAddress;               // Slave adresi
-            request[1] = functionCode;               // Fonksiyon kodu (03: Register okuma)
-            request[2] = (byte)(startAddress >> 8);  // Başlangıç adresi (MSB)
-            request[3] = (byte)(startAddress & 0xFF); // Başlangıç adresi (LSB)
-            request[4] = (byte)(numberOfPoints >> 8); // Okunacak register sayısı (MSB)
-            request[5] = (byte)(numberOfPoints & 0xFF); // Okunacak register sayısı (LSB)
-
-            return request;  // CRC eklenmeden döndürülüyor
-        }
-        // Gönderilecek veriyi oluşturup ekrana yazdıran fonksiyon
-
-        // SelectedProtocol değiştiğinde işlemleri yapma
-        private void SelectedProtocol_SelectedIndexChanged2(object sender, EventArgs e)
-        {
-            if (SelectedProtocol2.SelectedItem.ToString() == "1")
-            {
-                GenerateAndDisplayModbusRequest(); // Modbus isteğini input kutusuna yazdır
-            }
-            else
-            {
-                // Diğer seçenekler için işlemler buraya eklenebilir
-            }
-        }
-
-        // Gönderme işlemi
-        private void GenerateAndDisplayModbusRequest()
-        {
-            // Modbus isteği için test verileri
-            byte slaveAddress = 0x01;          // Örneğin 1 numaralı slave
-            byte functionCode = 0x03;          // 03: Holding Register okuma fonksiyonu
-            ushort startAddress = 0x0000;      // Başlangıç adresi (register 0)
-            ushort numberOfPoints = 0x0002;    // Okunacak register sayısı (2)
-
-            // Modbus isteğini oluştur
-            byte[] modbusRequest = CreateModbusRequest(slaveAddress, functionCode, startAddress, numberOfPoints);
-
-            // Mesajı görüntülemek için hex string'e çevirme
-            string hexString = BitConverter.ToString(modbusRequest).Replace("-", " ");
-            textBoxSendData2.Text = hexString; // Veriyi input kutusuna yazdır
-        }
 
         private void SendText_Click2(object sender, EventArgs e)
         {
@@ -859,24 +769,23 @@ namespace WindowsFormsApp1
                         .Select(hex => Convert.ToByte(hex, 16)) // Her hex string'i byte'a çevir
                         .ToArray();
 
-                    // CRC'yi sadece burada hesapla ve byte dizisine ekle
-                    ushort crc = CalculateCRC(dataBytes, dataBytes.Length); // CRC'yi hesapla
-                    byte[] crcBytes = new byte[] { (byte)(crc & 0xFF), (byte)(crc >> 8) };  // Little Endian sıralamasına göre ekle
+                    // CheckSum hesapla (CRC kaldırıldı, sadece CheckSum ile devam ediyoruz)
+                    byte checkSum = (byte)(dataBytes.Sum(b => b) & 0xFF); // Toplamı alıp & 0xFF yapıyoruz
 
-                    // CRC'yi dataBytes'e ekle
-                    byte[] modbusRequestWithCRC = dataBytes.Concat(crcBytes).ToArray(); // CRC'yi ekle
+                    // CheckSum'u byte dizisine ekle
+                    byte[] packetWithCheckSum = dataBytes.Concat(new byte[] { checkSum }).ToArray(); // CheckSum ekle
 
-                    // Gönderilen veriyi ve hesaplanan CRC'yi logla
-                    string dataHex = BitConverter.ToString(modbusRequestWithCRC).Replace("-", " ");
+                    // Gönderilen veriyi ve hesaplanan CheckSum'u logla
+                    string dataHex = BitConverter.ToString(packetWithCheckSum).Replace("-", " ");
                     Invoke(new Action(() =>
                     {
                         textBoxCrcResults2.AppendText($"Gönderilen Veri: {dataHex}\r\n");
-                        textBoxCrcResults2.AppendText($" gönderilen CRC Hesaplaması için veri: {BitConverter.ToString(dataBytes).Replace("-", " ")}\r\n");
-                        textBoxCrcResults2.AppendText($"gönderilen Hesaplanan CRC: {crc:X4}\r\n");
+                        textBoxCrcResults2.AppendText($" Gönderilen CheckSum Hesaplaması için veri: {BitConverter.ToString(dataBytes).Replace("-", " ")}\r\n");
+                        textBoxCrcResults2.AppendText($"Gönderilen Hesaplanan CheckSum: {checkSum:X2}\r\n");
                     }));
 
                     // Veriyi seri port üzerinden gönder
-                    serialport2.Write(modbusRequestWithCRC, 0, modbusRequestWithCRC.Length); // CRC eklenmiş veriyi gönder
+                    serialport2.Write(packetWithCheckSum, 0, packetWithCheckSum.Length); // CheckSum eklenmiş veriyi gönder
 
                     textBoxSendData2.Clear(); // Gönderilen veriyi temizle
                 }
@@ -891,6 +800,235 @@ namespace WindowsFormsApp1
             }
         }
 
+        public byte[] ToByteArray()
+        {
+            List<byte> byteList = new List<byte>
+        {
+            Header1,
+            (byte)((ReservedMessageNumberCommand & 0x0F) | (SystemAnalysisMotorNo << 4) | (IsCurrentControllerChangeCommandValid << 6) | (IsPosControllerChangeCommandValid << 7)),
+            (byte)((DriveModeCommand & 0x03) | (IsFin1MotorEnableCommandActivated << 2) | (IsFin2MotorEnableCommandActivated << 3) | (IsSolenoid1OpenCommandActivated << 4) | (IsSolenoid2OpenCommandActivated << 5) | (SystemAnalysisModeCommand << 6))
+        };
 
+            // SystemAnalysisModeCommand'e göre veri ekleme
+            if (SystemAnalysisModeCommand == 0)
+            {
+                byteList.AddRange(BitConverter.GetBytes(SentFin1Command));
+                byteList.AddRange(BitConverter.GetBytes(SentFin2Command));
+            }
+            else if (SystemAnalysisModeCommand == 2)
+            {
+                byteList.AddRange(BitConverter.GetBytes(PosSysAnalysisStartFrequencyCommand));
+                byteList.AddRange(BitConverter.GetBytes(PosSysAnalysisFinishFrequencyCommand));
+                byteList.AddRange(BitConverter.GetBytes(PosSysAnalysisStartAmplitudeCommand));
+                byteList.AddRange(BitConverter.GetBytes(PosSysAnalysisFinishAmplitudeCommand));
+                byteList.AddRange(BitConverter.GetBytes(PosSysAnalysisTestDurationCommand));
+            }
+
+            // Ek değişkenler
+            if (IsCurrentControllerChangeCommandValid == 1)
+            {
+                byteList.AddRange(BitConverter.GetBytes(CurrentControlPrm_R));
+                byteList.AddRange(BitConverter.GetBytes(CurrentControlPrm_L));
+                byteList.AddRange(BitConverter.GetBytes(CurrentControlPrm_BW));
+            }
+            else if (IsPosControllerChangeCommandValid == 1)
+            {
+                byteList.AddRange(BitConverter.GetBytes(PositionControlPrm_Kp));
+                byteList.AddRange(BitConverter.GetBytes(PositionControlPrm_Ki));
+                byteList.AddRange(BitConverter.GetBytes(PositionControlPrm_Kd));
+            }
+
+            // Header2 ekle
+            byteList.Add(Header2);
+
+            // Checksum hesapla
+            CheckSum = (byte)(byteList.Sum(b => b) & 0xFF);
+            byteList.Add(CheckSum);
+
+            return byteList.ToArray();
+        }
+        private void GenerateAndDisplayRandomPacket()
+        {
+            // Rastgele paket oluşturma
+            byte[] randomPacket = CreateRandomPacket();
+
+            // Oluşturulan rastgele veriyi hex string'e çevirme
+            string hexString = BitConverter.ToString(randomPacket).Replace("-", " ");
+
+            // Rastgele veriyi sendbox'a yazdırma
+            textBoxSendData.Text = hexString; // Rastgele veriyi USB'ye göndermek için ekrana yazdır
+        }
+    
+        // Rastgele paket oluşturan fonksiyon
+        public byte[] CreateRandomPacket()
+        {
+            Random random = new Random();
+            List<byte> byteList = new List<byte>();
+
+            // 0. Bayt: Başlık (0xD5)
+            byteList.Add(0xD5);
+
+            // 1. Bayt: ReservedMessageNumberCommand (0-3), SystemAnalysisMotorNo (4-5), IsCurrentControllerChangeCommandValid (6), IsPosControllerChangeCommandValid (7)
+            byte reservedMessageNumber = (byte)(random.Next(0, 16)); // 0-15
+            byte systemAnalysisMotorNo = (byte)(random.Next(0, 4)); // 0-3
+            byte isCurrentControllerChangeValid = (byte)(random.Next(0, 2)); // 0 veya 1
+            byte isPosControllerChangeValid = (byte)(random.Next(0, 2)); // 0 veya 1
+
+            // Ensure they are not both 1
+            if (isCurrentControllerChangeValid == 1)
+            {
+                isPosControllerChangeValid = 0;
+            }
+            if(isCurrentControllerChangeValid == 0)
+            {
+                isPosControllerChangeValid = 1;
+            }
+
+            byte byte1 = (byte)(reservedMessageNumber | (systemAnalysisMotorNo << 4) | (isCurrentControllerChangeValid << 6) | (isPosControllerChangeValid << 7));
+            byteList.Add(byte1);
+
+            // 2. Bayt: DriveModeCommand (0-1), IsFin1MotorEnableCommandActivated (2), IsFin2MotorEnableCommandActivated (3), IsSolenoid1OpenCommandActivated (4), IsSolenoid2OpenCommandActivated (5), SystemAnalysisModeCommand (6-7)
+            byte driveModeCommand = (byte)(random.Next(0, 4)); // 0-3
+            byte isFin1MotorEnabled = (byte)(random.Next(0, 2)); // 0 veya 1
+            byte isFin2MotorEnabled = (byte)(random.Next(0, 2)); // 0 veya 1
+            byte isSolenoid1Open = (byte)(random.Next(0, 2)); // 0 veya 1
+            byte isSolenoid2Open = (byte)(random.Next(0, 2)); // 0 veya 1
+            byte systemAnalysisMode = (byte)(random.Next(0, 3)); // 0-2
+
+            byte byte2 = (byte)(driveModeCommand | (isFin1MotorEnabled << 2) | (isFin2MotorEnabled << 3) | (isSolenoid1Open << 4) | (isSolenoid2Open << 5) | (systemAnalysisMode << 6));
+            byteList.Add(byte2);
+
+            // 3. - 12. Baytlar: SystemAnalysisModeCommand'e göre farklı veri ekleme
+            if (systemAnalysisMode == 0) // None
+            {
+                // SystemAnalysisModeCommand == 0: SentFin1Command ve SentFin2Command (sadece ilk 4 bayt kullan)
+                byteList.Add((byte)(random.Next(0, 256)));  // SentFin1Command_LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // SentFin1Command_Byte1
+                byteList.Add((byte)(random.Next(0, 256)));  // SentFin1Command_Byte2
+                byteList.Add((byte)(random.Next(0, 256)));  // SentFin1Command_MSB
+
+                byteList.Add((byte)(random.Next(0, 256)));  // SentFin2Command_LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // SentFin2Command_Byte1
+                byteList.Add((byte)(random.Next(0, 256)));  // SentFin2Command_Byte2
+                byteList.Add((byte)(random.Next(0, 256)));  // SentFin2Command_MSB
+                byteList.Add(0x00);
+                byteList.Add(0x00);
+            }
+            else if(systemAnalysisMode == 1)
+            {
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisStartFrequencyCommand_LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisStartFrequencyCommand_MSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisFinishFrequencyCommand_LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisFinishFrequencyCommand_MSB
+
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisStartAmplitudeCommand_LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisStartAmplitudeCommand_MSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisFinishAmplitudeCommand_LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisFinishAmplitudeCommand_MSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisTestDurationCommand_LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisTestDurationCommand_MSB
+            }
+            else if (systemAnalysisMode == 2) // Position2Position
+            {
+                // SystemAnalysisModeCommand == 2: Pozisyon analiz parametreleri
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisStartFrequencyCommand_LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisStartFrequencyCommand_MSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisFinishFrequencyCommand_LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisFinishFrequencyCommand_MSB
+
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisStartAmplitudeCommand_LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisStartAmplitudeCommand_MSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisFinishAmplitudeCommand_LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisFinishAmplitudeCommand_MSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisTestDurationCommand_LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PosSysAnalysisTestDurationCommand_MSB
+            }
+          
+
+            // 13. - 18. Baytlar: IsCurrentControllerChangeCommandValid ve IsPosControllerChangeCommandValid'e göre veri ekleme
+            if (isCurrentControllerChangeValid == 1) // IsCurrentControllerChangeCommandValid == 1
+            {
+                byteList.Add((byte)(random.Next(0, 256)));  // CurrentControlPrm_R LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // CurrentControlPrm_R MSB
+                byteList.Add((byte)(random.Next(0, 256)));  // CurrentControlPrm_L LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // CurrentControlPrm_L MSB
+                byteList.Add((byte)(random.Next(0, 256)));  // CurrentControlPrm_BW LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // CurrentControlPrm_BW MSB
+            }
+            else if (isPosControllerChangeValid == 1) // IsPosControllerChangeCommandValid == 1
+            {
+                byteList.Add((byte)(random.Next(0, 256)));  // PositionControlPrm_Kp LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PositionControlPrm_Kp MSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PositionControlPrm_Ki LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PositionControlPrm_Ki MSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PositionControlPrm_Kd LSB
+                byteList.Add((byte)(random.Next(0, 256)));  // PositionControlPrm_Kd MSB
+            }
+
+           
+
+            // 19. Bayt: Sabit header (0x3A)
+            byteList.Add(0x3A);
+
+            // CheckSum hesapla (tüm baytların toplamı & 0xFF)
+            byte checkSum = (byte)(byteList.Sum(b => b) & 0xFF);
+            byteList.Add(checkSum);
+
+            // Sonuç olarak 20 baytlık veri döndürülür (CRC eklenmeyecek)
+            return byteList.ToArray();
+        }
+
+
+        private bool ValidateChecksum2(byte[] message)
+        {
+            if (message.Length != messageLenght2)
+                return false;
+
+            // Checksum hesaplaması (son bayt checksum olduğu için dahil etmiyoruz)
+            int sum = 0;
+            for (int i = 0; i < message.Length - 1; i++)
+            {
+                sum += message[i];
+            }
+            byte calculatedChecksum = (byte)(sum & 0xFF);
+
+            // Mesajın son baytı alınan checksum
+            byte receivedChecksum = message[message.Length - 1];
+
+            return calculatedChecksum == receivedChecksum;
+        }
+
+
+
+        // Rastgele veri üretilip gösterme işlemi
+        private void SelectedProtocol_SelectedIndexChanged2(object sender, EventArgs e)
+        {
+           
+             if (SelectedProtocol2.SelectedItem.ToString() == "2")
+            {
+                GenerateAndDisplayRandomPacket(); // Rastgele veri oluşturup USB'ye gönderilecek şekilde sendbox'a yazdır
+            }
+            else
+            {
+                MessageBox.Show("Geçersiz protokol seçildi.");
+            }
+        }
+
+
+        public void SendRandomPacket()
+        {
+            if (serialport2.IsOpen)
+            {
+                byte[] packet = CreateRandomPacket();
+                serialport2.Write(packet, 0, packet.Length);
+                MessageBox.Show("Rastgele veri gönderildi.");
+            }
+            else
+            {
+                MessageBox.Show("Lütfen seri portu açın.");
+            }
+        }
+
+       
     }
 }
