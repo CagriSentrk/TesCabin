@@ -30,6 +30,7 @@ namespace WindowsFormsApp1
         string portInfo;
 
 
+
         // 3. byte'ın bitlerini kontrol et
         int Fin1MotorHallState; // 3. byte'ın 0-2. 3 biti
         int Fin2MotorHallState; // 3. byte'ın 3-5. 3 biti
