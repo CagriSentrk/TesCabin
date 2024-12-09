@@ -624,190 +624,190 @@ TrackBar angleTrackBar4) // Motor 2 için TrackBar (COM5)
         }
 
 
-        public void DisplayErrorsFromDatabase(TableLayoutPanel errortablelayout)
-        {
-            using (var conn = new NpgsqlConnection(connectionString))
-            {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand("SELECT " +
-                                                    "fin2_hall_sensor_supply_error, " +
-                                                    "fin1_hall_sensor_supply_error, " +
-                                                    "fin2_hall_sensor_state_error, " +
-                                                    "fin1_hall_sensor_state_error, " +
-                                                    "fin2_motor_leakage_current_error, " +
-                                                    "fin1_motor_leakage_current_error, " +
-                                                    "fin2_motor_over_current_error, " +
-                                                    "fin1_motor_over_current_error, " +
-                                                    "fin2_solenoid_error, " +
-                                                    "fin1_solenoid_error, " +
-                                                    "supply_voltage_error, " +
-                                                    "temperature_sensor_error, " +
-                                                    "fin2_motor_driver_ic_error_by_cpld, " +
-                                                    "fin1_motor_driver_ic_error_by_cpld, " +
-                                                    "fin2_encoder_supply_error_by_cpld, " +
-                                                    "fin1_encoder_supply_error_by_cpld, " +
-                                                    "fin2_motor_temperature_error_by_cpld, " +
-                                                    "fin1_motor_temperature_error_by_cpld, " +
-                                                    "fin2_motor_driver_temperature_error_by_cpld, " +
-                                                    "fin1_motor_driver_temperature_error_by_cpld, " +
-                                                    "omkk_dsp_adc_1_5volt_error, " +
-                                                    "omkk_3_3volt_error_by_cpld, " +
-                                                    "omkk_5volt_error_by_cpld, " +
-                                                    "omkk_12volt_error_by_cpld " +
-                                                    "FROM public.motor_control_data " +
-                                                    "ORDER BY id DESC LIMIT 1", conn))
-                {
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
+//        public void DisplayErrorsFromDatabase(TableLayoutPanel errortablelayout)
+//        {
+//            using (var conn = new NpgsqlConnection(connectionString))
+//            {
+//                conn.Open();
+//                using (var cmd = new NpgsqlCommand("SELECT " +
+//                                                    "fin2_hall_sensor_supply_error, " +
+//                                                    "fin1_hall_sensor_supply_error, " +
+//                                                    "fin2_hall_sensor_state_error, " +
+//                                                    "fin1_hall_sensor_state_error, " +
+//                                                    "fin2_motor_leakage_current_error, " +
+//                                                    "fin1_motor_leakage_current_error, " +
+//                                                    "fin2_motor_over_current_error, " +
+//                                                    "fin1_motor_over_current_error, " +
+//                                                    "fin2_solenoid_error, " +
+//                                                    "fin1_solenoid_error, " +
+//                                                    "supply_voltage_error, " +
+//                                                    "temperature_sensor_error, " +
+//                                                    "fin2_motor_driver_ic_error_by_cpld, " +
+//                                                    "fin1_motor_driver_ic_error_by_cpld, " +
+//                                                    "fin2_encoder_supply_error_by_cpld, " +
+//                                                    "fin1_encoder_supply_error_by_cpld, " +
+//                                                    "fin2_motor_temperature_error_by_cpld, " +
+//                                                    "fin1_motor_temperature_error_by_cpld, " +
+//                                                    "fin2_motor_driver_temperature_error_by_cpld, " +
+//                                                    "fin1_motor_driver_temperature_error_by_cpld, " +
+//                                                    "omkk_dsp_adc_1_5volt_error, " +
+//                                                    "omkk_3_3volt_error_by_cpld, " +
+//                                                    "omkk_5volt_error_by_cpld, " +
+//                                                    "omkk_12volt_error_by_cpld " +
+//                                                    "FROM public.motor_control_data " +
+//                                                    "ORDER BY id DESC LIMIT 1", conn))
+//                {
+//                    using (var reader = cmd.ExecuteReader())
+//                    {
+//                        if (reader.Read())
+//                        {
 
-                            // Her hatayı tek tek kontrol edip, true olanları işliyoruz
-                            CheckAndDisplayError(reader.GetBoolean(0), "Fin2 Hall Sensor Supply Error", 1, errortablelayout); // Motor-2
-                            CheckAndDisplayError(reader.GetBoolean(1), "Fin1 Hall Sensor Supply Error", 0, errortablelayout); // Motor-1
-                            CheckAndDisplayError(reader.GetBoolean(2), "Fin2 Hall Sensor State Error", 1, errortablelayout); // Motor-2
-                            CheckAndDisplayError(reader.GetBoolean(3), "Fin1 Hall Sensor State Error", 0, errortablelayout); // Motor-1
-                            CheckAndDisplayError(reader.GetBoolean(4), "Fin2 Motor Leakage Current Error", 1, errortablelayout); // Motor-2
-                            CheckAndDisplayError(reader.GetBoolean(5), "Fin1 Motor Leakage Current Error", 0, errortablelayout); // Motor-1
-                            CheckAndDisplayError(reader.GetBoolean(6), "Fin2 Motor Over Current Error", 1, errortablelayout); // Motor-2
-                            CheckAndDisplayError(reader.GetBoolean(7), "Fin1 Motor Over Current Error", 0, errortablelayout); // Motor-1
-                            CheckAndDisplayError(reader.GetBoolean(8), "Fin2 Solenoid Error", 1, errortablelayout); // Motor-2
-                            CheckAndDisplayError(reader.GetBoolean(9), "Fin1 Solenoid Error", 0, errortablelayout); // Motor-1
-                            CheckAndDisplayError(reader.GetBoolean(10), "Supply Voltage Error", -1, errortablelayout); // Genel hata, motorlarla doğrudan bağlantılı değil
-                            CheckAndDisplayError(reader.GetBoolean(11), "Temperature Sensor Error", -1, errortablelayout); // Genel hata
-                            CheckAndDisplayError(reader.GetBoolean(12), "Fin2 Motor Driver IC Error By CPLD", 1, errortablelayout); // Motor-2
-                            CheckAndDisplayError(reader.GetBoolean(13), "Fin1 Motor Driver IC Error By CPLD", 0, errortablelayout); // Motor-1
-                            CheckAndDisplayError(reader.GetBoolean(14), "Fin2 Encoder Supply Error By CPLD", 1, errortablelayout); // Motor-2
-                            CheckAndDisplayError(reader.GetBoolean(15), "Fin1 Encoder Supply Error By CPLD", 0, errortablelayout); // Motor-1
-                            CheckAndDisplayError(reader.GetBoolean(16), "Fin2 Motor Temperature Error By CPLD", 1, errortablelayout); // Motor-2
-                            CheckAndDisplayError(reader.GetBoolean(17), "Fin1 Motor Temperature Error By CPLD", 0, errortablelayout); // Motor-1
-                            CheckAndDisplayError(reader.GetBoolean(18), "Fin2 Motor Driver Temperature Error By CPLD", 1, errortablelayout); // Motor-2
-                            CheckAndDisplayError(reader.GetBoolean(19), "Fin1 Motor Driver Temperature Error By CPLD", 0, errortablelayout); // Motor-1
-                            CheckAndDisplayError(reader.GetBoolean(20), "OMKK DSP ADC 1.5 Volt Error", -1, errortablelayout); // Genel hata
-                            CheckAndDisplayError(reader.GetBoolean(21), "OMKK 3.3 Volt Error By CPLD", -1, errortablelayout); // Genel hata
-                            CheckAndDisplayError(reader.GetBoolean(22), "OMKK 5 Volt Error By CPLD", -1, errortablelayout); // Genel hata
-                            CheckAndDisplayError(reader.GetBoolean(23), "OMKK 12 Volt Error By CPLD", -1, errortablelayout); // Genel hata
+//                            // Her hatayı tek tek kontrol edip, true olanları işliyoruz
+//                            CheckAndDisplayError(reader.GetBoolean(0), "Fin2 Hall Sensor Supply Error", 1, errortablelayout); // Motor-2
+//                            CheckAndDisplayError(reader.GetBoolean(1), "Fin1 Hall Sensor Supply Error", 0, errortablelayout); // Motor-1
+//                            CheckAndDisplayError(reader.GetBoolean(2), "Fin2 Hall Sensor State Error", 1, errortablelayout); // Motor-2
+//                            CheckAndDisplayError(reader.GetBoolean(3), "Fin1 Hall Sensor State Error", 0, errortablelayout); // Motor-1
+//                            CheckAndDisplayError(reader.GetBoolean(4), "Fin2 Motor Leakage Current Error", 1, errortablelayout); // Motor-2
+//                            CheckAndDisplayError(reader.GetBoolean(5), "Fin1 Motor Leakage Current Error", 0, errortablelayout); // Motor-1
+//                            CheckAndDisplayError(reader.GetBoolean(6), "Fin2 Motor Over Current Error", 1, errortablelayout); // Motor-2
+//                            CheckAndDisplayError(reader.GetBoolean(7), "Fin1 Motor Over Current Error", 0, errortablelayout); // Motor-1
+//                            CheckAndDisplayError(reader.GetBoolean(8), "Fin2 Solenoid Error", 1, errortablelayout); // Motor-2
+//                            CheckAndDisplayError(reader.GetBoolean(9), "Fin1 Solenoid Error", 0, errortablelayout); // Motor-1
+//                            CheckAndDisplayError(reader.GetBoolean(10), "Supply Voltage Error", -1, errortablelayout); // Genel hata, motorlarla doğrudan bağlantılı değil
+//                            CheckAndDisplayError(reader.GetBoolean(11), "Temperature Sensor Error", -1, errortablelayout); // Genel hata
+//                            CheckAndDisplayError(reader.GetBoolean(12), "Fin2 Motor Driver IC Error By CPLD", 1, errortablelayout); // Motor-2
+//                            CheckAndDisplayError(reader.GetBoolean(13), "Fin1 Motor Driver IC Error By CPLD", 0, errortablelayout); // Motor-1
+//                            CheckAndDisplayError(reader.GetBoolean(14), "Fin2 Encoder Supply Error By CPLD", 1, errortablelayout); // Motor-2
+//                            CheckAndDisplayError(reader.GetBoolean(15), "Fin1 Encoder Supply Error By CPLD", 0, errortablelayout); // Motor-1
+//                            CheckAndDisplayError(reader.GetBoolean(16), "Fin2 Motor Temperature Error By CPLD", 1, errortablelayout); // Motor-2
+//                            CheckAndDisplayError(reader.GetBoolean(17), "Fin1 Motor Temperature Error By CPLD", 0, errortablelayout); // Motor-1
+//                            CheckAndDisplayError(reader.GetBoolean(18), "Fin2 Motor Driver Temperature Error By CPLD", 1, errortablelayout); // Motor-2
+//                            CheckAndDisplayError(reader.GetBoolean(19), "Fin1 Motor Driver Temperature Error By CPLD", 0, errortablelayout); // Motor-1
+//                            CheckAndDisplayError(reader.GetBoolean(20), "OMKK DSP ADC 1.5 Volt Error", -1, errortablelayout); // Genel hata
+//                            CheckAndDisplayError(reader.GetBoolean(21), "OMKK 3.3 Volt Error By CPLD", -1, errortablelayout); // Genel hata
+//                            CheckAndDisplayError(reader.GetBoolean(22), "OMKK 5 Volt Error By CPLD", -1, errortablelayout); // Genel hata
+//                            CheckAndDisplayError(reader.GetBoolean(23), "OMKK 12 Volt Error By CPLD", -1, errortablelayout); // Genel hata
 
-                        }
-                        else
-                        {
-                            // Veri yoksa uygun bir mesaj göster
-                            DisplayNoDataMessage(errortablelayout);
-                        }
-                    }
-                }
-            }
-        }
+//                        }
+//                        else
+//                        {
+//                            // Veri yoksa uygun bir mesaj göster
+//                            DisplayNoDataMessage(errortablelayout);
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
-        private void CheckAndDisplayError(bool errorCondition, string errorMessage, int motorIndex, TableLayoutPanel errortablelayout)
-        {
-            if (errorCondition)
-            {
-                DisplayError(errorMessage, motorIndex, errortablelayout);
-            }
-        }
+//        private void CheckAndDisplayError(bool errorCondition, string errorMessage, int motorIndex, TableLayoutPanel errortablelayout)
+//        {
+//            if (errorCondition)
+//            {
+//                DisplayError(errorMessage, motorIndex, errortablelayout);
+//            }
+//        }
 
-      private int motor1RowCount = 1; // Motor-1 için başlangıç satır sayısı
-private int motor2RowCount = 1; // Motor-2 için başlangıç satır sayısı
-private int generalErrorRowCount = 1; // Genel hatalar için başlangıç satır sayısı
+//      private int motor1RowCount = 1; // Motor-1 için başlangıç satır sayısı
+//private int motor2RowCount = 1; // Motor-2 için başlangıç satır sayısı
+//private int generalErrorRowCount = 1; // Genel hatalar için başlangıç satır sayısı
 
-        private readonly Dictionary<string, Color> errorColors = new Dictionary<string, Color>()
-{
-    { "Fin1 Hall Sensor State Error", Color.Red },
-    { "Fin1 Motor Leakage Current Error", Color.Orange },
-    { "Fin1 Motor Over Current Error", Color.Gold },
-    { "Fin1 Solenoid Error", Color.Green },
-    { "Fin2 Hall Sensor State Error", Color.Blue },
-    { "Fin2 Solenoid Error", Color.Purple },
-    { "Supply Voltage Error", Color.Brown },
-    { "Temperature Sensor Error", Color.DarkRed },
-    { "OMKK DSP ADC 1.5 Volt Error", Color.DarkOrange },
-    { "OMKK 3.3 Volt Error By CPLD", Color.DarkGreen },
-    { "OMKK 5 Volt Error By CPLD", Color.DarkBlue },
-    { "OMKK 12 Volt Error By CPLD", Color.Magenta }
-    // Diğer hatalarınız için de renkler tanımlayabilirsiniz
-};
+//        private readonly Dictionary<string, Color> errorColors = new Dictionary<string, Color>()
+//{
+//    { "Fin1 Hall Sensor State Error", Color.Red },
+//    { "Fin1 Motor Leakage Current Error", Color.Orange },
+//    { "Fin1 Motor Over Current Error", Color.Gold },
+//    { "Fin1 Solenoid Error", Color.Green },
+//    { "Fin2 Hall Sensor State Error", Color.Blue },
+//    { "Fin2 Solenoid Error", Color.Purple },
+//    { "Supply Voltage Error", Color.Brown },
+//    { "Temperature Sensor Error", Color.DarkRed },
+//    { "OMKK DSP ADC 1.5 Volt Error", Color.DarkOrange },
+//    { "OMKK 3.3 Volt Error By CPLD", Color.DarkGreen },
+//    { "OMKK 5 Volt Error By CPLD", Color.DarkBlue },
+//    { "OMKK 12 Volt Error By CPLD", Color.Magenta }
+//    // Diğer hatalarınız için de renkler tanımlayabilirsiniz
+//};
 
-        private void DisplayError(string errorMessage, int motorIndex, TableLayoutPanel errortablelayout)
-        {
-            // Sabit renk tanımlaması: Eğer hata mesajı belirli bir renge sahipse kullan, yoksa varsayılan siyah rengi kullan
-            Color errorColor = errorColors.ContainsKey(errorMessage) ? errorColors[errorMessage] : Color.Black;
+//        private void DisplayError(string errorMessage, int motorIndex, TableLayoutPanel errortablelayout)
+//        {
+//            // Sabit renk tanımlaması: Eğer hata mesajı belirli bir renge sahipse kullan, yoksa varsayılan siyah rengi kullan
+//            Color errorColor = errorColors.ContainsKey(errorMessage) ? errorColors[errorMessage] : Color.Black;
 
-            // Hata etiketi oluştur
-            Label errorLabel = new Label()
-            {
-                Text = errorMessage,
-                TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
-                Font = new Font("Segoe UI", 12F, FontStyle.Bold), // Daha modern font ve boyut
-                ForeColor = Color.FromArgb(50, 50, 50), // Sabit yazı rengi, örneğin koyu gri tonları
-                AutoSize = true,
-                Padding = new Padding(10, 5, 10, 5) // Daha fazla boşluk ve padding
-            };
+//            // Hata etiketi oluştur
+//            Label errorLabel = new Label()
+//            {
+//                Text = errorMessage,
+//                TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
+//                Font = new Font("Segoe UI", 12F, FontStyle.Bold), // Daha modern font ve boyut
+//                ForeColor = Color.FromArgb(50, 50, 50), // Sabit yazı rengi, örneğin koyu gri tonları
+//                AutoSize = true,
+//                Padding = new Padding(10, 5, 10, 5) // Daha fazla boşluk ve padding
+//            };
 
-            // PictureBox kullanarak yuvarlak gösterim
-            PictureBox circleIndicator = new PictureBox()
-            {
-                Width = 20,
-                Height = 20,
-                BackColor = Color.Transparent
-            };
+//            // PictureBox kullanarak yuvarlak gösterim
+//            PictureBox circleIndicator = new PictureBox()
+//            {
+//                Width = 20,
+//                Height = 20,
+//                BackColor = Color.Transparent
+//            };
 
-            // Yuvarlak çizim için PictureBox'ın Paint eventini kullan
-            circleIndicator.Paint += (s, e) =>
-            {
-                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias; // Pürüzsüzleştirme
-                using (Brush brush = new SolidBrush(errorColor))
-                {
-                    e.Graphics.FillEllipse(brush, 0, 0, circleIndicator.Width, circleIndicator.Height); // Pürüzsüz yuvarlak çizim
-                }
-            };
+//            // Yuvarlak çizim için PictureBox'ın Paint eventini kullan
+//            circleIndicator.Paint += (s, e) =>
+//            {
+//                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias; // Pürüzsüzleştirme
+//                using (Brush brush = new SolidBrush(errorColor))
+//                {
+//                    e.Graphics.FillEllipse(brush, 0, 0, circleIndicator.Width, circleIndicator.Height); // Pürüzsüz yuvarlak çizim
+//                }
+//            };
 
-            // FlowLayoutPanel kullanarak renkli yuvarlak ve hatayı yan yana yerleştirme
-            FlowLayoutPanel errorPanel = new FlowLayoutPanel()
-            {
-                AutoSize = true,
-                FlowDirection = FlowDirection.LeftToRight,
-                Padding = new Padding(0),
-                Margin = new Padding(0)
-            };
-            errorPanel.Controls.Add(circleIndicator);
-            errorPanel.Controls.Add(errorLabel);
+//            // FlowLayoutPanel kullanarak renkli yuvarlak ve hatayı yan yana yerleştirme
+//            FlowLayoutPanel errorPanel = new FlowLayoutPanel()
+//            {
+//                AutoSize = true,
+//                FlowDirection = FlowDirection.LeftToRight,
+//                Padding = new Padding(0),
+//                Margin = new Padding(0)
+//            };
+//            errorPanel.Controls.Add(circleIndicator);
+//            errorPanel.Controls.Add(errorLabel);
 
-            if (motorIndex == 0)
-            {
-                // Motor-1 altında göster
-                errortablelayout.Controls.Add(errorPanel, 0, motor1RowCount);
-                motor1RowCount++;
-            }
-            else if (motorIndex == 1)
-            {
-                // Motor-2 altında göster
-                errortablelayout.Controls.Add(errorPanel, 1, motor2RowCount);
-                motor2RowCount++;
-            }
-            else
-            {
-                // Genel hatalar için özel bir sütuna ekleyebilirsiniz (örneğin, 2. sütun)
-                errortablelayout.Controls.Add(errorPanel, 2, generalErrorRowCount);
-                generalErrorRowCount++;
-            }
-        }
+//            if (motorIndex == 0)
+//            {
+//                // Motor-1 altında göster
+//                errortablelayout.Controls.Add(errorPanel, 0, motor1RowCount);
+//                motor1RowCount++;
+//            }
+//            else if (motorIndex == 1)
+//            {
+//                // Motor-2 altında göster
+//                errortablelayout.Controls.Add(errorPanel, 1, motor2RowCount);
+//                motor2RowCount++;
+//            }
+//            else
+//            {
+//                // Genel hatalar için özel bir sütuna ekleyebilirsiniz (örneğin, 2. sütun)
+//                errortablelayout.Controls.Add(errorPanel, 2, generalErrorRowCount);
+//                generalErrorRowCount++;
+//            }
+//        }
 
-        private void DisplayNoDataMessage(TableLayoutPanel errortablelayout)
-        {
-            Label noDataLabel = new Label()
-            {
-                Text = "Veritabanında herhangi bir hata verisi bulunamadı.",
-                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
-                Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Italic),
-                ForeColor = Color.Gray,
-                Dock = DockStyle.Fill,
-                AutoSize = true
-            };
+//        private void DisplayNoDataMessage(TableLayoutPanel errortablelayout)
+//        {
+//            Label noDataLabel = new Label()
+//            {
+//                Text = "Veritabanında herhangi bir hata verisi bulunamadı.",
+//                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+//                Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Italic),
+//                ForeColor = Color.Gray,
+//                Dock = DockStyle.Fill,
+//                AutoSize = true
+//            };
 
-            errortablelayout.Controls.Add(noDataLabel, 0, errortablelayout.RowCount);
-            errortablelayout.RowCount++;
-        }
+//            errortablelayout.Controls.Add(noDataLabel, 0, errortablelayout.RowCount);
+//            errortablelayout.RowCount++;
+//        }
 
 
 

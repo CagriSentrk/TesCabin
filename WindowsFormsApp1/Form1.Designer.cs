@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Security.Policy;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -13,16 +14,29 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.GroupBox groupBoxProtocol2;
         private System.Windows.Forms.Button personelButton;
         private System.Windows.Forms.Button adminButton;
-        private System.Windows.Forms.GroupBox groupBoxCrcResults;
-        private System.Windows.Forms.DataGridView dataGridViewCrcResults;
         private System.Windows.Forms.TrackBar angleTrackBar2;
         private System.Windows.Forms.PictureBox gaugePictureBox2;
         private System.Windows.Forms.Label labelPosition;
         private System.Windows.Forms.TextBox textBoxPositionmotor1;
+        private System.Windows.Forms.Panel radioPanel;
 
         private System.Windows.Forms.TableLayoutPanel errortablelayout;
 
-
+        private RadioButton hata1RadioButton;
+        private RadioButton hata2RadioButton;
+        private RadioButton hata3RadioButton;
+        private RadioButton hata4RadioButton;
+        private RadioButton hata5RadioButton;
+        private RadioButton hata6RadioButton;
+        private RadioButton hata7RadioButton;
+        private RadioButton hata8RadioButton;
+        private RadioButton hata9RadioButton;
+        private RadioButton hata10RadioButton;
+        private RadioButton hata11RadioButton;
+        private RadioButton hata12RadioButton;
+        private RadioButton hata13RadioButton;
+        private RadioButton hata14RadioButton;
+        private RadioButton hata15RadioButton;
 
 
 
@@ -47,21 +61,15 @@ namespace WindowsFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.comboBoxPorts = new System.Windows.Forms.ComboBox();
-            this.buttonOpenPort = new System.Windows.Forms.Button();
-            this.SendText = new System.Windows.Forms.Button();
-            this.SelectedProtocol = new System.Windows.Forms.ComboBox();
-            this.comboBoxPorts2 = new System.Windows.Forms.ComboBox();
-            this.buttonOpenPort2 = new System.Windows.Forms.Button();
-            this.SendText2 = new System.Windows.Forms.Button();
-            this.SelectedProtocol2 = new System.Windows.Forms.ComboBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBoxCrcResults = new System.Windows.Forms.TextBox();
             this.groupBoxProtocol1 = new System.Windows.Forms.GroupBox();
             this.groupBoxProtocol2 = new System.Windows.Forms.GroupBox();
@@ -71,48 +79,29 @@ namespace WindowsFormsApp1
             this.SendText3 = new System.Windows.Forms.Button();
             this.SelectedProtocol3 = new System.Windows.Forms.ComboBox();
             this.buttonOpenPort3 = new System.Windows.Forms.Button();
-            this.comboBoxPorts3 = new System.Windows.Forms.ComboBox();
             this.timetextbox = new System.Windows.Forms.TextBox();
             this.mesajtext = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SendText2 = new System.Windows.Forms.Button();
+            this.buttonOpenPort2 = new System.Windows.Forms.Button();
+            this.buttonOpenPort = new System.Windows.Forms.Button();
+            this.SelectedProtocol = new System.Windows.Forms.ComboBox();
+            this.SendText = new System.Windows.Forms.Button();
             this.textBoxSendData = new System.Windows.Forms.TextBox();
-            this.groupBoxCrcResults = new System.Windows.Forms.GroupBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.buttonSaveExcel = new System.Windows.Forms.Button();
-            this.buttonSaveTxt = new System.Windows.Forms.Button();
-            this.dataGridViewCrcResults = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SelectedProtocol2 = new System.Windows.Forms.ComboBox();
             this.ErrorPanel = new System.Windows.Forms.Panel();
+            this.DataGridErrormotor1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn65 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errorstatuspaneltitle = new System.Windows.Forms.Panel();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-            this.errortablelayout = new System.Windows.Forms.TableLayoutPanel();
             this.MSK2paneltitle = new System.Windows.Forms.Panel();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.MSK1paneltitle = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.dataGridViewReceivedData = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn60 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn61 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn62 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn63 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn64 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn65 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn66 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn53 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn54 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn55 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -140,7 +129,6 @@ namespace WindowsFormsApp1
             this.textBox34 = new System.Windows.Forms.TextBox();
             this.textBox33 = new System.Windows.Forms.TextBox();
             this.button34 = new System.Windows.Forms.Button();
-            this.Motor1ManuelGraphButton = new System.Windows.Forms.Button();
             this.button32 = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
             this.button30 = new System.Windows.Forms.Button();
@@ -151,7 +139,6 @@ namespace WindowsFormsApp1
             this.label62 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
             this.labelPosition = new System.Windows.Forms.Label();
-            this.ManuelTestCommandButton = new System.Windows.Forms.Button();
             this.textBoxPositionmotor1 = new System.Windows.Forms.TextBox();
             this.button28 = new System.Windows.Forms.Button();
             this.angleTrackBar4 = new System.Windows.Forms.TrackBar();
@@ -173,6 +160,7 @@ namespace WindowsFormsApp1
             this.Motor4positiontext = new System.Windows.Forms.TextBox();
             this.Motor3positiontext = new System.Windows.Forms.TextBox();
             this.label61 = new System.Windows.Forms.Label();
+            this.Motor1ManuelGraphButton = new System.Windows.Forms.Button();
             this.label60 = new System.Windows.Forms.Label();
             this.label58 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
@@ -182,6 +170,7 @@ namespace WindowsFormsApp1
             this.textBox45 = new System.Windows.Forms.TextBox();
             this.textBox44 = new System.Windows.Forms.TextBox();
             this.textBox43 = new System.Windows.Forms.TextBox();
+            this.ManuelTestCommandButton = new System.Windows.Forms.Button();
             this.motor2konum = new System.Windows.Forms.Label();
             this.motor2akim = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
@@ -194,8 +183,8 @@ namespace WindowsFormsApp1
             this.Motor1positiontext = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.Motor4Enabledbutton = new System.Windows.Forms.RadioButton();
-            this.Motor3Enabledbutton = new System.Windows.Forms.RadioButton();
             this.Motor2Enabledbutton = new System.Windows.Forms.RadioButton();
+            this.Motor3Enabledbutton = new System.Windows.Forms.RadioButton();
             this.textBox32 = new System.Windows.Forms.TextBox();
             this.Motor1Enabledbutton = new System.Windows.Forms.RadioButton();
             this.textBox31 = new System.Windows.Forms.TextBox();
@@ -419,62 +408,55 @@ namespace WindowsFormsApp1
             this.dataGridViewTextBoxColumn44 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn45 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelHomepage = new System.Windows.Forms.Panel();
+            this.label83 = new System.Windows.Forms.Label();
+            this.msk2packetpanel = new System.Windows.Forms.Panel();
+            this.label50 = new System.Windows.Forms.Label();
+            this.comboBox13 = new System.Windows.Forms.ComboBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.comboBox14 = new System.Windows.Forms.ComboBox();
+            this.radioPanel2 = new System.Windows.Forms.Panel();
+            this.label82 = new System.Windows.Forms.Label();
+            this.label80 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
             this.msk1packetpanel = new System.Windows.Forms.Panel();
-            this.textBox40 = new System.Windows.Forms.TextBox();
-            this.button15 = new System.Windows.Forms.Button();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.button17 = new System.Windows.Forms.Button();
-            this.label80 = new System.Windows.Forms.Label();
-            this.textBox47 = new System.Windows.Forms.TextBox();
-            this.label82 = new System.Windows.Forms.Label();
-            this.button18 = new System.Windows.Forms.Button();
-            this.label83 = new System.Windows.Forms.Label();
-            this.button19 = new System.Windows.Forms.Button();
-            this.textBox48 = new System.Windows.Forms.TextBox();
-            this.label84 = new System.Windows.Forms.Label();
-            this.label85 = new System.Windows.Forms.Label();
-            this.textBox52 = new System.Windows.Forms.TextBox();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
-            this.label46 = new System.Windows.Forms.Label();
-            this.msk2packetpanel = new System.Windows.Forms.Panel();
-            this.textBox30 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button12 = new System.Windows.Forms.Button();
             this.label47 = new System.Windows.Forms.Label();
-            this.textBox37 = new System.Windows.Forms.TextBox();
+            this.systemanalysismode = new System.Windows.Forms.ComboBox();
             this.label48 = new System.Windows.Forms.Label();
-            this.button13 = new System.Windows.Forms.Button();
-            this.label50 = new System.Windows.Forms.Label();
-            this.button14 = new System.Windows.Forms.Button();
-            this.textBox38 = new System.Windows.Forms.TextBox();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.textBox39 = new System.Windows.Forms.TextBox();
-            this.comboBox11 = new System.Windows.Forms.ComboBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
-            this.button10 = new System.Windows.Forms.Button();
-            this.comboBox10 = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
-            this.Dashboard.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBoxCrcResults.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCrcResults)).BeginInit();
+            this.comboBox12 = new System.Windows.Forms.ComboBox();
+            this.radioPanel = new System.Windows.Forms.Panel();
+            this.comboBoxPorts3 = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBoxPorts2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxPorts = new System.Windows.Forms.ComboBox();
+            this.groupBoxCrcResults = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.buttonSaveExcel = new System.Windows.Forms.Button();
+            this.buttonSaveTxt = new System.Windows.Forms.Button();
+            this.dataGridViewCrcResults = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGriderrormotor2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn66 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ErrorPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridErrormotor1)).BeginInit();
             this.errorstatuspaneltitle.SuspendLayout();
             this.MSK2paneltitle.SuspendLayout();
             this.MSK1paneltitle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReceivedData)).BeginInit();
             this.PanelManuelTest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.angleTrackBar4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gaugePictureBox4)).BeginInit();
@@ -499,117 +481,14 @@ namespace WindowsFormsApp1
             this.otomatictestchoise.SuspendLayout();
             this.otopanel.SuspendLayout();
             this.PanelHomepage.SuspendLayout();
-            this.msk1packetpanel.SuspendLayout();
             this.msk2packetpanel.SuspendLayout();
+            this.msk1packetpanel.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBoxCrcResults.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCrcResults)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGriderrormotor2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // comboBoxPorts
-            // 
-            this.comboBoxPorts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.comboBoxPorts.ForeColor = System.Drawing.Color.White;
-            this.comboBoxPorts.FormattingEnabled = true;
-            this.comboBoxPorts.Location = new System.Drawing.Point(604, 0);
-            this.comboBoxPorts.Name = "comboBoxPorts";
-            this.comboBoxPorts.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxPorts.TabIndex = 0;
-            // 
-            // buttonOpenPort
-            // 
-            this.buttonOpenPort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(205)))), ((int)(((byte)(50)))));
-            this.buttonOpenPort.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonOpenPort.ForeColor = System.Drawing.Color.White;
-            this.buttonOpenPort.Location = new System.Drawing.Point(750, 0);
-            this.buttonOpenPort.Name = "buttonOpenPort";
-            this.buttonOpenPort.Size = new System.Drawing.Size(75, 27);
-            this.buttonOpenPort.TabIndex = 1;
-            this.buttonOpenPort.Text = "Open";
-            this.buttonOpenPort.UseVisualStyleBackColor = true;
-            this.buttonOpenPort.Click += new System.EventHandler(this.buttonOpenPort_Click);
-            // 
-            // SendText
-            // 
-            this.SendText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.SendText.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.SendText.ForeColor = System.Drawing.Color.White;
-            this.SendText.Location = new System.Drawing.Point(1156, 2);
-            this.SendText.Name = "SendText";
-            this.SendText.Size = new System.Drawing.Size(68, 23);
-            this.SendText.TabIndex = 3;
-            this.SendText.Text = "SEND";
-            this.SendText.UseVisualStyleBackColor = true;
-            this.SendText.Click += new System.EventHandler(this.SendText_Click);
-            // 
-            // SelectedProtocol
-            // 
-            this.SelectedProtocol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.SelectedProtocol.ForeColor = System.Drawing.Color.White;
-            this.SelectedProtocol.FormattingEnabled = true;
-            this.SelectedProtocol.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.SelectedProtocol.Location = new System.Drawing.Point(882, 2);
-            this.SelectedProtocol.Name = "SelectedProtocol";
-            this.SelectedProtocol.Size = new System.Drawing.Size(241, 24);
-            this.SelectedProtocol.TabIndex = 6;
-            this.SelectedProtocol.SelectedIndexChanged += new System.EventHandler(this.SelectedProtocol_SelectedIndexChanged);
-            // 
-            // comboBoxPorts2
-            // 
-            this.comboBoxPorts2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.comboBoxPorts2.ForeColor = System.Drawing.Color.White;
-            this.comboBoxPorts2.FormattingEnabled = true;
-            this.comboBoxPorts2.Location = new System.Drawing.Point(604, 33);
-            this.comboBoxPorts2.Name = "comboBoxPorts2";
-            this.comboBoxPorts2.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxPorts2.TabIndex = 10;
-            // 
-            // buttonOpenPort2
-            // 
-            this.buttonOpenPort2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(205)))), ((int)(((byte)(50)))));
-            this.buttonOpenPort2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonOpenPort2.ForeColor = System.Drawing.Color.White;
-            this.buttonOpenPort2.Location = new System.Drawing.Point(750, 31);
-            this.buttonOpenPort2.Name = "buttonOpenPort2";
-            this.buttonOpenPort2.Size = new System.Drawing.Size(75, 28);
-            this.buttonOpenPort2.TabIndex = 11;
-            this.buttonOpenPort2.Text = "Open2";
-            this.buttonOpenPort2.UseVisualStyleBackColor = true;
-            this.buttonOpenPort2.Click += new System.EventHandler(this.buttonOpenPort_Click2);
-            // 
-            // SendText2
-            // 
-            this.SendText2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.SendText2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.SendText2.ForeColor = System.Drawing.Color.White;
-            this.SendText2.Location = new System.Drawing.Point(1156, 28);
-            this.SendText2.Name = "SendText2";
-            this.SendText2.Size = new System.Drawing.Size(68, 23);
-            this.SendText2.TabIndex = 13;
-            this.SendText2.Text = "SEND2";
-            this.SendText2.UseVisualStyleBackColor = true;
-            this.SendText2.Click += new System.EventHandler(this.SendText_Click2);
-            // 
-            // SelectedProtocol2
-            // 
-            this.SelectedProtocol2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.SelectedProtocol2.ForeColor = System.Drawing.Color.White;
-            this.SelectedProtocol2.FormattingEnabled = true;
-            this.SelectedProtocol2.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.SelectedProtocol2.Location = new System.Drawing.Point(882, 30);
-            this.SelectedProtocol2.Name = "SelectedProtocol2";
-            this.SelectedProtocol2.Size = new System.Drawing.Size(241, 24);
-            this.SelectedProtocol2.TabIndex = 15;
-            this.SelectedProtocol2.SelectedIndexChanged += new System.EventHandler(this.SelectedProtocol_SelectedIndexChanged2);
             // 
             // textBoxCrcResults
             // 
@@ -655,23 +534,6 @@ namespace WindowsFormsApp1
             // Dashboard
             // 
             this.Dashboard.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.Dashboard.Controls.Add(this.SendText3);
-            this.Dashboard.Controls.Add(this.SelectedProtocol3);
-            this.Dashboard.Controls.Add(this.buttonOpenPort3);
-            this.Dashboard.Controls.Add(this.comboBoxPorts3);
-            this.Dashboard.Controls.Add(this.timetextbox);
-            this.Dashboard.Controls.Add(this.mesajtext);
-            this.Dashboard.Controls.Add(this.groupBox1);
-            this.Dashboard.Controls.Add(this.SendText2);
-            this.Dashboard.Controls.Add(this.comboBoxPorts2);
-            this.Dashboard.Controls.Add(this.buttonOpenPort2);
-            this.Dashboard.Controls.Add(this.comboBoxPorts);
-            this.Dashboard.Controls.Add(this.buttonOpenPort);
-            this.Dashboard.Controls.Add(this.SelectedProtocol);
-            this.Dashboard.Controls.Add(this.SendText);
-            this.Dashboard.Controls.Add(this.textBoxSendData);
-            this.Dashboard.Controls.Add(this.SelectedProtocol2);
-            this.Dashboard.Controls.Add(this.groupBoxCrcResults);
             this.Dashboard.Location = new System.Drawing.Point(239, 3);
             this.Dashboard.Name = "Dashboard";
             this.Dashboard.Size = new System.Drawing.Size(1788, 1034);
@@ -682,11 +544,11 @@ namespace WindowsFormsApp1
             this.SendText3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
             this.SendText3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SendText3.ForeColor = System.Drawing.Color.White;
-            this.SendText3.Location = new System.Drawing.Point(1156, 60);
+            this.SendText3.Location = new System.Drawing.Point(836, 52);
             this.SendText3.Name = "SendText3";
             this.SendText3.Size = new System.Drawing.Size(68, 23);
             this.SendText3.TabIndex = 25;
-            this.SendText3.Text = "SEND3";
+            this.SendText3.Text = "SEND";
             this.SendText3.UseVisualStyleBackColor = true;
             this.SendText3.Click += new System.EventHandler(this.SendText_Click3);
             // 
@@ -708,7 +570,7 @@ namespace WindowsFormsApp1
             "4",
             "5",
             "6"});
-            this.SelectedProtocol3.Location = new System.Drawing.Point(880, 60);
+            this.SelectedProtocol3.Location = new System.Drawing.Point(570, 54);
             this.SelectedProtocol3.Name = "SelectedProtocol3";
             this.SelectedProtocol3.Size = new System.Drawing.Size(241, 24);
             this.SelectedProtocol3.TabIndex = 24;
@@ -719,256 +581,155 @@ namespace WindowsFormsApp1
             this.buttonOpenPort3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(205)))), ((int)(((byte)(50)))));
             this.buttonOpenPort3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonOpenPort3.ForeColor = System.Drawing.Color.White;
-            this.buttonOpenPort3.Location = new System.Drawing.Point(749, 65);
+            this.buttonOpenPort3.Location = new System.Drawing.Point(468, 54);
             this.buttonOpenPort3.Name = "buttonOpenPort3";
             this.buttonOpenPort3.Size = new System.Drawing.Size(75, 28);
             this.buttonOpenPort3.TabIndex = 23;
-            this.buttonOpenPort3.Text = "Open3";
+            this.buttonOpenPort3.Text = "Open";
             this.buttonOpenPort3.UseVisualStyleBackColor = true;
             this.buttonOpenPort3.Click += new System.EventHandler(this.buttonOpenPort_Click3);
             // 
-            // comboBoxPorts3
-            // 
-            this.comboBoxPorts3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.comboBoxPorts3.ForeColor = System.Drawing.Color.White;
-            this.comboBoxPorts3.FormattingEnabled = true;
-            this.comboBoxPorts3.Location = new System.Drawing.Point(604, 64);
-            this.comboBoxPorts3.Name = "comboBoxPorts3";
-            this.comboBoxPorts3.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxPorts3.TabIndex = 22;
-            // 
             // timetextbox
             // 
-            this.timetextbox.Location = new System.Drawing.Point(35, 194);
+            this.timetextbox.Location = new System.Drawing.Point(256, 243);
             this.timetextbox.Name = "timetextbox";
             this.timetextbox.Size = new System.Drawing.Size(226, 22);
             this.timetextbox.TabIndex = 21;
             // 
             // mesajtext
             // 
-            this.mesajtext.Location = new System.Drawing.Point(36, 159);
+            this.mesajtext.Location = new System.Drawing.Point(256, 275);
             this.mesajtext.Name = "mesajtext";
             this.mesajtext.Size = new System.Drawing.Size(226, 22);
             this.mesajtext.TabIndex = 20;
             // 
-            // groupBox1
+            // SendText2
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.groupBox1.Controls.Add(this.comboBox3);
-            this.groupBox1.Controls.Add(this.comboBox4);
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(317, 756);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1180, 251);
-            this.groupBox1.TabIndex = 18;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "CRC Sonuçları";
+            this.SendText2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
+            this.SendText2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SendText2.ForeColor = System.Drawing.Color.White;
+            this.SendText2.Location = new System.Drawing.Point(836, 88);
+            this.SendText2.Name = "SendText2";
+            this.SendText2.Size = new System.Drawing.Size(68, 23);
+            this.SendText2.TabIndex = 13;
+            this.SendText2.Text = "SEND";
+            this.SendText2.UseVisualStyleBackColor = true;
+            this.SendText2.Click += new System.EventHandler(this.SendText_Click2);
             // 
-            // comboBox3
+            // buttonOpenPort2
             // 
-            this.comboBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.comboBox3.ForeColor = System.Drawing.Color.White;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(3, 3);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(1, 24);
-            this.comboBox3.TabIndex = 21;
+            this.buttonOpenPort2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(205)))), ((int)(((byte)(50)))));
+            this.buttonOpenPort2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonOpenPort2.ForeColor = System.Drawing.Color.White;
+            this.buttonOpenPort2.Location = new System.Drawing.Point(467, 89);
+            this.buttonOpenPort2.Name = "buttonOpenPort2";
+            this.buttonOpenPort2.Size = new System.Drawing.Size(75, 28);
+            this.buttonOpenPort2.TabIndex = 11;
+            this.buttonOpenPort2.Text = "Open";
+            this.buttonOpenPort2.UseVisualStyleBackColor = true;
+            this.buttonOpenPort2.Click += new System.EventHandler(this.buttonOpenPort_Click2);
             // 
-            // comboBox4
+            // buttonOpenPort
             // 
-            this.comboBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.comboBox4.ForeColor = System.Drawing.Color.White;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(3, 3);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(1, 24);
-            this.comboBox4.TabIndex = 20;
+            this.buttonOpenPort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(205)))), ((int)(((byte)(50)))));
+            this.buttonOpenPort.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonOpenPort.ForeColor = System.Drawing.Color.White;
+            this.buttonOpenPort.Location = new System.Drawing.Point(468, 21);
+            this.buttonOpenPort.Name = "buttonOpenPort";
+            this.buttonOpenPort.Size = new System.Drawing.Size(75, 27);
+            this.buttonOpenPort.TabIndex = 1;
+            this.buttonOpenPort.Text = "Open";
+            this.buttonOpenPort.UseVisualStyleBackColor = true;
+            this.buttonOpenPort.Click += new System.EventHandler(this.buttonOpenPort_Click);
             // 
-            // button5
+            // SelectedProtocol
             // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(725, 295);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(120, 35);
-            this.button5.TabIndex = 19;
-            this.button5.Text = "Excel Kaydet";
-            this.button5.UseVisualStyleBackColor = false;
+            this.SelectedProtocol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.SelectedProtocol.ForeColor = System.Drawing.Color.White;
+            this.SelectedProtocol.FormattingEnabled = true;
+            this.SelectedProtocol.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
+            this.SelectedProtocol.Location = new System.Drawing.Point(570, 21);
+            this.SelectedProtocol.Name = "SelectedProtocol";
+            this.SelectedProtocol.Size = new System.Drawing.Size(241, 24);
+            this.SelectedProtocol.TabIndex = 6;
+            this.SelectedProtocol.SelectedIndexChanged += new System.EventHandler(this.SelectedProtocol_SelectedIndexChanged);
             // 
-            // button6
+            // SendText
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(490, 295);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(120, 35);
-            this.button6.TabIndex = 18;
-            this.button6.Text = "TXT Kaydet";
-            this.button6.UseVisualStyleBackColor = false;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.GridColor = System.Drawing.Color.Gray;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 21);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 30;
-            this.dataGridView1.RowTemplate.Height = 35;
-            this.dataGridView1.Size = new System.Drawing.Size(1153, 213);
-            this.dataGridView1.TabIndex = 22;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Gönderilen Veri";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Gönderilen CRC";
-            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Alınan Veri";
-            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "Alınan CRC";
-            this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn10.HeaderText = "Zaman";
-            this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.SendText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
+            this.SendText.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SendText.ForeColor = System.Drawing.Color.White;
+            this.SendText.Location = new System.Drawing.Point(836, 23);
+            this.SendText.Name = "SendText";
+            this.SendText.Size = new System.Drawing.Size(68, 23);
+            this.SendText.TabIndex = 3;
+            this.SendText.Text = "SEND";
+            this.SendText.UseVisualStyleBackColor = true;
+            this.SendText.Click += new System.EventHandler(this.SendText_Click);
             // 
             // textBoxSendData
             // 
             this.textBoxSendData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.textBoxSendData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxSendData.ForeColor = System.Drawing.Color.White;
-            this.textBoxSendData.Location = new System.Drawing.Point(322, 301);
+            this.textBoxSendData.Location = new System.Drawing.Point(330, 165);
             this.textBoxSendData.Multiline = true;
             this.textBoxSendData.Name = "textBoxSendData";
-            this.textBoxSendData.Size = new System.Drawing.Size(1152, 65);
+            this.textBoxSendData.Size = new System.Drawing.Size(548, 65);
             this.textBoxSendData.TabIndex = 4;
             // 
-            // groupBoxCrcResults
+            // SelectedProtocol2
             // 
-            this.groupBoxCrcResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.groupBoxCrcResults.Controls.Add(this.comboBox2);
-            this.groupBoxCrcResults.Controls.Add(this.comboBox1);
-            this.groupBoxCrcResults.Controls.Add(this.buttonSaveExcel);
-            this.groupBoxCrcResults.Controls.Add(this.buttonSaveTxt);
-            this.groupBoxCrcResults.Controls.Add(this.dataGridViewCrcResults);
-            this.groupBoxCrcResults.ForeColor = System.Drawing.Color.White;
-            this.groupBoxCrcResults.Location = new System.Drawing.Point(319, 387);
-            this.groupBoxCrcResults.Name = "groupBoxCrcResults";
-            this.groupBoxCrcResults.Size = new System.Drawing.Size(1180, 306);
-            this.groupBoxCrcResults.TabIndex = 17;
-            this.groupBoxCrcResults.TabStop = false;
-            this.groupBoxCrcResults.Text = "CRC Sonuçları";
+            this.SelectedProtocol2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.SelectedProtocol2.ForeColor = System.Drawing.Color.White;
+            this.SelectedProtocol2.FormattingEnabled = true;
+            this.SelectedProtocol2.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
+            this.SelectedProtocol2.Location = new System.Drawing.Point(570, 89);
+            this.SelectedProtocol2.Name = "SelectedProtocol2";
+            this.SelectedProtocol2.Size = new System.Drawing.Size(241, 24);
+            this.SelectedProtocol2.TabIndex = 15;
+            this.SelectedProtocol2.SelectedIndexChanged += new System.EventHandler(this.SelectedProtocol_SelectedIndexChanged2);
             // 
-            // comboBox2
+            // ErrorPanel
             // 
-            this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.comboBox2.ForeColor = System.Drawing.Color.White;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(3, 3);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(1, 24);
-            this.comboBox2.TabIndex = 21;
+            this.ErrorPanel.BackColor = System.Drawing.Color.White;
+            this.ErrorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ErrorPanel.Controls.Add(this.DataGriderrormotor2);
+            this.ErrorPanel.Controls.Add(this.DataGridErrormotor1);
+            this.ErrorPanel.Controls.Add(this.errorstatuspaneltitle);
+            this.ErrorPanel.Controls.Add(this.MSK2paneltitle);
+            this.ErrorPanel.Controls.Add(this.MSK1paneltitle);
+            this.ErrorPanel.Location = new System.Drawing.Point(239, 0);
+            this.ErrorPanel.Name = "ErrorPanel";
+            this.ErrorPanel.Size = new System.Drawing.Size(1788, 1037);
+            this.ErrorPanel.TabIndex = 20;
             // 
-            // comboBox1
+            // DataGridErrormotor1
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.comboBox1.ForeColor = System.Drawing.Color.White;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(1, 24);
-            this.comboBox1.TabIndex = 20;
-            // 
-            // buttonSaveExcel
-            // 
-            this.buttonSaveExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.buttonSaveExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSaveExcel.ForeColor = System.Drawing.Color.White;
-            this.buttonSaveExcel.Location = new System.Drawing.Point(602, 271);
-            this.buttonSaveExcel.Name = "buttonSaveExcel";
-            this.buttonSaveExcel.Size = new System.Drawing.Size(120, 29);
-            this.buttonSaveExcel.TabIndex = 19;
-            this.buttonSaveExcel.Text = "Excel Kaydet";
-            this.buttonSaveExcel.UseVisualStyleBackColor = false;
-            this.buttonSaveExcel.Click += new System.EventHandler(this.buttonSaveExcel_Click);
-            // 
-            // buttonSaveTxt
-            // 
-            this.buttonSaveTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.buttonSaveTxt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSaveTxt.ForeColor = System.Drawing.Color.White;
-            this.buttonSaveTxt.Location = new System.Drawing.Point(427, 268);
-            this.buttonSaveTxt.Name = "buttonSaveTxt";
-            this.buttonSaveTxt.Size = new System.Drawing.Size(120, 32);
-            this.buttonSaveTxt.TabIndex = 18;
-            this.buttonSaveTxt.Text = "TXT Kaydet";
-            this.buttonSaveTxt.UseVisualStyleBackColor = false;
-            this.buttonSaveTxt.Click += new System.EventHandler(this.buttonSaveTxt_Click);
-            // 
-            // dataGridViewCrcResults
-            // 
-            this.dataGridViewCrcResults.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewCrcResults.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.dataGridViewCrcResults.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridViewCrcResults.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.DataGridErrormotor1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridErrormotor1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.DataGridErrormotor1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataGridErrormotor1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            this.dataGridViewCrcResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewCrcResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCrcResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
+            this.DataGridErrormotor1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.DataGridErrormotor1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridErrormotor1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn65});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -977,60 +738,21 @@ namespace WindowsFormsApp1
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewCrcResults.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewCrcResults.EnableHeadersVisualStyles = false;
-            this.dataGridViewCrcResults.GridColor = System.Drawing.Color.Gray;
-            this.dataGridViewCrcResults.Location = new System.Drawing.Point(3, 33);
-            this.dataGridViewCrcResults.Name = "dataGridViewCrcResults";
-            this.dataGridViewCrcResults.RowHeadersWidth = 30;
-            this.dataGridViewCrcResults.RowTemplate.Height = 35;
-            this.dataGridViewCrcResults.Size = new System.Drawing.Size(1163, 232);
-            this.dataGridViewCrcResults.TabIndex = 0;
+            this.DataGridErrormotor1.DefaultCellStyle = dataGridViewCellStyle4;
+            this.DataGridErrormotor1.EnableHeadersVisualStyles = false;
+            this.DataGridErrormotor1.GridColor = System.Drawing.Color.Gray;
+            this.DataGridErrormotor1.Location = new System.Drawing.Point(-1, 132);
+            this.DataGridErrormotor1.Name = "DataGridErrormotor1";
+            this.DataGridErrormotor1.RowHeadersWidth = 30;
+            this.DataGridErrormotor1.RowTemplate.Height = 35;
+            this.DataGridErrormotor1.Size = new System.Drawing.Size(407, 780);
+            this.DataGridErrormotor1.TabIndex = 24;
             // 
-            // dataGridViewTextBoxColumn1
+            // dataGridViewTextBoxColumn65
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Gönderilen Veri";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Gönderilen CRC";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Alınan Veri";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Alınan CRC";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Zaman";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // ErrorPanel
-            // 
-            this.ErrorPanel.BackColor = System.Drawing.Color.White;
-            this.ErrorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ErrorPanel.Controls.Add(this.errorstatuspaneltitle);
-            this.ErrorPanel.Controls.Add(this.errortablelayout);
-            this.ErrorPanel.Controls.Add(this.MSK2paneltitle);
-            this.ErrorPanel.Controls.Add(this.MSK1paneltitle);
-            this.ErrorPanel.Controls.Add(this.dataGridViewReceivedData);
-            this.ErrorPanel.Location = new System.Drawing.Point(239, 0);
-            this.ErrorPanel.Name = "ErrorPanel";
-            this.ErrorPanel.Size = new System.Drawing.Size(1788, 1037);
-            this.ErrorPanel.TabIndex = 20;
+            this.dataGridViewTextBoxColumn65.HeaderText = "Motor-1";
+            this.dataGridViewTextBoxColumn65.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn65.Name = "dataGridViewTextBoxColumn65";
             // 
             // errorstatuspaneltitle
             // 
@@ -1055,36 +777,16 @@ namespace WindowsFormsApp1
             this.richTextBox3.TabIndex = 0;
             this.richTextBox3.Text = "HATA DURUMLARI";
             // 
-            // errortablelayout
-            // 
-            this.errortablelayout.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
-            this.errortablelayout.ColumnCount = 4;
-            this.errortablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.errortablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.errortablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.errortablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.errortablelayout.Location = new System.Drawing.Point(19, 127);
-            this.errortablelayout.Name = "errortablelayout";
-            this.errortablelayout.RowCount = 6;
-            this.errortablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.errortablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.errortablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.errortablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.errortablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.errortablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.errortablelayout.Size = new System.Drawing.Size(1660, 500);
-            this.errortablelayout.TabIndex = 21;
-            // 
             // MSK2paneltitle
             // 
             this.MSK2paneltitle.BackColor = System.Drawing.Color.Transparent;
             this.MSK2paneltitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MSK2paneltitle.Controls.Add(this.richTextBox2);
-            this.MSK2paneltitle.Location = new System.Drawing.Point(848, 73);
+            this.MSK2paneltitle.Location = new System.Drawing.Point(808, 74);
             this.MSK2paneltitle.Margin = new System.Windows.Forms.Padding(5);
             this.MSK2paneltitle.Name = "MSK2paneltitle";
             this.MSK2paneltitle.Padding = new System.Windows.Forms.Padding(10);
-            this.MSK2paneltitle.Size = new System.Drawing.Size(831, 60);
+            this.MSK2paneltitle.Size = new System.Drawing.Size(655, 60);
             this.MSK2paneltitle.TabIndex = 22;
             // 
             // richTextBox2
@@ -1104,11 +806,11 @@ namespace WindowsFormsApp1
             this.MSK1paneltitle.BackColor = System.Drawing.Color.Transparent;
             this.MSK1paneltitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MSK1paneltitle.Controls.Add(this.richTextBox1);
-            this.MSK1paneltitle.Location = new System.Drawing.Point(19, 73);
+            this.MSK1paneltitle.Location = new System.Drawing.Point(1, 74);
             this.MSK1paneltitle.Margin = new System.Windows.Forms.Padding(5);
             this.MSK1paneltitle.Name = "MSK1paneltitle";
             this.MSK1paneltitle.Padding = new System.Windows.Forms.Padding(10);
-            this.MSK1paneltitle.Size = new System.Drawing.Size(832, 60);
+            this.MSK1paneltitle.Size = new System.Drawing.Size(805, 60);
             this.MSK1paneltitle.TabIndex = 23;
             // 
             // richTextBox1
@@ -1123,75 +825,40 @@ namespace WindowsFormsApp1
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "MSK-1";
             // 
-            // dataGridViewReceivedData
-            // 
-            this.dataGridViewReceivedData.AllowUserToOrderColumns = true;
-            this.dataGridViewReceivedData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewReceivedData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridViewReceivedData.ColumnHeadersHeight = 29;
-            this.dataGridViewReceivedData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn60,
-            this.dataGridViewTextBoxColumn61,
-            this.dataGridViewTextBoxColumn62,
-            this.dataGridViewTextBoxColumn63,
-            this.dataGridViewTextBoxColumn64,
-            this.dataGridViewTextBoxColumn65,
-            this.dataGridViewTextBoxColumn66});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewReceivedData.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewReceivedData.Location = new System.Drawing.Point(2, 841);
-            this.dataGridViewReceivedData.Name = "dataGridViewReceivedData";
-            this.dataGridViewReceivedData.RowHeadersWidth = 51;
-            this.dataGridViewReceivedData.Size = new System.Drawing.Size(1657, 102);
-            this.dataGridViewReceivedData.TabIndex = 0;
-            // 
             // dataGridViewTextBoxColumn60
             // 
+            this.dataGridViewTextBoxColumn60.HeaderText = "Gönderilen Veri";
             this.dataGridViewTextBoxColumn60.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn60.Name = "dataGridViewTextBoxColumn60";
+            this.dataGridViewTextBoxColumn60.Width = 125;
             // 
             // dataGridViewTextBoxColumn61
             // 
+            this.dataGridViewTextBoxColumn61.HeaderText = "Gönderilen CRC";
             this.dataGridViewTextBoxColumn61.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn61.Name = "dataGridViewTextBoxColumn61";
+            this.dataGridViewTextBoxColumn61.Width = 125;
             // 
             // dataGridViewTextBoxColumn62
             // 
+            this.dataGridViewTextBoxColumn62.HeaderText = "Alınan Veri";
             this.dataGridViewTextBoxColumn62.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn62.Name = "dataGridViewTextBoxColumn62";
+            this.dataGridViewTextBoxColumn62.Width = 125;
             // 
             // dataGridViewTextBoxColumn63
             // 
+            this.dataGridViewTextBoxColumn63.HeaderText = "Alınan CRC";
             this.dataGridViewTextBoxColumn63.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn63.Name = "dataGridViewTextBoxColumn63";
+            this.dataGridViewTextBoxColumn63.Width = 125;
             // 
             // dataGridViewTextBoxColumn64
             // 
+            this.dataGridViewTextBoxColumn64.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn64.HeaderText = "Zaman";
             this.dataGridViewTextBoxColumn64.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn64.Name = "dataGridViewTextBoxColumn64";
-            // 
-            // dataGridViewTextBoxColumn65
-            // 
-            this.dataGridViewTextBoxColumn65.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn65.Name = "dataGridViewTextBoxColumn65";
-            // 
-            // dataGridViewTextBoxColumn66
-            // 
-            this.dataGridViewTextBoxColumn66.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn66.Name = "dataGridViewTextBoxColumn66";
             // 
             // dataGridViewTextBoxColumn53
             // 
@@ -1307,7 +974,6 @@ namespace WindowsFormsApp1
             this.PanelManuelTest.Controls.Add(this.textBox34);
             this.PanelManuelTest.Controls.Add(this.textBox33);
             this.PanelManuelTest.Controls.Add(this.button34);
-            this.PanelManuelTest.Controls.Add(this.Motor1ManuelGraphButton);
             this.PanelManuelTest.Controls.Add(this.button32);
             this.PanelManuelTest.Controls.Add(this.button31);
             this.PanelManuelTest.Controls.Add(this.button30);
@@ -1318,7 +984,6 @@ namespace WindowsFormsApp1
             this.PanelManuelTest.Controls.Add(this.label62);
             this.PanelManuelTest.Controls.Add(this.label54);
             this.PanelManuelTest.Controls.Add(this.labelPosition);
-            this.PanelManuelTest.Controls.Add(this.ManuelTestCommandButton);
             this.PanelManuelTest.Controls.Add(this.textBoxPositionmotor1);
             this.PanelManuelTest.Controls.Add(this.button28);
             this.PanelManuelTest.Controls.Add(this.angleTrackBar4);
@@ -1425,23 +1090,6 @@ namespace WindowsFormsApp1
             this.button34.Text = "Motor-4 Grafik";
             this.button34.UseVisualStyleBackColor = false;
             // 
-            // Motor1ManuelGraphButton
-            // 
-            this.Motor1ManuelGraphButton.BackColor = System.Drawing.Color.DodgerBlue;
-            this.Motor1ManuelGraphButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Motor1ManuelGraphButton.FlatAppearance.BorderSize = 0;
-            this.Motor1ManuelGraphButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
-            this.Motor1ManuelGraphButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Motor1ManuelGraphButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.Motor1ManuelGraphButton.ForeColor = System.Drawing.Color.White;
-            this.Motor1ManuelGraphButton.Location = new System.Drawing.Point(1130, 797);
-            this.Motor1ManuelGraphButton.Name = "Motor1ManuelGraphButton";
-            this.Motor1ManuelGraphButton.Size = new System.Drawing.Size(151, 35);
-            this.Motor1ManuelGraphButton.TabIndex = 42;
-            this.Motor1ManuelGraphButton.Text = "Motor-1 Grafik";
-            this.Motor1ManuelGraphButton.UseVisualStyleBackColor = false;
-            this.Motor1ManuelGraphButton.Click += new System.EventHandler(this.Motor1ManuelGraphButton_Click_1);
-            // 
             // button32
             // 
             this.button32.BackColor = System.Drawing.Color.DodgerBlue;
@@ -1487,7 +1135,7 @@ namespace WindowsFormsApp1
             // 
             this.label63.BackColor = System.Drawing.Color.Black;
             this.label63.ForeColor = System.Drawing.Color.White;
-            this.label63.Location = new System.Drawing.Point(1702, 571);
+            this.label63.Location = new System.Drawing.Point(1694, 599);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(68, 20);
             this.label63.TabIndex = 38;
@@ -1495,21 +1143,21 @@ namespace WindowsFormsApp1
             // 
             // textBoxPositionmotor4
             // 
-            this.textBoxPositionmotor4.Location = new System.Drawing.Point(1705, 609);
+            this.textBoxPositionmotor4.Location = new System.Drawing.Point(1697, 626);
             this.textBoxPositionmotor4.Name = "textBoxPositionmotor4";
             this.textBoxPositionmotor4.Size = new System.Drawing.Size(60, 22);
             this.textBoxPositionmotor4.TabIndex = 37;
             // 
             // textBoxPositionmotor3
             // 
-            this.textBoxPositionmotor3.Location = new System.Drawing.Point(1201, 608);
+            this.textBoxPositionmotor3.Location = new System.Drawing.Point(1206, 633);
             this.textBoxPositionmotor3.Name = "textBoxPositionmotor3";
             this.textBoxPositionmotor3.Size = new System.Drawing.Size(60, 22);
             this.textBoxPositionmotor3.TabIndex = 36;
             // 
             // textBoxPositionmotor2
             // 
-            this.textBoxPositionmotor2.Location = new System.Drawing.Point(1605, 265);
+            this.textBoxPositionmotor2.Location = new System.Drawing.Point(1705, 263);
             this.textBoxPositionmotor2.Name = "textBoxPositionmotor2";
             this.textBoxPositionmotor2.Size = new System.Drawing.Size(60, 22);
             this.textBoxPositionmotor2.TabIndex = 35;
@@ -1518,7 +1166,7 @@ namespace WindowsFormsApp1
             // 
             this.label62.BackColor = System.Drawing.Color.Black;
             this.label62.ForeColor = System.Drawing.Color.White;
-            this.label62.Location = new System.Drawing.Point(1602, 236);
+            this.label62.Location = new System.Drawing.Point(1702, 236);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(68, 20);
             this.label62.TabIndex = 34;
@@ -1528,7 +1176,7 @@ namespace WindowsFormsApp1
             // 
             this.label54.BackColor = System.Drawing.Color.Black;
             this.label54.ForeColor = System.Drawing.Color.White;
-            this.label54.Location = new System.Drawing.Point(1198, 570);
+            this.label54.Location = new System.Drawing.Point(1203, 603);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(68, 20);
             this.label54.TabIndex = 33;
@@ -1543,23 +1191,6 @@ namespace WindowsFormsApp1
             this.labelPosition.Size = new System.Drawing.Size(68, 20);
             this.labelPosition.TabIndex = 0;
             this.labelPosition.Text = "Konum (DEG)";
-            // 
-            // ManuelTestCommandButton
-            // 
-            this.ManuelTestCommandButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
-            this.ManuelTestCommandButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ManuelTestCommandButton.FlatAppearance.BorderSize = 0;
-            this.ManuelTestCommandButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(142)))), ((int)(((byte)(60)))));
-            this.ManuelTestCommandButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ManuelTestCommandButton.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.ManuelTestCommandButton.ForeColor = System.Drawing.Color.White;
-            this.ManuelTestCommandButton.Location = new System.Drawing.Point(1365, 853);
-            this.ManuelTestCommandButton.Name = "ManuelTestCommandButton";
-            this.ManuelTestCommandButton.Size = new System.Drawing.Size(160, 60);
-            this.ManuelTestCommandButton.TabIndex = 32;
-            this.ManuelTestCommandButton.Text = "Komut Gönder";
-            this.ManuelTestCommandButton.UseVisualStyleBackColor = false;
-            this.ManuelTestCommandButton.Click += new System.EventHandler(this.ManuelTestCommandButton_Click);
             // 
             // textBoxPositionmotor1
             // 
@@ -1591,7 +1222,7 @@ namespace WindowsFormsApp1
             // 
             this.gaugePictureBox4.Location = new System.Drawing.Point(1544, 416);
             this.gaugePictureBox4.Name = "gaugePictureBox4";
-            this.gaugePictureBox4.Size = new System.Drawing.Size(387, 331);
+            this.gaugePictureBox4.Size = new System.Drawing.Size(372, 331);
             this.gaugePictureBox4.TabIndex = 30;
             this.gaugePictureBox4.TabStop = false;
             // 
@@ -1637,7 +1268,7 @@ namespace WindowsFormsApp1
             // 
             this.gaugePictureBox2.Location = new System.Drawing.Point(1544, 38);
             this.gaugePictureBox2.Name = "gaugePictureBox2";
-            this.gaugePictureBox2.Size = new System.Drawing.Size(387, 331);
+            this.gaugePictureBox2.Size = new System.Drawing.Size(372, 331);
             this.gaugePictureBox2.TabIndex = 26;
             this.gaugePictureBox2.TabStop = false;
             // 
@@ -1671,6 +1302,7 @@ namespace WindowsFormsApp1
             this.ManuelTestMotor.Controls.Add(this.Motor4positiontext);
             this.ManuelTestMotor.Controls.Add(this.Motor3positiontext);
             this.ManuelTestMotor.Controls.Add(this.label61);
+            this.ManuelTestMotor.Controls.Add(this.Motor1ManuelGraphButton);
             this.ManuelTestMotor.Controls.Add(this.label60);
             this.ManuelTestMotor.Controls.Add(this.label58);
             this.ManuelTestMotor.Controls.Add(this.label57);
@@ -1680,6 +1312,7 @@ namespace WindowsFormsApp1
             this.ManuelTestMotor.Controls.Add(this.textBox45);
             this.ManuelTestMotor.Controls.Add(this.textBox44);
             this.ManuelTestMotor.Controls.Add(this.textBox43);
+            this.ManuelTestMotor.Controls.Add(this.ManuelTestCommandButton);
             this.ManuelTestMotor.Controls.Add(this.motor2konum);
             this.ManuelTestMotor.Controls.Add(this.motor2akim);
             this.ManuelTestMotor.Controls.Add(this.label49);
@@ -1778,6 +1411,23 @@ namespace WindowsFormsApp1
             this.label61.TabIndex = 24;
             this.label61.Text = "BESLEME GERİLİMİ";
             // 
+            // Motor1ManuelGraphButton
+            // 
+            this.Motor1ManuelGraphButton.BackColor = System.Drawing.Color.DodgerBlue;
+            this.Motor1ManuelGraphButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Motor1ManuelGraphButton.FlatAppearance.BorderSize = 0;
+            this.Motor1ManuelGraphButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.Motor1ManuelGraphButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Motor1ManuelGraphButton.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.Motor1ManuelGraphButton.ForeColor = System.Drawing.Color.White;
+            this.Motor1ManuelGraphButton.Location = new System.Drawing.Point(406, 732);
+            this.Motor1ManuelGraphButton.Name = "Motor1ManuelGraphButton";
+            this.Motor1ManuelGraphButton.Size = new System.Drawing.Size(151, 35);
+            this.Motor1ManuelGraphButton.TabIndex = 42;
+            this.Motor1ManuelGraphButton.Text = "Motor-1 Grafik";
+            this.Motor1ManuelGraphButton.UseVisualStyleBackColor = false;
+            this.Motor1ManuelGraphButton.Click += new System.EventHandler(this.Motor1ManuelGraphButton_Click_1);
+            // 
             // label60
             // 
             this.label60.AutoSize = true;
@@ -1859,6 +1509,23 @@ namespace WindowsFormsApp1
             this.textBox43.Name = "textBox43";
             this.textBox43.Size = new System.Drawing.Size(51, 22);
             this.textBox43.TabIndex = 40;
+            // 
+            // ManuelTestCommandButton
+            // 
+            this.ManuelTestCommandButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
+            this.ManuelTestCommandButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ManuelTestCommandButton.FlatAppearance.BorderSize = 0;
+            this.ManuelTestCommandButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(142)))), ((int)(((byte)(60)))));
+            this.ManuelTestCommandButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ManuelTestCommandButton.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.ManuelTestCommandButton.ForeColor = System.Drawing.Color.White;
+            this.ManuelTestCommandButton.Location = new System.Drawing.Point(425, 788);
+            this.ManuelTestCommandButton.Name = "ManuelTestCommandButton";
+            this.ManuelTestCommandButton.Size = new System.Drawing.Size(160, 60);
+            this.ManuelTestCommandButton.TabIndex = 32;
+            this.ManuelTestCommandButton.Text = "Komut Gönder";
+            this.ManuelTestCommandButton.UseVisualStyleBackColor = false;
+            this.ManuelTestCommandButton.Click += new System.EventHandler(this.ManuelTestCommandButton_Click);
             // 
             // motor2konum
             // 
@@ -1954,8 +1621,8 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.Motor4Enabledbutton, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.Motor3Enabledbutton, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.Motor2Enabledbutton, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.Motor2Enabledbutton, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.Motor3Enabledbutton, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.textBox32, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.Motor1Enabledbutton, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.textBox31, 0, 0);
@@ -1971,6 +1638,7 @@ namespace WindowsFormsApp1
             // Motor4Enabledbutton
             // 
             this.Motor4Enabledbutton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Motor4Enabledbutton.AutoCheck = false;
             this.Motor4Enabledbutton.AutoSize = true;
             this.Motor4Enabledbutton.Location = new System.Drawing.Point(403, 218);
             this.Motor4Enabledbutton.Name = "Motor4Enabledbutton";
@@ -1979,30 +1647,35 @@ namespace WindowsFormsApp1
             this.Motor4Enabledbutton.TabStop = true;
             this.Motor4Enabledbutton.Text = "MOTOR-4";
             this.Motor4Enabledbutton.UseVisualStyleBackColor = true;
-            // 
-            // Motor3Enabledbutton
-            // 
-            this.Motor3Enabledbutton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Motor3Enabledbutton.AutoSize = true;
-            this.Motor3Enabledbutton.Location = new System.Drawing.Point(105, 218);
-            this.Motor3Enabledbutton.Name = "Motor3Enabledbutton";
-            this.Motor3Enabledbutton.Size = new System.Drawing.Size(89, 20);
-            this.Motor3Enabledbutton.TabIndex = 25;
-            this.Motor3Enabledbutton.TabStop = true;
-            this.Motor3Enabledbutton.Text = "MOTOR-3";
-            this.Motor3Enabledbutton.UseVisualStyleBackColor = true;
+            this.Motor4Enabledbutton.Click += new System.EventHandler(this.RadioButton_Click);
             // 
             // Motor2Enabledbutton
             // 
             this.Motor2Enabledbutton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Motor2Enabledbutton.AutoCheck = false;
             this.Motor2Enabledbutton.AutoSize = true;
-            this.Motor2Enabledbutton.Location = new System.Drawing.Point(403, 136);
+            this.Motor2Enabledbutton.Location = new System.Drawing.Point(105, 218);
             this.Motor2Enabledbutton.Name = "Motor2Enabledbutton";
             this.Motor2Enabledbutton.Size = new System.Drawing.Size(89, 20);
-            this.Motor2Enabledbutton.TabIndex = 24;
+            this.Motor2Enabledbutton.TabIndex = 25;
             this.Motor2Enabledbutton.TabStop = true;
             this.Motor2Enabledbutton.Text = "MOTOR-2";
             this.Motor2Enabledbutton.UseVisualStyleBackColor = true;
+            this.Motor2Enabledbutton.Click += new System.EventHandler(this.RadioButton_Click);
+            // 
+            // Motor3Enabledbutton
+            // 
+            this.Motor3Enabledbutton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Motor3Enabledbutton.AutoCheck = false;
+            this.Motor3Enabledbutton.AutoSize = true;
+            this.Motor3Enabledbutton.Location = new System.Drawing.Point(403, 136);
+            this.Motor3Enabledbutton.Name = "Motor3Enabledbutton";
+            this.Motor3Enabledbutton.Size = new System.Drawing.Size(89, 20);
+            this.Motor3Enabledbutton.TabIndex = 24;
+            this.Motor3Enabledbutton.TabStop = true;
+            this.Motor3Enabledbutton.Text = "MOTOR-3";
+            this.Motor3Enabledbutton.UseVisualStyleBackColor = true;
+            this.Motor3Enabledbutton.Click += new System.EventHandler(this.RadioButton_Click);
             // 
             // textBox32
             // 
@@ -2019,6 +1692,7 @@ namespace WindowsFormsApp1
             // Motor1Enabledbutton
             // 
             this.Motor1Enabledbutton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Motor1Enabledbutton.AutoCheck = false;
             this.Motor1Enabledbutton.AutoSize = true;
             this.Motor1Enabledbutton.Location = new System.Drawing.Point(105, 136);
             this.Motor1Enabledbutton.Name = "Motor1Enabledbutton";
@@ -2027,6 +1701,7 @@ namespace WindowsFormsApp1
             this.Motor1Enabledbutton.TabStop = true;
             this.Motor1Enabledbutton.Text = "MOTOR-1";
             this.Motor1Enabledbutton.UseVisualStyleBackColor = true;
+            this.Motor1Enabledbutton.Click += new System.EventHandler(this.RadioButton_Click);
             // 
             // textBox31
             // 
@@ -2252,7 +1927,7 @@ namespace WindowsFormsApp1
             // 
             // Msk1panel
             // 
-            this.Msk1panel.BackColor = System.Drawing.Color.Transparent;
+            this.Msk1panel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Msk1panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Msk1panel.Controls.Add(this.MSK1AkimKD);
             this.Msk1panel.Controls.Add(this.MSK1AkimKI);
@@ -2284,7 +1959,7 @@ namespace WindowsFormsApp1
             this.Msk1panel.Controls.Add(this.textBox3);
             this.Msk1panel.Controls.Add(this.textBox4);
             this.Msk1panel.Controls.Add(this.textBox5);
-            this.Msk1panel.Location = new System.Drawing.Point(300, 68);
+            this.Msk1panel.Location = new System.Drawing.Point(436, 75);
             this.Msk1panel.Name = "Msk1panel";
             this.Msk1panel.Size = new System.Drawing.Size(571, 423);
             this.Msk1panel.TabIndex = 15;
@@ -2594,7 +2269,7 @@ namespace WindowsFormsApp1
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(483, 486);
+            this.panel2.Location = new System.Drawing.Point(619, 493);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(8, 8);
             this.panel2.TabIndex = 21;
@@ -2623,7 +2298,7 @@ namespace WindowsFormsApp1
             this.panel3.Controls.Add(this.textBox23);
             this.panel3.Controls.Add(this.textBox24);
             this.panel3.Controls.Add(this.textBox25);
-            this.panel3.Location = new System.Drawing.Point(299, 504);
+            this.panel3.Location = new System.Drawing.Point(435, 511);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(573, 405);
             this.panel3.TabIndex = 46;
@@ -2814,12 +2489,12 @@ namespace WindowsFormsApp1
             this.Parametre.Controls.Add(this.panel1);
             this.Parametre.Controls.Add(this.panel4);
             this.Parametre.Controls.Add(this.panel6);
-            this.Parametre.Controls.Add(this.panel3);
             this.Parametre.Controls.Add(this.panel2);
             this.Parametre.Controls.Add(this.button1);
             this.Parametre.Controls.Add(this.label1);
             this.Parametre.Controls.Add(this.Msk1panel);
             this.Parametre.Controls.Add(this.Otomatictestpanel);
+            this.Parametre.Controls.Add(this.panel3);
             this.Parametre.Location = new System.Drawing.Point(-29, 0);
             this.Parametre.Name = "Parametre";
             this.Parametre.Size = new System.Drawing.Size(2059, 1037);
@@ -2828,10 +2503,10 @@ namespace WindowsFormsApp1
             // 
             // textBox51
             // 
-            this.textBox51.BackColor = System.Drawing.Color.White;
+            this.textBox51.BackColor = System.Drawing.SystemColors.HighlightText;
             this.textBox51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox51.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox51.ForeColor = System.Drawing.Color.LightSlateGray;
+            this.textBox51.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox51.Location = new System.Drawing.Point(274, 3);
             this.textBox51.Name = "textBox51";
             this.textBox51.Size = new System.Drawing.Size(1782, 43);
@@ -2863,7 +2538,7 @@ namespace WindowsFormsApp1
             this.panel1.Controls.Add(this.textBox12);
             this.panel1.Controls.Add(this.textBox13);
             this.panel1.Controls.Add(this.textBox14);
-            this.panel1.Location = new System.Drawing.Point(992, 504);
+            this.panel1.Location = new System.Drawing.Point(1128, 511);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(573, 405);
             this.panel1.TabIndex = 51;
@@ -3048,14 +2723,14 @@ namespace WindowsFormsApp1
             // 
             // panel4
             // 
-            this.panel4.Location = new System.Drawing.Point(1148, 498);
+            this.panel4.Location = new System.Drawing.Point(1284, 505);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(8, 8);
             this.panel4.TabIndex = 50;
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.Transparent;
+            this.panel6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.MSK2AkimKD);
             this.panel6.Controls.Add(this.MSK2AkimKI);
@@ -3087,7 +2762,7 @@ namespace WindowsFormsApp1
             this.panel6.Controls.Add(this.textBox27);
             this.panel6.Controls.Add(this.textBox28);
             this.panel6.Controls.Add(this.textBox29);
-            this.panel6.Location = new System.Drawing.Point(990, 66);
+            this.panel6.Location = new System.Drawing.Point(1126, 73);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(571, 423);
             this.panel6.TabIndex = 49;
@@ -3714,6 +3389,7 @@ namespace WindowsFormsApp1
             // radioButton5
             // 
             this.radioButton5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.radioButton5.AutoCheck = false;
             this.radioButton5.AutoSize = true;
             this.radioButton5.ForeColor = System.Drawing.Color.Black;
             this.radioButton5.Location = new System.Drawing.Point(314, 252);
@@ -3721,12 +3397,14 @@ namespace WindowsFormsApp1
             this.radioButton5.Size = new System.Drawing.Size(89, 20);
             this.radioButton5.TabIndex = 25;
             this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "MOTOR-1";
+            this.radioButton5.Text = "MOTOR-4";
             this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton5.Click += new System.EventHandler(this.RadioButton_Click);
             // 
             // radioButton6
             // 
             this.radioButton6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.radioButton6.AutoCheck = false;
             this.radioButton6.AutoSize = true;
             this.radioButton6.ForeColor = System.Drawing.Color.Black;
             this.radioButton6.Location = new System.Drawing.Point(75, 252);
@@ -3734,12 +3412,14 @@ namespace WindowsFormsApp1
             this.radioButton6.Size = new System.Drawing.Size(89, 20);
             this.radioButton6.TabIndex = 25;
             this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "MOTOR-1";
+            this.radioButton6.Text = "MOTOR-2";
             this.radioButton6.UseVisualStyleBackColor = true;
+            this.radioButton6.Click += new System.EventHandler(this.RadioButton_Click);
             // 
             // radioButton7
             // 
             this.radioButton7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.radioButton7.AutoCheck = false;
             this.radioButton7.AutoSize = true;
             this.radioButton7.ForeColor = System.Drawing.Color.Black;
             this.radioButton7.Location = new System.Drawing.Point(314, 161);
@@ -3747,8 +3427,9 @@ namespace WindowsFormsApp1
             this.radioButton7.Size = new System.Drawing.Size(89, 20);
             this.radioButton7.TabIndex = 24;
             this.radioButton7.TabStop = true;
-            this.radioButton7.Text = "MOTOR-1";
+            this.radioButton7.Text = "MOTOR-3";
             this.radioButton7.UseVisualStyleBackColor = true;
+            this.radioButton7.Click += new System.EventHandler(this.RadioButton_Click);
             // 
             // textBox64
             // 
@@ -3766,6 +3447,7 @@ namespace WindowsFormsApp1
             // radioButton8
             // 
             this.radioButton8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.radioButton8.AutoCheck = false;
             this.radioButton8.AutoSize = true;
             this.radioButton8.ForeColor = System.Drawing.Color.Black;
             this.radioButton8.Location = new System.Drawing.Point(75, 161);
@@ -3775,6 +3457,7 @@ namespace WindowsFormsApp1
             this.radioButton8.TabStop = true;
             this.radioButton8.Text = "MOTOR-1";
             this.radioButton8.UseVisualStyleBackColor = true;
+            this.radioButton8.Click += new System.EventHandler(this.RadioButton_Click);
             // 
             // textBox65
             // 
@@ -4253,545 +3936,563 @@ namespace WindowsFormsApp1
             // PanelHomepage
             // 
             this.PanelHomepage.BackColor = System.Drawing.Color.White;
+            this.PanelHomepage.Controls.Add(this.label83);
+            this.PanelHomepage.Controls.Add(this.msk2packetpanel);
+            this.PanelHomepage.Controls.Add(this.label82);
+            this.PanelHomepage.Controls.Add(this.label80);
+            this.PanelHomepage.Controls.Add(this.label52);
             this.PanelHomepage.Controls.Add(this.label53);
             this.PanelHomepage.Controls.Add(this.msk1packetpanel);
-            this.PanelHomepage.Controls.Add(this.label46);
-            this.PanelHomepage.Controls.Add(this.msk2packetpanel);
-            this.PanelHomepage.Controls.Add(this.button9);
-            this.PanelHomepage.Controls.Add(this.comboBox9);
-            this.PanelHomepage.Controls.Add(this.button10);
-            this.PanelHomepage.Controls.Add(this.comboBox10);
-            this.PanelHomepage.Controls.Add(this.button3);
-            this.PanelHomepage.Controls.Add(this.comboBox5);
-            this.PanelHomepage.Controls.Add(this.button4);
-            this.PanelHomepage.Controls.Add(this.comboBox6);
-            this.PanelHomepage.Controls.Add(this.button7);
-            this.PanelHomepage.Controls.Add(this.comboBox7);
-            this.PanelHomepage.Controls.Add(this.button8);
-            this.PanelHomepage.Controls.Add(this.comboBox8);
+            this.PanelHomepage.Controls.Add(this.SendText3);
+            this.PanelHomepage.Controls.Add(this.SelectedProtocol3);
+            this.PanelHomepage.Controls.Add(this.buttonOpenPort3);
+            this.PanelHomepage.Controls.Add(this.comboBoxPorts3);
+            this.PanelHomepage.Controls.Add(this.timetextbox);
+            this.PanelHomepage.Controls.Add(this.mesajtext);
+            this.PanelHomepage.Controls.Add(this.groupBox1);
+            this.PanelHomepage.Controls.Add(this.SendText2);
+            this.PanelHomepage.Controls.Add(this.comboBoxPorts2);
+            this.PanelHomepage.Controls.Add(this.buttonOpenPort2);
+            this.PanelHomepage.Controls.Add(this.comboBoxPorts);
+            this.PanelHomepage.Controls.Add(this.buttonOpenPort);
+            this.PanelHomepage.Controls.Add(this.SelectedProtocol);
+            this.PanelHomepage.Controls.Add(this.SendText);
+            this.PanelHomepage.Controls.Add(this.textBoxSendData);
+            this.PanelHomepage.Controls.Add(this.SelectedProtocol2);
+            this.PanelHomepage.Controls.Add(this.groupBoxCrcResults);
             this.PanelHomepage.Location = new System.Drawing.Point(3, 0);
             this.PanelHomepage.Name = "PanelHomepage";
-            this.PanelHomepage.Size = new System.Drawing.Size(2020, 1023);
+            this.PanelHomepage.Size = new System.Drawing.Size(1931, 1023);
             this.PanelHomepage.TabIndex = 26;
-            // 
-            // label53
-            // 
-            this.label53.BackColor = System.Drawing.Color.Transparent;
-            this.label53.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label53.ForeColor = System.Drawing.Color.LightSlateGray;
-            this.label53.Location = new System.Drawing.Point(1180, 48);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(245, 23);
-            this.label53.TabIndex = 30;
-            this.label53.Text = "Veri Alım Paketi - MSK-1";
-            // 
-            // msk1packetpanel
-            // 
-            this.msk1packetpanel.BackColor = System.Drawing.Color.White;
-            this.msk1packetpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.msk1packetpanel.Controls.Add(this.textBox40);
-            this.msk1packetpanel.Controls.Add(this.button15);
-            this.msk1packetpanel.Controls.Add(this.checkBox2);
-            this.msk1packetpanel.Controls.Add(this.button17);
-            this.msk1packetpanel.Controls.Add(this.label80);
-            this.msk1packetpanel.Controls.Add(this.textBox47);
-            this.msk1packetpanel.Controls.Add(this.label82);
-            this.msk1packetpanel.Controls.Add(this.button18);
-            this.msk1packetpanel.Controls.Add(this.label83);
-            this.msk1packetpanel.Controls.Add(this.button19);
-            this.msk1packetpanel.Controls.Add(this.textBox48);
-            this.msk1packetpanel.Controls.Add(this.label84);
-            this.msk1packetpanel.Controls.Add(this.label85);
-            this.msk1packetpanel.Controls.Add(this.textBox52);
-            this.msk1packetpanel.Controls.Add(this.comboBox12);
-            this.msk1packetpanel.Location = new System.Drawing.Point(1077, 80);
-            this.msk1packetpanel.Name = "msk1packetpanel";
-            this.msk1packetpanel.Size = new System.Drawing.Size(426, 833);
-            this.msk1packetpanel.TabIndex = 31;
-            // 
-            // textBox40
-            // 
-            this.textBox40.Location = new System.Drawing.Point(188, 440);
-            this.textBox40.Name = "textBox40";
-            this.textBox40.Size = new System.Drawing.Size(150, 22);
-            this.textBox40.TabIndex = 18;
-            // 
-            // button15
-            // 
-            this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(62)))), ((int)(((byte)(74)))));
-            this.button15.Location = new System.Drawing.Point(47, 691);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(315, 82);
-            this.button15.TabIndex = 21;
-            this.button15.Text = "KİLİTLEME YÜKSEK AKIM UYGULA";
-            this.button15.UseVisualStyleBackColor = false;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.ForeColor = System.Drawing.Color.Black;
-            this.checkBox2.Location = new System.Drawing.Point(212, 609);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(151, 24);
-            this.checkBox2.TabIndex = 20;
-            this.checkBox2.Text = "YÜKSEK AKIM";
-            // 
-            // button17
-            // 
-            this.button17.BackColor = System.Drawing.Color.Tomato;
-            this.button17.Location = new System.Drawing.Point(240, 513);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(133, 70);
-            this.button17.TabIndex = 19;
-            this.button17.Text = "GÜNCELLE";
-            this.button17.UseVisualStyleBackColor = false;
-            // 
-            // label80
-            // 
-            this.label80.ForeColor = System.Drawing.Color.Black;
-            this.label80.Location = new System.Drawing.Point(42, 444);
-            this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(159, 45);
-            this.label80.TabIndex = 17;
-            this.label80.Text = "ENKODER AŞIM LİMİTİ";
-            // 
-            // textBox47
-            // 
-            this.textBox47.Location = new System.Drawing.Point(188, 407);
-            this.textBox47.Name = "textBox47";
-            this.textBox47.Size = new System.Drawing.Size(150, 22);
-            this.textBox47.TabIndex = 16;
-            // 
-            // label82
-            // 
-            this.label82.ForeColor = System.Drawing.Color.Black;
-            this.label82.Location = new System.Drawing.Point(82, 407);
-            this.label82.Name = "label82";
-            this.label82.Size = new System.Drawing.Size(100, 23);
-            this.label82.TabIndex = 15;
-            this.label82.Text = "AKIM LİMİTİ";
-            // 
-            // button18
-            // 
-            this.button18.BackColor = System.Drawing.Color.SaddleBrown;
-            this.button18.Location = new System.Drawing.Point(225, 289);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(122, 48);
-            this.button18.TabIndex = 14;
-            this.button18.Text = "DURDUR";
-            this.button18.UseVisualStyleBackColor = false;
             // 
             // label83
             // 
+            this.label83.BackColor = System.Drawing.Color.Transparent;
+            this.label83.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label83.ForeColor = System.Drawing.Color.Black;
-            this.label83.Location = new System.Drawing.Point(35, 56);
+            this.label83.Location = new System.Drawing.Point(1539, 48);
             this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(100, 23);
-            this.label83.TabIndex = 7;
-            this.label83.Text = "ÜRÜN";
-            // 
-            // button19
-            // 
-            this.button19.BackColor = System.Drawing.Color.DarkGreen;
-            this.button19.Location = new System.Drawing.Point(86, 289);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(127, 48);
-            this.button19.TabIndex = 13;
-            this.button19.Text = "BAŞLA";
-            this.button19.UseVisualStyleBackColor = false;
-            // 
-            // textBox48
-            // 
-            this.textBox48.Location = new System.Drawing.Point(154, 56);
-            this.textBox48.Name = "textBox48";
-            this.textBox48.Size = new System.Drawing.Size(150, 22);
-            this.textBox48.TabIndex = 8;
-            // 
-            // label84
-            // 
-            this.label84.ForeColor = System.Drawing.Color.Black;
-            this.label84.Location = new System.Drawing.Point(35, 123);
-            this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(100, 23);
-            this.label84.TabIndex = 9;
-            this.label84.Text = "TEST EDEN";
-            // 
-            // label85
-            // 
-            this.label85.ForeColor = System.Drawing.Color.Black;
-            this.label85.Location = new System.Drawing.Point(35, 188);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(100, 23);
-            this.label85.TabIndex = 11;
-            this.label85.Text = "TEST";
-            // 
-            // textBox52
-            // 
-            this.textBox52.Location = new System.Drawing.Point(159, 120);
-            this.textBox52.Name = "textBox52";
-            this.textBox52.Size = new System.Drawing.Size(150, 22);
-            this.textBox52.TabIndex = 10;
-            // 
-            // comboBox12
-            // 
-            this.comboBox12.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox12.Items.AddRange(new object[] {
-            "Test-1",
-            "Test-2",
-            "Test-3"});
-            this.comboBox12.Location = new System.Drawing.Point(159, 184);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(150, 24);
-            this.comboBox12.TabIndex = 22;
-            // 
-            // label46
-            // 
-            this.label46.BackColor = System.Drawing.Color.Transparent;
-            this.label46.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label46.ForeColor = System.Drawing.Color.LightSlateGray;
-            this.label46.Location = new System.Drawing.Point(1640, 49);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(263, 23);
-            this.label46.TabIndex = 28;
-            this.label46.Text = "Veri Alım Paketi - MSK-2";
+            this.label83.Size = new System.Drawing.Size(290, 23);
+            this.label83.TabIndex = 36;
+            this.label83.Text = "VERİ ALIMI PAKETİ - MSK - 2";
             // 
             // msk2packetpanel
             // 
             this.msk2packetpanel.BackColor = System.Drawing.Color.White;
             this.msk2packetpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.msk2packetpanel.Controls.Add(this.textBox30);
-            this.msk2packetpanel.Controls.Add(this.button2);
-            this.msk2packetpanel.Controls.Add(this.checkBox1);
-            this.msk2packetpanel.Controls.Add(this.button12);
-            this.msk2packetpanel.Controls.Add(this.label47);
-            this.msk2packetpanel.Controls.Add(this.textBox37);
-            this.msk2packetpanel.Controls.Add(this.label48);
-            this.msk2packetpanel.Controls.Add(this.button13);
             this.msk2packetpanel.Controls.Add(this.label50);
-            this.msk2packetpanel.Controls.Add(this.button14);
-            this.msk2packetpanel.Controls.Add(this.textBox38);
+            this.msk2packetpanel.Controls.Add(this.comboBox13);
             this.msk2packetpanel.Controls.Add(this.label51);
-            this.msk2packetpanel.Controls.Add(this.label52);
-            this.msk2packetpanel.Controls.Add(this.textBox39);
-            this.msk2packetpanel.Controls.Add(this.comboBox11);
-            this.msk2packetpanel.Location = new System.Drawing.Point(1539, 80);
+            this.msk2packetpanel.Controls.Add(this.comboBox14);
+            this.msk2packetpanel.Controls.Add(this.radioPanel2);
+            this.msk2packetpanel.Location = new System.Drawing.Point(1481, 79);
             this.msk2packetpanel.Name = "msk2packetpanel";
-            this.msk2packetpanel.Size = new System.Drawing.Size(426, 833);
-            this.msk2packetpanel.TabIndex = 29;
-            // 
-            // textBox30
-            // 
-            this.textBox30.Location = new System.Drawing.Point(188, 440);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.Size = new System.Drawing.Size(150, 22);
-            this.textBox30.TabIndex = 18;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(62)))), ((int)(((byte)(74)))));
-            this.button2.Location = new System.Drawing.Point(47, 691);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(315, 82);
-            this.button2.TabIndex = 21;
-            this.button2.Text = "KİLİTLEME YÜKSEK AKIM UYGULA";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.ForeColor = System.Drawing.Color.Black;
-            this.checkBox1.Location = new System.Drawing.Point(212, 609);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(151, 24);
-            this.checkBox1.TabIndex = 20;
-            this.checkBox1.Text = "YÜKSEK AKIM";
-            // 
-            // button12
-            // 
-            this.button12.BackColor = System.Drawing.Color.Tomato;
-            this.button12.Location = new System.Drawing.Point(240, 513);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(133, 70);
-            this.button12.TabIndex = 19;
-            this.button12.Text = "GÜNCELLE";
-            this.button12.UseVisualStyleBackColor = false;
-            // 
-            // label47
-            // 
-            this.label47.ForeColor = System.Drawing.Color.Black;
-            this.label47.Location = new System.Drawing.Point(42, 444);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(159, 45);
-            this.label47.TabIndex = 17;
-            this.label47.Text = "ENKODER AŞIM LİMİTİ";
-            // 
-            // textBox37
-            // 
-            this.textBox37.Location = new System.Drawing.Point(188, 407);
-            this.textBox37.Name = "textBox37";
-            this.textBox37.Size = new System.Drawing.Size(150, 22);
-            this.textBox37.TabIndex = 16;
-            // 
-            // label48
-            // 
-            this.label48.ForeColor = System.Drawing.Color.Black;
-            this.label48.Location = new System.Drawing.Point(82, 407);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(100, 23);
-            this.label48.TabIndex = 15;
-            this.label48.Text = "AKIM LİMİTİ";
-            // 
-            // button13
-            // 
-            this.button13.BackColor = System.Drawing.Color.SaddleBrown;
-            this.button13.Location = new System.Drawing.Point(225, 289);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(122, 48);
-            this.button13.TabIndex = 14;
-            this.button13.Text = "DURDUR";
-            this.button13.UseVisualStyleBackColor = false;
+            this.msk2packetpanel.Size = new System.Drawing.Size(410, 833);
+            this.msk2packetpanel.TabIndex = 35;
             // 
             // label50
             // 
+            this.label50.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.label50.ForeColor = System.Drawing.Color.Black;
-            this.label50.Location = new System.Drawing.Point(35, 56);
+            this.label50.Location = new System.Drawing.Point(138, 450);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(100, 23);
-            this.label50.TabIndex = 7;
-            this.label50.Text = "ÜRÜN";
+            this.label50.Size = new System.Drawing.Size(150, 28);
+            this.label50.TabIndex = 23;
+            this.label50.Text = "SİSTEM ANALİZ MODU";
             // 
-            // button14
+            // comboBox13
             // 
-            this.button14.BackColor = System.Drawing.Color.DarkGreen;
-            this.button14.Location = new System.Drawing.Point(86, 289);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(127, 48);
-            this.button14.TabIndex = 13;
-            this.button14.Text = "BAŞLA";
-            this.button14.UseVisualStyleBackColor = false;
-            // 
-            // textBox38
-            // 
-            this.textBox38.Location = new System.Drawing.Point(154, 56);
-            this.textBox38.Name = "textBox38";
-            this.textBox38.Size = new System.Drawing.Size(150, 22);
-            this.textBox38.TabIndex = 8;
+            this.comboBox13.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox13.Items.AddRange(new object[] {
+            "Seçenek-1",
+            "Seçenek-2",
+            "Seçenek-3",
+            "Test-1",
+            "Test-2",
+            "Test-3"});
+            this.comboBox13.Location = new System.Drawing.Point(132, 495);
+            this.comboBox13.Name = "comboBox13";
+            this.comboBox13.Size = new System.Drawing.Size(150, 24);
+            this.comboBox13.TabIndex = 24;
             // 
             // label51
             // 
+            this.label51.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.label51.ForeColor = System.Drawing.Color.Black;
-            this.label51.Location = new System.Drawing.Point(35, 123);
+            this.label51.Location = new System.Drawing.Point(162, 550);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(100, 23);
-            this.label51.TabIndex = 9;
-            this.label51.Text = "TEST EDEN";
+            this.label51.TabIndex = 25;
+            this.label51.Text = "SÜRÜŞ MODU";
+            // 
+            // comboBox14
+            // 
+            this.comboBox14.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox14.Items.AddRange(new object[] {
+            "Test-1",
+            "Test-2",
+            "Test-3"});
+            this.comboBox14.Location = new System.Drawing.Point(132, 590);
+            this.comboBox14.Name = "comboBox14";
+            this.comboBox14.Size = new System.Drawing.Size(150, 24);
+            this.comboBox14.TabIndex = 26;
+            // 
+            // radioPanel2
+            // 
+            this.radioPanel2.Location = new System.Drawing.Point(10, 50);
+            this.radioPanel2.Name = "radioPanel2";
+            this.radioPanel2.Size = new System.Drawing.Size(400, 300);
+            this.radioPanel2.TabIndex = 27;
+            // 
+            // label82
+            // 
+            this.label82.ForeColor = System.Drawing.Color.Black;
+            this.label82.Location = new System.Drawing.Point(244, 94);
+            this.label82.Name = "label82";
+            this.label82.Size = new System.Drawing.Size(74, 22);
+            this.label82.TabIndex = 34;
+            this.label82.Text = "P.Supply";
+            // 
+            // label80
+            // 
+            this.label80.ForeColor = System.Drawing.Color.Black;
+            this.label80.Location = new System.Drawing.Point(244, 54);
+            this.label80.Name = "label80";
+            this.label80.Size = new System.Drawing.Size(74, 22);
+            this.label80.TabIndex = 33;
+            this.label80.Text = "Motor-2";
             // 
             // label52
             // 
             this.label52.ForeColor = System.Drawing.Color.Black;
-            this.label52.Location = new System.Drawing.Point(35, 188);
+            this.label52.Location = new System.Drawing.Point(244, 24);
             this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(100, 23);
-            this.label52.TabIndex = 11;
-            this.label52.Text = "TEST";
+            this.label52.Size = new System.Drawing.Size(74, 22);
+            this.label52.TabIndex = 32;
+            this.label52.Text = "Motor-1";
             // 
-            // textBox39
+            // label53
             // 
-            this.textBox39.Location = new System.Drawing.Point(159, 120);
-            this.textBox39.Name = "textBox39";
-            this.textBox39.Size = new System.Drawing.Size(150, 22);
-            this.textBox39.TabIndex = 10;
+            this.label53.BackColor = System.Drawing.Color.Transparent;
+            this.label53.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label53.ForeColor = System.Drawing.Color.Black;
+            this.label53.Location = new System.Drawing.Point(1126, 47);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(290, 23);
+            this.label53.TabIndex = 30;
+            this.label53.Text = "VERİ ALIMI PAKETİ - MSK - 1";
             // 
-            // comboBox11
+            // msk1packetpanel
             // 
-            this.comboBox11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox11.Items.AddRange(new object[] {
-            "Test-1",
-            "Test-2",
-            "Test-3"});
-            this.comboBox11.Location = new System.Drawing.Point(159, 184);
-            this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(150, 24);
-            this.comboBox11.TabIndex = 22;
+            this.msk1packetpanel.BackColor = System.Drawing.Color.White;
+            this.msk1packetpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.msk1packetpanel.Controls.Add(this.label47);
+            this.msk1packetpanel.Controls.Add(this.systemanalysismode);
+            this.msk1packetpanel.Controls.Add(this.label48);
+            this.msk1packetpanel.Controls.Add(this.comboBox12);
+            this.msk1packetpanel.Controls.Add(this.radioPanel);
+            this.msk1packetpanel.Location = new System.Drawing.Point(1046, 80);
+            this.msk1packetpanel.Name = "msk1packetpanel";
+            this.msk1packetpanel.Size = new System.Drawing.Size(413, 833);
+            this.msk1packetpanel.TabIndex = 31;
             // 
-            // button9
+            // label47
             // 
-            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button9.ForeColor = System.Drawing.Color.White;
-            this.button9.Location = new System.Drawing.Point(804, 75);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(68, 23);
-            this.button9.TabIndex = 26;
-            this.button9.Text = "SEND2";
-            this.button9.UseVisualStyleBackColor = true;
+            this.label47.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label47.ForeColor = System.Drawing.Color.Black;
+            this.label47.Location = new System.Drawing.Point(138, 450);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(150, 28);
+            this.label47.TabIndex = 23;
+            this.label47.Text = "SİSTEM ANALİZ MODU";
             // 
-            // comboBox9
+            // systemanalysismode
             // 
-            this.comboBox9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.comboBox9.ForeColor = System.Drawing.Color.White;
-            this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(252, 80);
-            this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(121, 24);
-            this.comboBox9.TabIndex = 24;
+            this.systemanalysismode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.systemanalysismode.Items.AddRange(new object[] {
+            "0-None",
+            "1-Current2Current",
+            "2-Position2Position"});
+            this.systemanalysismode.Location = new System.Drawing.Point(132, 495);
+            this.systemanalysismode.Name = "systemanalysismode";
+            this.systemanalysismode.Size = new System.Drawing.Size(150, 24);
+            this.systemanalysismode.TabIndex = 24;
             // 
-            // button10
+            // label48
             // 
-            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(205)))), ((int)(((byte)(50)))));
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button10.ForeColor = System.Drawing.Color.White;
-            this.button10.Location = new System.Drawing.Point(398, 78);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 28);
-            this.button10.TabIndex = 25;
-            this.button10.Text = "Open2";
-            this.button10.UseVisualStyleBackColor = true;
+            this.label48.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label48.ForeColor = System.Drawing.Color.Black;
+            this.label48.Location = new System.Drawing.Point(162, 550);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(100, 23);
+            this.label48.TabIndex = 25;
+            this.label48.Text = "SÜRÜŞ MODU";
             // 
-            // comboBox10
+            // comboBox12
             // 
-            this.comboBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.comboBox10.ForeColor = System.Drawing.Color.White;
-            this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.comboBox10.Location = new System.Drawing.Point(530, 77);
-            this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(241, 24);
-            this.comboBox10.TabIndex = 27;
+            this.comboBox12.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox12.Items.AddRange(new object[] {
+            "0: None",
+            "1: Position",
+            "2: Current",
+            "3: PWM"});
+            this.comboBox12.Location = new System.Drawing.Point(132, 590);
+            this.comboBox12.Name = "comboBox12";
+            this.comboBox12.Size = new System.Drawing.Size(150, 24);
+            this.comboBox12.TabIndex = 26;
             // 
-            // button3
+            // radioPanel
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(804, 45);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(68, 23);
-            this.button3.TabIndex = 22;
-            this.button3.Text = "SEND2";
-            this.button3.UseVisualStyleBackColor = true;
+            this.radioPanel.Location = new System.Drawing.Point(10, 50);
+            this.radioPanel.Name = "radioPanel";
+            this.radioPanel.Size = new System.Drawing.Size(400, 300);
+            this.radioPanel.TabIndex = 27;
             // 
-            // comboBox5
+            // comboBoxPorts3
             // 
-            this.comboBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.comboBox5.ForeColor = System.Drawing.Color.White;
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(252, 50);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 24);
-            this.comboBox5.TabIndex = 20;
+            this.comboBoxPorts3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.comboBoxPorts3.ForeColor = System.Drawing.Color.White;
+            this.comboBoxPorts3.FormattingEnabled = true;
+            this.comboBoxPorts3.Location = new System.Drawing.Point(324, 54);
+            this.comboBoxPorts3.Name = "comboBoxPorts3";
+            this.comboBoxPorts3.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxPorts3.TabIndex = 22;
             // 
-            // button4
+            // groupBox1
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(205)))), ((int)(((byte)(50)))));
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(398, 48);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 28);
-            this.button4.TabIndex = 21;
-            this.button4.Text = "Open2";
-            this.button4.UseVisualStyleBackColor = true;
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.comboBox4);
+            this.groupBox1.Controls.Add(this.button5);
+            this.groupBox1.Controls.Add(this.button6);
+            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.Location = new System.Drawing.Point(256, 726);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(769, 251);
+            this.groupBox1.TabIndex = 18;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "CRC Sonuçları";
             // 
-            // comboBox6
+            // comboBox3
             // 
-            this.comboBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.comboBox6.ForeColor = System.Drawing.Color.White;
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(252, 17);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(121, 24);
-            this.comboBox6.TabIndex = 16;
+            this.comboBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.comboBox3.ForeColor = System.Drawing.Color.White;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(3, 3);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(1, 24);
+            this.comboBox3.TabIndex = 21;
             // 
-            // button7
+            // comboBox4
             // 
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(205)))), ((int)(((byte)(50)))));
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(398, 17);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 27);
-            this.button7.TabIndex = 17;
-            this.button7.Text = "Open";
-            this.button7.UseVisualStyleBackColor = true;
+            this.comboBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.comboBox4.ForeColor = System.Drawing.Color.White;
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(3, 3);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(1, 24);
+            this.comboBox4.TabIndex = 20;
             // 
-            // comboBox7
+            // button5
             // 
-            this.comboBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.comboBox7.ForeColor = System.Drawing.Color.White;
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.comboBox7.Location = new System.Drawing.Point(530, 19);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(241, 24);
-            this.comboBox7.TabIndex = 19;
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Location = new System.Drawing.Point(725, 295);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(120, 35);
+            this.button5.TabIndex = 19;
+            this.button5.Text = "Excel Kaydet";
+            this.button5.UseVisualStyleBackColor = false;
             // 
-            // button8
+            // button6
             // 
-            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button8.ForeColor = System.Drawing.Color.White;
-            this.button8.Location = new System.Drawing.Point(804, 19);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(68, 23);
-            this.button8.TabIndex = 18;
-            this.button8.Text = "SEND";
-            this.button8.UseVisualStyleBackColor = true;
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(490, 295);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(120, 35);
+            this.button6.TabIndex = 18;
+            this.button6.Text = "TXT Kaydet";
+            this.button6.UseVisualStyleBackColor = false;
             // 
-            // comboBox8
+            // dataGridView1
             // 
-            this.comboBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.comboBox8.ForeColor = System.Drawing.Color.White;
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.comboBox8.Location = new System.Drawing.Point(530, 47);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(241, 24);
-            this.comboBox8.TabIndex = 23;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.GridColor = System.Drawing.Color.Gray;
+            this.dataGridView1.Location = new System.Drawing.Point(13, 21);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 30;
+            this.dataGridView1.RowTemplate.Height = 35;
+            this.dataGridView1.Size = new System.Drawing.Size(750, 213);
+            this.dataGridView1.TabIndex = 22;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Gönderilen Veri";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Gönderilen CRC";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Alınan Veri";
+            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "Alınan CRC";
+            this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn10.HeaderText = "Zaman";
+            this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            // 
+            // comboBoxPorts2
+            // 
+            this.comboBoxPorts2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.comboBoxPorts2.ForeColor = System.Drawing.Color.White;
+            this.comboBoxPorts2.FormattingEnabled = true;
+            this.comboBoxPorts2.Location = new System.Drawing.Point(324, 91);
+            this.comboBoxPorts2.Name = "comboBoxPorts2";
+            this.comboBoxPorts2.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxPorts2.TabIndex = 10;
+            // 
+            // comboBoxPorts
+            // 
+            this.comboBoxPorts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.comboBoxPorts.ForeColor = System.Drawing.Color.White;
+            this.comboBoxPorts.FormattingEnabled = true;
+            this.comboBoxPorts.Location = new System.Drawing.Point(324, 23);
+            this.comboBoxPorts.Name = "comboBoxPorts";
+            this.comboBoxPorts.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxPorts.TabIndex = 0;
+            // 
+            // groupBoxCrcResults
+            // 
+            this.groupBoxCrcResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.groupBoxCrcResults.Controls.Add(this.comboBox2);
+            this.groupBoxCrcResults.Controls.Add(this.comboBox1);
+            this.groupBoxCrcResults.Controls.Add(this.buttonSaveExcel);
+            this.groupBoxCrcResults.Controls.Add(this.buttonSaveTxt);
+            this.groupBoxCrcResults.Controls.Add(this.dataGridViewCrcResults);
+            this.groupBoxCrcResults.ForeColor = System.Drawing.Color.White;
+            this.groupBoxCrcResults.Location = new System.Drawing.Point(256, 387);
+            this.groupBoxCrcResults.Name = "groupBoxCrcResults";
+            this.groupBoxCrcResults.Size = new System.Drawing.Size(769, 306);
+            this.groupBoxCrcResults.TabIndex = 17;
+            this.groupBoxCrcResults.TabStop = false;
+            this.groupBoxCrcResults.Text = "CRC Sonuçları";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.comboBox2.ForeColor = System.Drawing.Color.White;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(3, 3);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(1, 24);
+            this.comboBox2.TabIndex = 21;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.comboBox1.ForeColor = System.Drawing.Color.White;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(3, 3);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(1, 24);
+            this.comboBox1.TabIndex = 20;
+            // 
+            // buttonSaveExcel
+            // 
+            this.buttonSaveExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.buttonSaveExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSaveExcel.ForeColor = System.Drawing.Color.White;
+            this.buttonSaveExcel.Location = new System.Drawing.Point(602, 271);
+            this.buttonSaveExcel.Name = "buttonSaveExcel";
+            this.buttonSaveExcel.Size = new System.Drawing.Size(120, 29);
+            this.buttonSaveExcel.TabIndex = 19;
+            this.buttonSaveExcel.Text = "Excel Kaydet";
+            this.buttonSaveExcel.UseVisualStyleBackColor = false;
+            this.buttonSaveExcel.Click += new System.EventHandler(this.buttonSaveExcel_Click);
+            // 
+            // buttonSaveTxt
+            // 
+            this.buttonSaveTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.buttonSaveTxt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSaveTxt.ForeColor = System.Drawing.Color.White;
+            this.buttonSaveTxt.Location = new System.Drawing.Point(427, 268);
+            this.buttonSaveTxt.Name = "buttonSaveTxt";
+            this.buttonSaveTxt.Size = new System.Drawing.Size(120, 32);
+            this.buttonSaveTxt.TabIndex = 18;
+            this.buttonSaveTxt.Text = "TXT Kaydet";
+            this.buttonSaveTxt.UseVisualStyleBackColor = false;
+            this.buttonSaveTxt.Click += new System.EventHandler(this.buttonSaveTxt_Click);
+            // 
+            // dataGridViewCrcResults
+            // 
+            this.dataGridViewCrcResults.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewCrcResults.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.dataGridViewCrcResults.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewCrcResults.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            this.dataGridViewCrcResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewCrcResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCrcResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewCrcResults.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridViewCrcResults.EnableHeadersVisualStyles = false;
+            this.dataGridViewCrcResults.GridColor = System.Drawing.Color.Gray;
+            this.dataGridViewCrcResults.Location = new System.Drawing.Point(3, 33);
+            this.dataGridViewCrcResults.Name = "dataGridViewCrcResults";
+            this.dataGridViewCrcResults.RowHeadersWidth = 30;
+            this.dataGridViewCrcResults.RowTemplate.Height = 35;
+            this.dataGridViewCrcResults.Size = new System.Drawing.Size(747, 232);
+            this.dataGridViewCrcResults.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Gönderilen Veri";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Gönderilen CRC";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Alınan Veri";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Alınan CRC";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Zaman";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // DataGriderrormotor2
+            // 
+            this.DataGriderrormotor2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGriderrormotor2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.DataGriderrormotor2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataGriderrormotor2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            this.DataGriderrormotor2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DataGriderrormotor2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGriderrormotor2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn66});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGriderrormotor2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DataGriderrormotor2.EnableHeadersVisualStyles = false;
+            this.DataGriderrormotor2.GridColor = System.Drawing.Color.Gray;
+            this.DataGriderrormotor2.Location = new System.Drawing.Point(419, 132);
+            this.DataGriderrormotor2.Name = "DataGriderrormotor2";
+            this.DataGriderrormotor2.RowHeadersWidth = 30;
+            this.DataGriderrormotor2.RowTemplate.Height = 35;
+            this.DataGriderrormotor2.Size = new System.Drawing.Size(386, 779);
+            this.DataGriderrormotor2.TabIndex = 25;
+            // 
+            // dataGridViewTextBoxColumn66
+            // 
+            this.dataGridViewTextBoxColumn66.HeaderText = "Motor-2";
+            this.dataGridViewTextBoxColumn66.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn66.Name = "dataGridViewTextBoxColumn66";
             // 
             // Form1
             // 
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(1924, 1037);
             this.Controls.Add(this.navbar);
-            this.Controls.Add(this.PanelManuelTest);
             this.Controls.Add(this.ErrorPanel);
             this.Controls.Add(this.Parametre);
             this.Controls.Add(this.PanelHomepage);
             this.Controls.Add(this.otopanel);
             this.Controls.Add(this.Dashboard);
+            this.Controls.Add(this.PanelManuelTest);
             this.ForeColor = System.Drawing.Color.White;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Dashboard.ResumeLayout(false);
-            this.Dashboard.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.groupBoxCrcResults.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCrcResults)).EndInit();
             this.ErrorPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridErrormotor1)).EndInit();
             this.errorstatuspaneltitle.ResumeLayout(false);
             this.MSK2paneltitle.ResumeLayout(false);
             this.MSK1paneltitle.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReceivedData)).EndInit();
             this.PanelManuelTest.ResumeLayout(false);
             this.PanelManuelTest.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.angleTrackBar4)).EndInit();
@@ -4828,26 +4529,20 @@ namespace WindowsFormsApp1
             this.otomatictestchoise.PerformLayout();
             this.otopanel.ResumeLayout(false);
             this.PanelHomepage.ResumeLayout(false);
-            this.msk1packetpanel.ResumeLayout(false);
-            this.msk1packetpanel.PerformLayout();
+            this.PanelHomepage.PerformLayout();
             this.msk2packetpanel.ResumeLayout(false);
-            this.msk2packetpanel.PerformLayout();
+            this.msk1packetpanel.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBoxCrcResults.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCrcResults)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGriderrormotor2)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button buttonSaveExcel;
-        private System.Windows.Forms.Button buttonSaveTxt;
-        private System.Windows.Forms.ComboBox comboBoxPorts;
-        private System.Windows.Forms.Button buttonOpenPort;
-        private System.Windows.Forms.Button SendText;
-        private System.Windows.Forms.ComboBox SelectedProtocol;
-        private System.Windows.Forms.ComboBox comboBoxPorts2;
         private System.Windows.Forms.TextBox textBoxCrcResults;
-        private System.Windows.Forms.Button buttonOpenPort2;
-        private System.Windows.Forms.Button SendText2;
-        private System.Windows.Forms.ComboBox SelectedProtocol2;
 
         private Panel Dashboard;
         private Panel ErrorPanel;
@@ -4857,29 +4552,9 @@ namespace WindowsFormsApp1
         private Button ErrorPanelButton;
         private Button ParametreButton;
         private Button DashboardButton;
-        private DataGridView dataGridViewReceivedData;
         private DataGridViewTextBoxColumn ColumnTime;
         private DataGridViewTextBoxColumn ColumnProtocol;
         private DataGridViewTextBoxColumn ColumnErrorMessage;
-        private TextBox textBoxSendData;
-        private ComboBox comboBox2;
-        private ComboBox comboBox1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private GroupBox groupBox1;
-        private ComboBox comboBox3;
-        private ComboBox comboBox4;
-        private Button button5;
-        private Button button6;
-        private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private TextBox KP2;
         private TextBox KP3;
         private Button OtomaticTestButton;
@@ -4888,11 +4563,11 @@ namespace WindowsFormsApp1
         private Panel ManuelTestMotor;
         private TextBox textBox32;
         private TextBox textBox31;
-        private RadioButton Motor2Enabledbutton;
+        private RadioButton Motor3Enabledbutton;
         private RadioButton Motor1Enabledbutton;
         private TableLayoutPanel tableLayoutPanel2;
         private RadioButton Motor4Enabledbutton;
-        private RadioButton Motor3Enabledbutton;
+        private RadioButton Motor2Enabledbutton;
         private Label motor1akim;
         private TextBox textBox42;
         private TextBox textBox41;
@@ -5156,13 +4831,6 @@ namespace WindowsFormsApp1
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn57;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn58;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn59;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn60;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn61;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn62;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn63;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn64;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn65;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn66;
         private Panel MSK2paneltitle;
         private Panel MSK1paneltitle;
         private RichTextBox richTextBox1;
@@ -5186,59 +4854,69 @@ namespace WindowsFormsApp1
         private TextBox Motor2DegParametertext;
         private TextBox Motor1DegParametertext;
         private Panel PanelHomepage;
-        private Button button9;
-        private ComboBox comboBox9;
-        private Button button10;
-        private ComboBox comboBox10;
-        private Button button3;
-        private ComboBox comboBox5;
-        private Button button4;
-        private ComboBox comboBox6;
-        private Button button7;
-        private ComboBox comboBox7;
-        private Button button8;
-        private ComboBox comboBox8;
         private Button HomePageButton;
         private Label label53;
-        private Panel msk1packetpanel;
-        private TextBox textBox40;
-        private Button button15;
-        private CheckBox checkBox2;
-        private Button button17;
-        private Label label80;
-        private TextBox textBox47;
-        private Label label82;
-        private Button button18;
-        private Label label83;
-        private Button button19;
-        private TextBox textBox48;
-        private Label label84;
-        private Label label85;
-        private TextBox textBox52;
-        private ComboBox comboBox12;
-        private Label label46;
-        private Panel msk2packetpanel;
-        private TextBox textBox30;
-        private Button button2;
-        private CheckBox checkBox1;
-        private Button button12;
-        private Label label47;
-        private TextBox textBox37;
-        private Label label48;
-        private Button button13;
-        private Label label50;
-        private Button button14;
-        private TextBox textBox38;
-        private Label label51;
-        private Label label52;
-        private TextBox textBox39;
-        private ComboBox comboBox11;
         private TextBox mesajtext;
         private TextBox timetextbox;
-        private ComboBox comboBoxPorts3;
-        private Button buttonOpenPort3;
-        private ComboBox SelectedProtocol3;
+        private Panel msk1packetpanel;
+        private Label label48;
+        private ComboBox comboBox12;
+        private Label label47;
+        private ComboBox systemanalysismode;
+        private Label label52;
+        private Label label80;
+        private Label label82;
+        private Panel msk2packetpanel;
+        private Label label50;
+        private ComboBox comboBox13;
+        private Label label51;
+        private ComboBox comboBox14;
+        private Panel radioPanel2;
+        private Label label83;
         private Button SendText3;
+        private ComboBox SelectedProtocol3;
+        private Button buttonOpenPort3;
+        private Button SendText2;
+        private Button buttonOpenPort2;
+        private Button buttonOpenPort;
+        private ComboBox SelectedProtocol;
+        private Button SendText;
+        private TextBox textBoxSendData;
+        private ComboBox SelectedProtocol2;
+        private ComboBox comboBoxPorts3;
+        private ComboBox comboBoxPorts2;
+        private ComboBox comboBoxPorts;
+        private GroupBox groupBox1;
+        private ComboBox comboBox3;
+        private ComboBox comboBox4;
+        private Button button5;
+        private Button button6;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private GroupBox groupBoxCrcResults;
+        private ComboBox comboBox2;
+        private ComboBox comboBox1;
+        private Button buttonSaveExcel;
+        private Button buttonSaveTxt;
+        private DataGridView dataGridViewCrcResults;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridView DataGridErrormotor1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn60;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn61;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn62;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn63;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn64;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn65;
+        private DataGridView DataGriderrormotor2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn66;
     }
 
 

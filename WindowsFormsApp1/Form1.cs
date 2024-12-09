@@ -15,6 +15,7 @@ using System.Drawing.Drawing2D;
 // Kaldırılacak olan import
 using System.Windows.Forms.VisualStyles;
 using System.Diagnostics;
+using System.Security.Policy;
 
 
 namespace WindowsFormsApp1
@@ -28,6 +29,7 @@ namespace WindowsFormsApp1
         bool isFin2Opened; // 2. byte'ın 4. biti
         uint ReservedMessageNoStatus; // 2. byte'ın 4-7. biti
         string portInfo;
+        string portInfo2;
 
 
 
@@ -93,11 +95,11 @@ namespace WindowsFormsApp1
         int ExecutionTimeOfTheLowFrequencyTask;
 
         ushort InstantBatteryVoltageRaw;
-        double InstantBatteryVoltage;
+        float InstantBatteryVoltage;
         ushort MeanBatteryVoltageRaw;
         double MeanBatteryVoltage;
 
-        double CardTemperature;
+        float CardTemperature;
         bool isSolenoid1Open;
         bool isSolenoid2Open;
         double TotalConsumedPower;
@@ -233,7 +235,7 @@ namespace WindowsFormsApp1
             angleTrackBar2.Orientation = Orientation.Vertical;
 
             var databaseHelper = new DatabaseHelper();
-            databaseHelper.DisplayErrorsFromDatabase(errortablelayout);
+           // databaseHelper.DisplayErrorsFromDatabase(errortablelayout);
         }
 
 
@@ -256,19 +258,7 @@ namespace WindowsFormsApp1
             ErrorPanel.Visible = false; // Hatalar paneli gizli
 
             // dataGridView1'e başlıklar ekleyelim
-            dataGridView1.ColumnCount = 2; // 2 sütun var
-            dataGridView1.Columns[0].Name = "Mesaj";
-            dataGridView1.Columns[1].Name = "Zaman";
-
-            // DataGridView başlıklarının stilini ayarlama
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(30, 30, 30);
-            dataGridView1.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(40, 40, 40);
-            dataGridView1.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(45, 45, 45);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.GridColor = System.Drawing.Color.Gray;
+         
             this.angleTrackBar.ValueChanged += (s, args) => gaugePictureBox.Invalidate();
             this.angleTrackBar2.ValueChanged += (s, args) => gaugePictureBox2.Invalidate();
             this.angleTrackBar3.ValueChanged += (s, args) => gaugePictureBox3.Invalidate();
@@ -278,57 +268,55 @@ namespace WindowsFormsApp1
             this.gaugePictureBox3.Paint += (s, args) => gaugePictureBox_Paint(s, args, angleTrackBar3);
             this.gaugePictureBox4.Paint += (s, args) => gaugePictureBox_Paint(s, args, angleTrackBar4);
 
-            this.errortablelayout.Controls.Add(new Label()
-            {
-                Text = "MOTOR - 1",
-                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
-                Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold),
-                ForeColor = Color.White, // Beyaz yazı rengi
-                BackColor = Color.FromArgb(64, 79, 86), // Koyu gri tonlarında arka plan
-                Dock = DockStyle.Fill,
-                Margin = new Padding(0), // Kenar boşluklarını sıfırlayın
-                Padding = new Padding(0) // İç boşlukları sıfırlayın
-            }, 0, 0);
+            //this.errortablelayout.Controls.Add(new Label()
+            //{
+            //    Text = "MOTOR - 1",
+            //    TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+            //    Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold),
+            //    ForeColor = Color.White, // Beyaz yazı rengi
+            //    BackColor = Color.FromArgb(64, 79, 86), // Koyu gri tonlarında arka plan
+            //    Dock = DockStyle.Fill,
+            //    Margin = new Padding(0), // Kenar boşluklarını sıfırlayın
+            //    Padding = new Padding(0) // İç boşlukları sıfırlayın
+            //}, 0, 0);
 
-            this.errortablelayout.Controls.Add(new Label()
-            {
-                Text = "MOTOR - 2",
-                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
-                Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold),
-                ForeColor = Color.White,
-                BackColor = Color.FromArgb(64, 79, 86),
-                Dock = DockStyle.Fill,
-                Margin = new Padding(0),
-                Padding = new Padding(0)
-            }, 1, 0);
+            //this.errortablelayout.Controls.Add(new Label()
+            //{
+            //    Text = "MOTOR - 2",
+            //    TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+            //    Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold),
+            //    ForeColor = Color.White,
+            //    BackColor = Color.FromArgb(64, 79, 86),
+            //    Dock = DockStyle.Fill,
+            //    Margin = new Padding(0),
+            //    Padding = new Padding(0)
+            //}, 1, 0);
 
-            this.errortablelayout.Controls.Add(new Label()
-            {
-                Text = "MOTOR - 3",
-                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
-                Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold),
-                ForeColor = Color.White,
-                BackColor = Color.FromArgb(64, 79, 86),
-                Dock = DockStyle.Fill,
-                Margin = new Padding(0),
-                Padding = new Padding(0)
-            }, 2, 0);
+            //this.errortablelayout.Controls.Add(new Label()
+            //{
+            //    Text = "MOTOR - 3",
+            //    TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+            //    Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold),
+            //    ForeColor = Color.White,
+            //    BackColor = Color.FromArgb(64, 79, 86),
+            //    Dock = DockStyle.Fill,
+            //    Margin = new Padding(0),
+            //    Padding = new Padding(0)
+            //}, 2, 0);
 
-            this.errortablelayout.Controls.Add(new Label()
-            {
-                Text = "MOTOR - 4",
-                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
-                Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold),
-                ForeColor = Color.White,
-                BackColor = Color.FromArgb(64, 79, 86),
-                Dock = DockStyle.Fill,
-                Margin = new Padding(0),
-                Padding = new Padding(0)
-            }, 3, 0);
+            //this.errortablelayout.Controls.Add(new Label()
+            //{
+            //    Text = "MOTOR - 4",
+            //    TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+            //    Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold),
+            //    ForeColor = Color.White,
+            //    BackColor = Color.FromArgb(64, 79, 86),
+            //    Dock = DockStyle.Fill,
+            //    Margin = new Padding(0),
+            //    Padding = new Padding(0)
+            //}, 3, 0);
 
-
-
-
+            InitializeErrorIndicators();
 
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -350,6 +338,240 @@ namespace WindowsFormsApp1
             }
 
         }
+        private int selectedCount = 0; // Seçili buton sayısı
+        private List<RadioButton> selectedButtons = new List<RadioButton>(); // Seçili butonların listesi
+
+        private void RadioButton_Click(object sender, EventArgs e)
+        {
+            RadioButton radioButton = sender as RadioButton;
+            if (radioButton == null) return;
+
+            // Eğer bu buton zaten seçiliyse, seçimden çıkar
+            if (radioButton.Checked)
+            {
+                radioButton.Checked = false;
+                selectedButtons.Remove(radioButton);
+                selectedCount--;
+                return;
+            }
+
+            // Zaten 2 buton seçiliyse, yeni seçim yapılmasını engelle
+            if (selectedCount >= 2)
+            {
+                MessageBox.Show("Aynı anda en fazla 2 buton seçebilirsiniz.");
+                return;
+            }
+
+            // Yeni buton seçildiğinde listeye ekle
+            radioButton.Checked = true;
+            selectedButtons.Add(radioButton);
+            selectedCount++;
+        }
+        private void AddErrorToDataGrid(DataGridView dataGrid, string errorMessage)
+        {
+            // Hata zaten tabloya eklenmişse tekrar ekleme
+            foreach (DataGridViewRow row in dataGrid.Rows)
+            {
+                if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == errorMessage)
+                    return;
+            }
+
+            // Yeni bir satır ekle
+            dataGrid.Rows.Add(errorMessage);
+        }
+        private void InitializeErrorIndicators()
+        {
+            int yOffset = 10; // Başlangıç Y konumu
+
+            // Hata 1
+            hata1RadioButton = new RadioButton
+            {
+                Text = "Hata 1: Hall Sensor Supply Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata1RadioButton);
+            yOffset += 30;
+
+            // Hata 2
+            hata2RadioButton = new RadioButton
+            {
+                Text = "Hata 2: Hall Sensor State Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata2RadioButton);
+            yOffset += 30;
+
+            // Hata 3
+            hata3RadioButton = new RadioButton
+            {
+                Text = "Hata 3: Motor Leakage Current Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata3RadioButton);
+            yOffset += 30;
+
+            // Hata 4
+            hata4RadioButton = new RadioButton
+            {
+                Text = "Hata 4: Motor Over Current Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata4RadioButton);
+            yOffset += 30;
+
+            // Hata 5
+            hata5RadioButton = new RadioButton
+            {
+                Text = "Hata 5: Solenoid Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata5RadioButton);
+            yOffset += 30;
+
+            // Hata 6
+            hata6RadioButton = new RadioButton
+            {
+                Text = "Hata 6: Supply Voltage Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata6RadioButton);
+            yOffset += 30;
+
+            // Hata 7
+            hata7RadioButton = new RadioButton
+            {
+                Text = "Hata 7: Temperature Sensor Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata7RadioButton);
+            yOffset += 30;
+
+            // Hata 8
+            hata8RadioButton = new RadioButton
+            {
+                Text = "Hata 8: Motor Driver IC Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata8RadioButton);
+            yOffset += 30;
+
+            // Hata 9
+            hata9RadioButton = new RadioButton
+            {
+                Text = "Hata 9: Encoder Supply Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata9RadioButton);
+            yOffset += 30;
+
+            // Hata 10
+            hata10RadioButton = new RadioButton
+            {
+                Text = "Hata 10: Motor Temperature Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata10RadioButton);
+            yOffset += 30;
+
+            // Hata 11
+            hata11RadioButton = new RadioButton
+            {
+                Text = "Hata 11: Motor Driver Temperature Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata11RadioButton);
+            yOffset += 30;
+
+            // Hata 12
+            hata12RadioButton = new RadioButton
+            {
+                Text = "Hata 12: DSP ADC 1.5V Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata12RadioButton);
+            yOffset += 30;
+
+            // Hata 13
+            hata13RadioButton = new RadioButton
+            {
+                Text = "Hata 13: 3.3V Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata13RadioButton);
+            yOffset += 30;
+
+            // Hata 14
+            hata14RadioButton = new RadioButton
+            {
+                Text = "Hata 14: 5V Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata14RadioButton);
+            yOffset += 30;
+
+            // Hata 15
+            hata15RadioButton = new RadioButton
+            {
+                Text = "Hata 15: 12V Error",
+                Font = new Font("Arial", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, yOffset),
+                BackColor = Color.Transparent
+            };
+            radioPanel.Controls.Add(hata15RadioButton);
+            yOffset += 30;
+        }
+
+        private void ComboBoxPorts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxPorts.SelectedItem != null)
+            {
+                portInfo = comboBoxPorts.SelectedItem.ToString();
+               // Console.WriteLine($"Seçilen port: {portInfo}"); // Güncellenmiş port bilgisini göster
+            }
+        }
         private void GetAvailablePorts()
         {
             comboBoxPorts.Items.Clear(); // Mevcut öğeleri temizle
@@ -367,6 +589,7 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("Hiçbir port bulunamadı.");
             }
+            comboBoxPorts3.SelectedIndexChanged += ComboBoxPorts_SelectedIndexChanged;
         }
         private void GetAvailablePorts3()
         {
@@ -379,11 +602,24 @@ namespace WindowsFormsApp1
             if (comboBoxPorts3.Items.Count > 0)
             {
                 comboBoxPorts3.SelectedIndex = 0; // İlk portu seç
-                portInfo = comboBoxPorts3.SelectedItem.ToString();
+                portInfo2 = comboBoxPorts3.SelectedItem.ToString();
             }
             else
             {
                 MessageBox.Show("Hiçbir port bulunamadı.");
+            }
+
+            // Seçim değiştiğinde portInfo2'yi güncellemek için event bağlama
+            comboBoxPorts3.SelectedIndexChanged += ComboBoxPorts3_SelectedIndexChanged;
+        }
+
+        // comboBoxPorts3'te seçim değiştiğinde çalışacak olay işleyici
+        private void ComboBoxPorts3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxPorts3.SelectedItem != null)
+            {
+                portInfo2 = comboBoxPorts3.SelectedItem.ToString();
+                Console.WriteLine($"Seçilen port: {portInfo2}"); // Güncellenmiş port bilgisini göster
             }
         }
 
@@ -758,6 +994,290 @@ namespace WindowsFormsApp1
             // Checksum doğrulama
             return calculatedChecksum == receivedChecksum;
         }
+        public void DisplayErrorsFromData(TableLayoutPanel errortablelayout)
+        {
+            // Verileri topluca işlemek için bir liste hazırlayın
+            List<ErrorDetail> errorsToAdd = new List<ErrorDetail>();
+
+            // Hata mesajlarını topluca ekleyin
+            CheckAndAddError(Fin2_HallSensorSUpplyError, "Fin2 Hall Sensor Supply Error", 1, errorsToAdd);
+            CheckAndAddError(Fin1_HallSensorSUpplyError, "Fin1 Hall Sensor Supply Error", 0, errorsToAdd);
+            CheckAndAddError(Fin2_HallSensorStateError, "Fin2 Hall Sensor State Error", 1, errorsToAdd);
+            CheckAndAddError(Fin1_HallSensorStateError, "Fin1 Hall Sensor State Error", 0, errorsToAdd);
+            CheckAndAddError(Fin2_MotorLeakageCurrentError, "Fin2 Motor Leakage Current Error", 1, errorsToAdd);
+            CheckAndAddError(Fin1_MotorLeakageCurrentError, "Fin1 Motor Leakage Current Error", 0, errorsToAdd);
+            CheckAndAddError(Fin2_MotorOverCurrentError, "Fin2 Motor Over Current Error", 1, errorsToAdd);
+            CheckAndAddError(Fin1_MotorOverCurrentError, "Fin1 Motor Over Current Error", 0, errorsToAdd);
+            CheckAndAddError(Fin2_SolenoidError, "Fin2 Solenoid Error", 1, errorsToAdd);
+            CheckAndAddError(Fin1_SolenoidError, "Fin1 Solenoid Error", 0, errorsToAdd);
+            CheckAndAddError(SupplyVoltageError, "Supply Voltage Error", -1, errorsToAdd);
+            CheckAndAddError(TemperatureSensorError, "Temperature Sensor Error", -1, errorsToAdd);
+            CheckAndAddError(Fin2_MotorDriverICErrorByCPLD, "Fin2 Motor Driver IC Error By CPLD", 1, errorsToAdd);
+            CheckAndAddError(Fin1_MotorDriverICErrorByCPLD, "Fin1 Motor Driver IC Error By CPLD", 0, errorsToAdd);
+            CheckAndAddError(Fin2_EncoderSupplyErrorByCPLD, "Fin2 Encoder Supply Error By CPLD", 1, errorsToAdd);
+            CheckAndAddError(Fin1_EncoderSupplyErrorByCPLD, "Fin1 Encoder Supply Error By CPLD", 0, errorsToAdd);
+            CheckAndAddError(Fin2_MotorTemperatureErrorByCPLD, "Fin2 Motor Temperature Error By CPLD", 1, errorsToAdd);
+            CheckAndAddError(Fin1_MotorTemperatureErrorByCPLD, "Fin1 Motor Temperature Error By CPLD", 0, errorsToAdd);
+            CheckAndAddError(Fin2_MotorDriverTemperatureErrorByCPLD, "Fin2 Motor Driver Temperature Error By CPLD", 1, errorsToAdd);
+            CheckAndAddError(Fin1_MotorDriverTemperatureErrorByCPLD, "Fin1 Motor Driver Temperature Error By CPLD", 0, errorsToAdd);
+            CheckAndAddError(Omkk_DspAdc_1_5VoltError, "OMKK DSP ADC 1.5 Volt Error", -1, errorsToAdd);
+            CheckAndAddError(Omkk_3_3VoltErrorByCPLD, "OMKK 3.3 Volt Error By CPLD", -1, errorsToAdd);
+            CheckAndAddError(Omkk_5VoltErrorByCPLD, "OMKK 5 Volt Error By CPLD", -1, errorsToAdd);
+            CheckAndAddError(Omkk_12VoltErrorByCPLD, "OMKK 12 Volt Error By CPLD", -1, errorsToAdd);
+
+            // UI'yi topluca güncellemek için SuspendLayout ve ResumeLayout kullanıyoruz
+            errortablelayout.SuspendLayout(); // Yeniden düzenlemeyi durdur
+
+            // UI'yi hızlıca güncelle
+            errortablelayout.BeginInvoke(new Action(() =>
+            {
+                foreach (var error in errorsToAdd)
+                {
+                    AddErrorToTable(error.Message, error.Index, errortablelayout);
+                }
+            }));
+
+            errortablelayout.ResumeLayout(); // Yeniden düzenlemeyi başlat
+        }
+
+        // Bu metodda her hata kontrol edilip listeye ekleniyor
+        private void CheckAndAddError(bool errorCondition, string errorMessage, int motorIndex, List<ErrorDetail> errorsToAdd)
+        {
+            if (errorCondition)
+            {
+                errorsToAdd.Add(new ErrorDetail { Message = errorMessage, Index = motorIndex });
+            }
+        }
+
+        // Bu metod hata mesajını TableLayoutPanel'e ekler
+        private void AddErrorToTable(string errorMessage, int motorIndex, TableLayoutPanel errortablelayout)
+        {
+            Color errorColor = errorColors.ContainsKey(errorMessage) ? errorColors[errorMessage] : Color.Black;
+
+            Label errorLabel = new Label()
+            {
+                Text = errorMessage,
+                TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
+                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
+                ForeColor = Color.FromArgb(50, 50, 50),
+                AutoSize = true,
+                Padding = new Padding(10, 5, 10, 5)
+            };
+
+            PictureBox circleIndicator = new PictureBox()
+            {
+                Width = 20,
+                Height = 20,
+                BackColor = Color.Transparent
+            };
+
+            circleIndicator.Paint += (s, e) =>
+            {
+                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                using (Brush brush = new SolidBrush(errorColor))
+                {
+                    e.Graphics.FillEllipse(brush, 0, 0, circleIndicator.Width, circleIndicator.Height);
+                }
+            };
+
+            FlowLayoutPanel errorPanel = new FlowLayoutPanel()
+            {
+                AutoSize = true,
+                FlowDirection = FlowDirection.LeftToRight,
+                Padding = new Padding(0),
+                Margin = new Padding(0)
+            };
+            errorPanel.Controls.Add(circleIndicator);
+            errorPanel.Controls.Add(errorLabel);
+
+            if (motorIndex == 0)
+            {
+                errortablelayout.Controls.Add(errorPanel, 0, motor1RowCount);
+                motor1RowCount++;
+            }
+            else if (motorIndex == 1)
+            {
+                errortablelayout.Controls.Add(errorPanel, 1, motor2RowCount);
+                motor2RowCount++;
+            }
+            else
+            {
+                errortablelayout.Controls.Add(errorPanel, 2, generalErrorRowCount);
+                generalErrorRowCount++;
+            }
+
+            // Kaydırma işlemi
+            errortablelayout.AutoScroll = true;
+            errortablelayout.ScrollControlIntoView(errorPanel);
+        }
+
+        public class ErrorDetail
+        {
+            public string Message { get; set; }
+            public int Index { get; set; }
+        }
+
+
+        private void CheckAndDisplayError(bool errorCondition, string errorMessage, int motorIndex, TableLayoutPanel errortablelayout)
+        {
+            if (errorCondition)
+            {
+                DisplayError(errorMessage, motorIndex, errortablelayout);
+            }
+        }
+
+        private int motor1RowCount = 1; // Motor-1 için başlangıç satır sayısı
+        private int motor2RowCount = 1; // Motor-2 için başlangıç satır sayısı
+        private int generalErrorRowCount = 1; // Genel hatalar için başlangıç satır sayısı
+
+        private readonly Dictionary<string, Color> errorColors = new Dictionary<string, Color>()
+        {
+            { "Fin1 Hall Sensor State Error", Color.Red },
+            { "Fin1 Motor Leakage Current Error", Color.Orange },
+            { "Fin1 Motor Over Current Error", Color.Gold },
+            { "Fin1 Solenoid Error", Color.Green },
+            { "Fin2 Hall Sensor State Error", Color.Blue },
+            { "Fin2 Solenoid Error", Color.Purple },
+            { "Supply Voltage Error", Color.Brown },
+            { "Temperature Sensor Error", Color.DarkRed },
+            { "OMKK DSP ADC 1.5 Volt Error", Color.DarkOrange },
+            { "OMKK 3.3 Volt Error By CPLD", Color.DarkGreen },
+            { "OMKK 5 Volt Error By CPLD", Color.DarkBlue },
+            { "OMKK 12 Volt Error By CPLD", Color.Magenta }
+            // Diğer hatalarınız için de renkler tanımlayabilirsiniz
+        };
+
+        private void DisplayError(string errorMessage, int motorIndex, TableLayoutPanel errortablelayout)
+        {
+            if (errortablelayout.InvokeRequired)
+            {
+                // UI iş parçacığına geçmek için Invoke kullanılır
+                errortablelayout.Invoke(new Action(() => DisplayError(errorMessage, motorIndex, errortablelayout)));
+                return;
+            }
+
+            // Sabit renk tanımlaması: Eğer hata mesajı belirli bir renge sahipse kullan, yoksa varsayılan siyah rengi kullan
+            Color errorColor = errorColors.ContainsKey(errorMessage) ? errorColors[errorMessage] : Color.Black;
+
+            // Hata etiketi oluştur
+            Label errorLabel = new Label()
+            {
+                Text = errorMessage,
+                TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
+                Font = new Font("Segoe UI", 12F, FontStyle.Bold), // Daha modern font ve boyut
+                ForeColor = Color.FromArgb(50, 50, 50), // Sabit yazı rengi, örneğin koyu gri tonları
+                AutoSize = true,
+                Padding = new Padding(10, 5, 10, 5) // Daha fazla boşluk ve padding
+            };
+
+            // PictureBox kullanarak yuvarlak gösterim
+            PictureBox circleIndicator = new PictureBox()
+            {
+                Width = 20,
+                Height = 20,
+                BackColor = Color.Transparent
+            };
+
+            // Yuvarlak çizim için PictureBox'ın Paint eventini kullan
+            circleIndicator.Paint += (s, e) =>
+            {
+                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias; // Pürüzsüzleştirme
+                using (Brush brush = new SolidBrush(errorColor))
+                {
+                    e.Graphics.FillEllipse(brush, 0, 0, circleIndicator.Width, circleIndicator.Height); // Pürüzsüz yuvarlak çizim
+                }
+            };
+
+            // FlowLayoutPanel kullanarak renkli yuvarlak ve hatayı yan yana yerleştirme
+            FlowLayoutPanel errorPanel = new FlowLayoutPanel()
+            {
+                AutoSize = true,
+                FlowDirection = FlowDirection.LeftToRight,
+                Padding = new Padding(0),
+                Margin = new Padding(0)
+            };
+            errorPanel.Controls.Add(circleIndicator);
+            errorPanel.Controls.Add(errorLabel);
+
+            if (motorIndex == 0)
+            {
+                // Motor-1 altında göster
+                errortablelayout.Controls.Add(errorPanel, 0, motor1RowCount);
+                motor1RowCount++;
+            }
+            else if (motorIndex == 1)
+            {
+                // Motor-2 altında göster
+                errortablelayout.Controls.Add(errorPanel, 1, motor2RowCount);
+                motor2RowCount++;
+            }
+            else
+            {
+                // Genel hatalar için özel bir sütuna ekleyebilirsiniz (örneğin, 2. sütun)
+                errortablelayout.Controls.Add(errorPanel, 2, generalErrorRowCount);
+                generalErrorRowCount++;
+            }
+
+            // Kaydırma özelliğini aktif hale getir
+            errortablelayout.AutoScroll = true;
+            errortablelayout.ScrollControlIntoView(errorPanel); // Yeni eklenen hata panelini görünecek şekilde kaydır
+        }
+
+
+
+        private void InitializeErrorUpdateTimer()
+        {
+            updateTimer = new System.Timers.Timer(100); // 100 ms
+            updateTimer.Elapsed += UpdateDataGridFromListmotor1;
+            updateTimer.AutoReset = true;
+            updateTimer.Start();
+        }
+        private void AddErrorToListmotor1(string errorMessage)
+        {
+            if (!errorListmotor1.Contains(errorMessage))
+            {
+                errorListmotor1.Add(errorMessage);
+            }
+        }
+        private void AddErrorToListmotor2(string errorMessage)
+        {
+            if (!errorListmotor2.Contains(errorMessage))
+            {
+                errorListmotor2.Add(errorMessage);
+            }
+        }
+        private void UpdateDataGridFromListmotor1(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            if (errorListmotor1.Count > 0)
+            {
+                Invoke(new Action(() =>
+                {
+                    foreach (var error in errorListmotor1)
+                    {
+                        DataGridErrormotor1.Rows.Add(error);
+                    }
+                    errorListmotor1.Clear();
+                }));
+            }
+        }
+        private void UpdateDataGridFromListmotor2(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            if (errorListmotor2.Count > 0)
+            {
+                Invoke(new Action(() =>
+                {
+                    foreach (var error in errorListmotor2)
+                    {
+                        DataGriderrormotor2.Rows.Add(error);
+                    }
+                    errorListmotor2.Clear();
+                }));
+            }
+        }
+        private List<string> errorListmotor1 = new List<string>();
+        private List<string> errorListmotor2 = new List<string>();
+        private System.Timers.Timer updateTimer;
+
         int updatecounter = 0;
         int dbcounter = 0;
         private void ProcessMotorControls(byte[] data)
@@ -779,48 +1299,127 @@ namespace WindowsFormsApp1
             Fin1MotorHallState = (data[2] & 0b00000111); // 3. byte'ın 0-2. 3 biti
             Fin2MotorHallState = (data[2] & 0b00111000); // 3. byte'ın 3-5. 3 biti
             ActualDriveMode = (data[2] & 0b11000000); // 3. byte'ın 6-7. 2 biti
-             
-            Fin2_HallSensorSUpplyError = (data[3] & 0b00000001) != 0; // 4. byte'ın 1. biti                        
-            Fin1_HallSensorSUpplyError = (data[3] & 0b00000010) != 0; // 4. byte'ın 2. biti                             <<<<<hata1
+
+             Fin2_HallSensorSUpplyError = Convert.ToBoolean((data[3] >> 0) & 0x01); // 1. bit
+             Fin1_HallSensorSUpplyError = Convert.ToBoolean((data[3] >> 1) & 0x01); // 2. bit
+                   
+            hata1RadioButton.BackColor = Fin1_HallSensorSUpplyError ? Color.Red : Color.Transparent;
+            if (Fin1_HallSensorSUpplyError = Convert.ToBoolean((data[3] >> 0) & 0x01))
+                AddErrorToListmotor1("Fin1 Hall Sensor Supply Error");
+            if (Fin2_HallSensorSUpplyError = Convert.ToBoolean((data[3] >> 0) & 0x01))
+                AddErrorToListmotor2("Fin2 Hall Sensor Supply Error");
 
             Fin2_HallSensorStateError = (data[3] & 0b00000100) != 0; // 4. byte'ın 3. biti                             <<<<<hata2
             Fin1_HallSensorStateError = (data[3] & 0b00001000) != 0; // 4. byte'ın 4. biti
+            hata2RadioButton.BackColor = Fin2_HallSensorStateError ? Color.Red : Color.Transparent;
+                if (Fin1_HallSensorStateError = (data[3] & 0b00000100) != 0)
+                    AddErrorToListmotor1("Fin1 Hall Sensor State Error");
 
+                if (Fin2_HallSensorStateError = (data[3] & 0b00000100) != 0)
+                    AddErrorToListmotor2("Fin2 Hall Sensor State Error");
 
             Fin2_MotorLeakageCurrentError = (data[3] & 0b00010000) != 0; // 4. byte'ın 5. biti
             Fin1_MotorLeakageCurrentError = (data[3] & 0b00100000) != 0; // 4. byte'ın 6. biti                        <<<<<hata3
+            hata3RadioButton.BackColor = Fin1_MotorLeakageCurrentError ? Color.Red : Color.Transparent;
+
+
+            if (Fin1_MotorLeakageCurrentError = (data[3] & 0b00100000) != 0)
+                AddErrorToListmotor1("Fin1 Motor Leakage Current Error");
+            if (Fin2_MotorLeakageCurrentError = (data[3] & 0b00100000) != 0)
+                AddErrorToListmotor2("Fin2 Motor Leakage Current Error");
 
             Fin2_MotorOverCurrentError = (data[3] & 0b01000000) != 0; // 4. byte'ın 7. biti
             Fin1_MotorOverCurrentError = (data[3] & 0b10000000) != 0; // 4. byte'ın 8. biti                           <<<<<hata4
+            hata4RadioButton.BackColor = Fin1_MotorOverCurrentError ? Color.Red : Color.Transparent;
+
+            if (Fin1_MotorOverCurrentError = (data[3] & 0b10000000) != 0)
+                AddErrorToListmotor1("Fin1 Motor Over Current Error");
+            if (Fin2_MotorOverCurrentError = (data[3] & 0b10000000) != 0)
+                AddErrorToListmotor1("Fin2 Motor Over Current Error");
 
             Fin2_SolenoidError = (data[4] & 0b00000001) != 0; // 5. byte'ın 1. biti
             Fin1_SolenoidError = (data[4] & 0b00000010) != 0; // 5. byte'ın 2. biti                                   <<<<<hata5
+            hata5RadioButton.BackColor = Fin1_SolenoidError ? Color.Red : Color.Transparent;
+
+            if (Fin1_SolenoidError = (data[4] & 0b00000010) != 0)
+                AddErrorToListmotor1("Fin1 Solenoid Error");
+            if (Fin2_SolenoidError = (data[4] & 0b00000010) != 0)
+                AddErrorToListmotor1("Fin2 Solenoid Error");
 
 
             SupplyVoltageError = (data[4] & 0b00000100) != 0; // 5. byte'ın 3. biti                                    <<<<<hata6
+            hata6RadioButton.BackColor = SupplyVoltageError ? Color.Red : Color.Transparent;
+            if (SupplyVoltageError = (data[4] & 0b00000100) != 0)
+              //  AddErrorToList("Supply Voltage Error");
 
             TemperatureSensorError = (data[4] & 0b00001000) != 0; // 5. byte'ın 4. biti                                    <<<<<hata7
+            hata7RadioButton.BackColor = TemperatureSensorError ? Color.Red : Color.Transparent;
+            if (TemperatureSensorError = (data[4] & 0b00001000) != 0)
+             //   AddErrorToList("Temperature Sensor Error");
 
             Fin2_MotorDriverICErrorByCPLD = (data[4] & 0b00010000) != 0; // 5. byte'ın 5. biti
             Fin1_MotorDriverICErrorByCPLD = (data[4] & 0b00100000) != 0; // 5. byte'ın 6. biti                              <<<<<hata8
+            hata8RadioButton.BackColor = Fin1_MotorDriverICErrorByCPLD ? Color.Red : Color.Transparent;
+
+            if (Fin1_MotorDriverICErrorByCPLD = (data[4] & 0b00100000) != 0)
+                AddErrorToListmotor1("Fin1 Motor Driver IC Error");
+            if (Fin2_MotorDriverICErrorByCPLD = (data[4] & 0b00100000) != 0)
+                AddErrorToListmotor2("Fin2 Motor Driver IC Error");
+
 
             Fin2_EncoderSupplyErrorByCPLD = (data[4] & 0b01000000) != 0; // 5. byte'ın 7. biti
             Fin1_EncoderSupplyErrorByCPLD = (data[4] & 0b10000000) != 0; // 5. byte'ın 8. biti                                 <<<<<hata9
+            hata9RadioButton.BackColor = Fin1_EncoderSupplyErrorByCPLD ? Color.Red : Color.Transparent;
+
+            if (Fin1_EncoderSupplyErrorByCPLD = (data[4] & 0b10000000) != 0)
+                AddErrorToListmotor1("Fin1 Encoder Supply Error");
+            if (Fin2_EncoderSupplyErrorByCPLD = (data[4] & 0b10000000) != 0)
+                AddErrorToListmotor2("Fin2 Encoder Supply Error");
+
 
             Fin2_MotorTemperatureErrorByCPLD = (data[5] & 0b00000001) != 0; // 6. byte'ın 1. biti
             Fin1_MotorTemperatureErrorByCPLD = (data[5] & 0b00000010) != 0; // 6. byte'ın 2. biti                             <<<<<hata10
+            hata10RadioButton.BackColor = Fin1_MotorTemperatureErrorByCPLD ? Color.Red : Color.Transparent;
+
+            if (Fin1_MotorTemperatureErrorByCPLD = (data[5] & 0b00000010) != 0)
+                AddErrorToListmotor1("Fin1 Motor Temperature Error");
+            if (Fin2_MotorTemperatureErrorByCPLD = (data[5] & 0b00000010) != 0)
+                AddErrorToListmotor2("Fin2 Motor Temperature Error");
+
 
 
             Fin2_MotorDriverTemperatureErrorByCPLD = (data[5] & 0b00000100) != 0; // 6. byte'ın 3. biti
             Fin1_MotorDriverTemperatureErrorByCPLD = (data[5] & 0b00001000) != 0; // 6. byte'ın 4. biti                         <<<<<hata11
+            hata11RadioButton.BackColor = Fin1_MotorDriverTemperatureErrorByCPLD ? Color.Red : Color.Transparent;
+
+            if (Fin1_MotorDriverTemperatureErrorByCPLD = (data[5] & 0b00001000) != 0)
+                AddErrorToListmotor1("Fin1 Motor Driver Temperature Error");
+            if (Fin2_MotorDriverTemperatureErrorByCPLD = (data[5] & 0b00001000) != 0)
+                AddErrorToListmotor2("Fin2 Motor Driver Temperature Error");
 
             Omkk_DspAdc_1_5VoltError = (data[5] & 0b00010000) != 0; // 6. byte'ın 5. biti                                        <<<<<hata12
-             
+            hata12RadioButton.BackColor = Omkk_DspAdc_1_5VoltError ? Color.Red : Color.Transparent;
+
+            if (Omkk_DspAdc_1_5VoltError = (data[5] & 0b00010000) != 0)
+              //  AddErrorToList("OMKK DSP ADC 1.5V Error");
+
+
             Omkk_3_3VoltErrorByCPLD = (data[5] & 0b00100000) != 0; // 6. byte'ın 6. biti                                          <<<<<hata13
+            hata13RadioButton.BackColor = Omkk_3_3VoltErrorByCPLD ? Color.Red : Color.Transparent;
+            if (Omkk_3_3VoltErrorByCPLD = (data[5] & 0b00100000) != 0)
+              //  AddErrorToList("OMKK 3.3V Error");
+
 
             Omkk_5VoltErrorByCPLD = (data[5] & 0b01000000) != 0; // 6. byte'ın 7. biti                                         <<<<<hata14
-                                                                 // 
+            hata14RadioButton.BackColor = Omkk_5VoltErrorByCPLD ? Color.Red : Color.Transparent;
+            if (Omkk_5VoltErrorByCPLD = (data[5] & 0b01000000) != 0)
+              //  AddErrorToList("OMKK 5V Error");
+            // 
             Omkk_12VoltErrorByCPLD = (data[5] & 0b10000000) != 0; // 6. byte'ın 8. biti                                         <<<<<hata15
+            hata15RadioButton.BackColor = Omkk_12VoltErrorByCPLD ? Color.Red : Color.Transparent;
+            if (Omkk_12VoltErrorByCPLD = (data[5] & 0b10000000) != 0)
+              //  AddErrorToList("OMKK 12V Error");
+            // Hataları kontrol et ve DataGrid'e ekle
 
             Fin1PositionFeedbackRaw = (ushort)((data[7] << 8) | data[6]); // MSB << 8 | LSB
             Fin1PositionFeedbackDeg = ConvertRawToDegrees(Fin1PositionFeedbackRaw, 25);                                       
@@ -846,31 +1445,34 @@ namespace WindowsFormsApp1
             Fin2CurrentFeedbackRaw = (ushort)((data[21] << 8) | data[20]); // MSB << 8 | LSB
             Fin2CurrentFeedbackDeg = ConvertRawToDegrees(Fin2CurrentFeedbackRaw, 50);
 
-           
+            if (updatecounter > 10000)
+            {
                 if (Motor1positiontext != null)
                 {
-                    Motor1positiontext.Text = Fin1PositionReferenceDeg.ToString("F2");
-                    motorkonumotomatictext.Text = Fin1PositionReferenceDeg.ToString("F2");
+                    Motor1positiontext.Text = Fin1PositionFeedbackDeg.ToString("F2");
+                    motorkonumotomatictext.Text = Fin1PositionFeedbackDeg.ToString("F2");
                 }
 
                 if (motor2positiontext != null)
                 {
-                    motor2positiontext.Text = Fin2PositionReferenceDeg.ToString("F2");
-                    motor2konumotomatictext.Text = Fin2PositionReferenceDeg.ToString("F2");
+                    motor2positiontext.Text = Fin2PositionFeedbackDeg.ToString("F2");
+                    motor2konumotomatictext.Text = Fin2PositionFeedbackDeg.ToString("F2");
                 }
 
                 if (motor1currenttext != null)
                 {
-                    motor1currenttext.Text = Fin1CurrentReferenceDeg.ToString("F2");
-                    motorakimotomatictext.Text = Fin1CurrentReferenceDeg.ToString("F2");
+                    motor1currenttext.Text = Fin1CurrentFeedbackDeg.ToString("F2");
+                    motorakimotomatictext.Text = Fin1CurrentFeedbackDeg.ToString("F2");
                 }
 
                 if (motor2currenttext != null)
                 {
-                    motor2currenttext.Text = Fin2CurrentReferenceDeg.ToString("F2");
-                    motorakim2otomatictext.Text = Fin2CurrentReferenceDeg.ToString("F2");
+                    motor2currenttext.Text = Fin2CurrentFeedbackDeg.ToString("F2");
+                    motorakim2otomatictext.Text = Fin2CurrentFeedbackDeg.ToString("F2");
                 }
-           
+                updatecounter = 0;
+            }
+
 
             // Fin1 Applied PWM
             //Değer Aralığı : ±100  , Byte 23 ile birleştirilir Float değer 12 bitlik veri aralığına yazılır.
@@ -914,19 +1516,21 @@ namespace WindowsFormsApp1
 
 
                 // InstantBatteryVoltage ve ilgili diğer değerleri al
-                InstantBatteryVoltage = BitConverter.ToSingle(new byte[] { data[25], data[26], 0, 0 }, 0); // 25-26 FLOAT
+                InstantBatteryVoltage = ((float)(Int16)((data[26] << 8) | data[25]))*100/65535   ;
+                //BitConverter.ToSingle(new byte[] { data[25], data[26], 0, 0 }, 0); // 25-26 FLOAT
                 MeanBatteryVoltage = BitConverter.ToSingle(new byte[] { data[27], data[28], 0, 0 }, 0); // 27-28 FLOAT
-                CardTemperature = BitConverter.ToSingle(new byte[] { data[29], data[30], 0, 0 }, 0); // 29-30 FLOAT
+                CardTemperature=    ((data[30] << 8) | data[29]);
+                //CardTemperature = BitConverter.ToSingle(new byte[] { 0, 0, data[30], data[29] }, 0); // 29-30 FLOAT
                 isSolenoid1Open = ((data[31] & 0b00000001) != 0); // 31. byte'ın 1. biti
                 isSolenoid2Open = ((data[33] & 0b00000010) != 0); // 33. byte'ın 2. biti
                 TotalConsumedPower = BitConverter.ToSingle(new byte[] { data[35], data[36], 0, 0 }, 0); // 35-36 FLOAT
-                if (InstantBatteryVoltage != null)
+                if (InstantBatteryVoltage != null& InstantBatteryVoltage !=0)
                 {
-                    MSK1batteryvoltage.Text = InstantBatteryVoltage.ToString("F2");
+                    MSK1batteryvoltage.Text = InstantBatteryVoltage.ToString();
                 }
-                if (CardTemperature != null)
+                if (CardTemperature != null & CardTemperature !=0)
                 {
-                    msk1cardtemp.Text = CardTemperature.ToString("F2");
+                    msk1cardtemp.Text = CardTemperature.ToString();
                 }
 
 
@@ -985,13 +1589,14 @@ namespace WindowsFormsApp1
             }
             else if (ReservedMessageNoStatus == 7)
             {
+                //((float)(Int16)((data[26] << 8) | data[25]))*100/65535
                 // CurrentControlPrm ve PositionControlPrm bilgilerini al
-                CurrentControlPrm_R_40 = BitConverter.ToSingle(new byte[] { data[25], data[26], 0, 0 }, 0); // 25-26 FLOAT
-                CurrentControlPrm_L_40 = BitConverter.ToSingle(new byte[] { data[27], data[28], 0, 0 }, 0); // 27-28 FLOAT
-                CurrentControlPrm_BW_40 = BitConverter.ToSingle(new byte[] { data[29], data[30], 0, 0 }, 0); // 29-30 FLOAT
-                PositionControlPrm_Kp_40 = BitConverter.ToSingle(new byte[] { data[31], data[32], 0, 0 }, 0); // 31-32 FLOAT
-                PositionControlPrm_Ki_40 = BitConverter.ToSingle(new byte[] { data[33], data[34], 0, 0 }, 0); // 33-34 FLOAT
-                PositionControlPrm_Kd_40 = BitConverter.ToSingle(new byte[] { data[35], data[36], 0, 0 }, 0); // 35-36 FLOAT
+                CurrentControlPrm_R_40 = ((float)(Int16)((data[26] << 8) | data[25])) * 400 / 65535;
+                CurrentControlPrm_L_40 = ((float)(Int16)((data[28] << 8) | data[27])) * 400 / 65535;
+                CurrentControlPrm_BW_40 = ((float)(Int16)((data[30] << 8) | data[29])) * 400 / 65535; // 29-30 FLOAT
+                PositionControlPrm_Kp_40 = ((float)(Int16)((data[32] << 8) | data[31])) * 400 / 65535;
+                PositionControlPrm_Ki_40 = ((float)(Int16)((data[34] << 8) | data[33])) * 400 / 65535;
+                PositionControlPrm_Kd_40 = ((float)(Int16)((data[36] << 8) | data[35])) * 400 / 65535;// 35-36 FLOAT
             }
             else if (ReservedMessageNoStatus == 8)
             {
@@ -1032,8 +1637,9 @@ namespace WindowsFormsApp1
             {
 
             if (dbcounter > 10000)
-            {
-                _ = Task.Run(async () =>
+                {
+                
+                    _ = Task.Run(async () =>
                 {
                     while (serialport.IsOpen) // Seri port açık olduğu sürece çalış
                     { 
@@ -1154,12 +1760,16 @@ namespace WindowsFormsApp1
         );
                     }
                 });
-                dbcounter = 0;
+                    DisplayErrorsFromData(errortablelayout);
+
+                    dbcounter = 0;
+                  
 
             }
             
 
             }
+           
         }
 
 
@@ -1359,6 +1969,10 @@ namespace WindowsFormsApp1
             // Checksum doğrulama
             return calculatedChecksum == receivedChecksum;
         }
+
+
+
+
         private int updateCounter2 = 0;
         private int dbcounter2 = 0;
         private void ProcessMotorControls2(byte[] data)
@@ -1431,30 +2045,30 @@ namespace WindowsFormsApp1
 
             Fin2CurrentFeedbackRaw = (ushort)((data[21] << 8) | data[20]); // MSB << 8 | LSB
             Fin2CurrentFeedbackDeg = ConvertRawToDegrees(Fin2CurrentFeedbackRaw, 50);
-            if (updateCounter2 >= 1000)
+            if (updateCounter2 >= 10000)
             {
                 if (Motor3positiontext != null)
                 {
-                    Motor3positiontext.Text = Fin1PositionReferenceDeg.ToString("F2");
-                    motor3konumotomatictext.Text = Fin1PositionReferenceDeg.ToString("F2");
+                    Motor3positiontext.Text = Fin1PositionFeedbackDeg.ToString("F2");
+                    motor3konumotomatictext.Text = Fin1PositionFeedbackDeg.ToString("F2");
                 }
 
                 if (Motor4positiontext != null)
                 {
-                    Motor4positiontext.Text = Fin2PositionReferenceDeg.ToString("F2");
-                    motor4konumotomatictext.Text = Fin2PositionReferenceDeg.ToString("F2");
+                    Motor4positiontext.Text = Fin2PositionFeedbackDeg.ToString("F2");
+                    motor4konumotomatictext.Text = Fin2PositionFeedbackDeg.ToString("F2");
                 }
 
                 if (motor3currenttext != null)
                 {
-                    motor3currenttext.Text = Fin1CurrentReferenceDeg.ToString("F2");
-                    motor3akimotomatictext.Text = Fin1CurrentReferenceDeg.ToString("F2");
+                    motor3currenttext.Text = Fin1CurrentFeedbackDeg.ToString("F2");
+                    motor3akimotomatictext.Text = Fin1CurrentFeedbackDeg.ToString("F2");
                 }
 
                 if (motor4currenttext != null)
                 {
-                    motor4currenttext.Text = Fin2CurrentReferenceDeg.ToString("F2");
-                    motorakim4otomatictext.Text = Fin2CurrentReferenceDeg.ToString("F2");
+                    motor4currenttext.Text = Fin2CurrentFeedbackDeg.ToString("F2");
+                    motorakim4otomatictext.Text = Fin2CurrentFeedbackDeg.ToString("F2");
                 }
                 updateCounter2 = 0;
             }
@@ -1732,7 +2346,7 @@ namespace WindowsFormsApp1
                Fin2CloseSwitchState,
                MotorDriveMethod,
                ReservedBits,
-               counter, portInfo
+               counter, portInfo2
 
                 );
                         }
@@ -1783,7 +2397,7 @@ namespace WindowsFormsApp1
                         string timeStamp = DateTime.Now.ToString("HH:mm:ss.fff");
 
                         // DataGridView'e veri ekle
-                        dataGridViewCrcResults.Rows.Add(dataHex, calculatedChecksum.ToString("X2"), dataHex, receivedChecksum.ToString("X2"), timeStamp);
+                        //dataGridViewCrcResults.Rows.Add(dataHex, calculatedChecksum.ToString("X2"), dataHex, receivedChecksum.ToString("X2"), timeStamp);
                     }));
                 }
                 else
@@ -1793,7 +2407,7 @@ namespace WindowsFormsApp1
                         string dataHex = BitConverter.ToString(packet).Replace("-", " ");
                         string timeStamp = DateTime.Now.ToString("HH:mm:ss.fff");
 
-                        dataGridViewCrcResults.Rows.Add("N/A", "N/A", dataHex, receivedChecksum.ToString("X2"), timeStamp);
+                      //  dataGridViewCrcResults.Rows.Add("N/A", "N/A", dataHex, receivedChecksum.ToString("X2"), timeStamp);
                     }));
                 }
             }
@@ -1895,9 +2509,14 @@ namespace WindowsFormsApp1
         //        }));
         //    }
         //}
-
+        byte systemAnalysisMode =0;
+        byte driveModeCommand = 0;
+        string selectedMode = "";
+        string selectedDrive = "";
         public byte[] CreateRandomPacketEmpty()
         {
+            selectedMode = systemanalysismode.SelectedItem.ToString();
+            selectedDrive = comboBox12.SelectedItem.ToString();
             Random random = new Random();
             List<byte> byteList = new List<byte>();
 
@@ -1924,14 +2543,45 @@ namespace WindowsFormsApp1
             byteList.Add(byte1);
 
             // 2. Bayt: DriveModeCommand (0-1), IsFin1MotorEnableCommandActivated (2), IsFin2MotorEnableCommandActivated (3), IsSolenoid1OpenCommandActivated (4), IsSolenoid2OpenCommandActivated (5), SystemAnalysisModeCommand (6-7)
-            byte driveModeCommand = (byte)(random.Next(0, 4)); // 0-3
-            byte isFin1MotorEnabled = (byte)(random.Next(0, 2)); // 0 veya 1
-            byte isFin2MotorEnabled = (byte)(random.Next(0, 2)); // 0 veya 1
-            byte isSolenoid1Open = (byte)(random.Next(0, 2)); // 0 veya 1
-            byte isSolenoid2Open = (byte)(random.Next(0, 2)); // 0 veya 1
-            byte systemAnalysisMode = (byte)(random.Next(0, 3)); // 0-2
+            if (selectedDrive.Contains("0: None"))
+            {
+                driveModeCommand = 0; // 0-3
+            }
+            if (selectedDrive.Contains("1: Position"))
+            {
+                driveModeCommand =1; // 0-3
+            }
+            if (selectedDrive.Contains("2: Current"))
+            {
+                driveModeCommand =2; // 0-3
+            }
+            if (selectedDrive.Contains("3: PWM"))
+            {
+                driveModeCommand =3; // 0-3
+            }
+
+            byte isFin1MotorEnabled = (radioButton8.Checked || Motor1Enabledbutton.Checked) ? (byte)1 : (byte)(random.Next(0, 2)); // 0 veya 1
+
+            byte isFin2MotorEnabled = (radioButton6.Checked || Motor2Enabledbutton.Checked) ? (byte)1 : (byte)(random.Next(0, 2)); // 0 veya 1
+
+            byte isSolenoid1Open = 1; // 0 veya 1
+            byte isSolenoid2Open = 1; // 0 veya 1
+            if (selectedMode.Contains("0-None"))
+            {
+                 systemAnalysisMode = 0;
+            }
+            if (selectedMode.Contains("1-Current2Current"))
+            {
+                 systemAnalysisMode = 1;
+            }
+            if (selectedMode.Contains("2-Position2Position"))
+            {
+                systemAnalysisMode = 2;
+            }
+
 
             byte byte2 = (byte)(driveModeCommand | (isFin1MotorEnabled << 2) | (isFin2MotorEnabled << 3) | (isSolenoid1Open << 4) | (isSolenoid2Open << 5) | (systemAnalysisMode << 6));
+            
             byteList.Add(byte2);
 
             // 3. - 12. Baytlar: SystemAnalysisModeCommand'e göre farklı veri ekleme
@@ -2002,7 +2652,10 @@ namespace WindowsFormsApp1
 
             for (int i = 1; i < 19; i++)
             {
-                byteList[i] = 0x00; // Her baytı sıfır yap
+                if (i != 2) // `isFin1MotorEnabled` baytını atla (burada 2. bayta denk geliyor)
+                {
+                    byteList[i] = 0x00;
+                }
             }
             // 19. Bayt: Sabit header (0x3A)
             byteList.Add(0x3A);
@@ -2047,6 +2700,8 @@ namespace WindowsFormsApp1
 
                                 // Timer'ı başlat ve 10ms aralıkla sürekli gönder
                                 StartSendingMessage();
+                                InitializeErrorUpdateTimer();
+
                                 // serialport.Write(fullMessage, 0, fullMessage.Length);
                                 //MessageBox.Show("Protokol 1 seçildi, fullMessage gönderildi.");
                             }
@@ -3015,13 +3670,13 @@ namespace WindowsFormsApp1
                         file.WriteLine("Gönderilen Veri\tGönderilen CRC\tAlınan Veri\tAlınan CRC\tZaman");
 
                         // DataGridView'deki her satırı yaz
-                        foreach (DataGridViewRow row in dataGridViewCrcResults.Rows)
-                        {
-                            // Her hücredeki veriyi oku ve satıra yaz
-                            var cells = row.Cells;
-                            string line = $"{cells[0].Value}\t{cells[1].Value}\t{cells[2].Value}\t{cells[3].Value}\t{cells[4].Value}";
-                            file.WriteLine(line);
-                        }
+                        //foreach (DataGridViewRow row in dataGridViewCrcResults.Rows)
+                        //{
+                        //    // Her hücredeki veriyi oku ve satıra yaz
+                        //    var cells = row.Cells;
+                        //    string line = $"{cells[0].Value}\t{cells[1].Value}\t{cells[2].Value}\t{cells[3].Value}\t{cells[4].Value}";
+                        //    file.WriteLine(line);
+                        //}
                     }
                     MessageBox.Show("Veriler başarıyla kaydedildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -3334,7 +3989,6 @@ Msk2KP, Mk2KI, MSK2KD, MSK2AkimKp, MSK2AkimKI, MSK2AkimKD);
             }
         }
 
-
-
+    
     }
 }
